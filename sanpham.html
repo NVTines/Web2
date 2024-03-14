@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="user.css" type="text/css" />
+    <script src="Project.js"></script>
+    <script>
+    function show(){
+       var arr = JSON.parse(localStorage.getItem('products'));
+       var tr='<tr><th>ID</th><th>name</th><th>Brand</th><th>Img</th><th>Price</th><th>Action</th></tr>';
+       for( var i=0;i<arr.length;i++){
+          tr+='<tr><td>'+arr[i].product+'</td><td>'+arr[i].name+'</td><td>'+arr[i].brand+'</td><td><img src="'+arr[i].img+'" style="width:80px;height:80px"/></td><td>'+arr[i].price+'$</td><td><button class="delete" onclick="thongbaobox(\''+arr[i].product+'\')">&times;</button><button style="margin-left:10px" onclick="hideFixSP('+arr[i].product+')">&#9881;</button></td></tr>';
+       }
+       document.getElementById('showlist').innerHTML=tr;  
+    }
+    function thongbaobox(namedelete){
+      document.getElementById('boxtb').style.animation="tb 1s forwards";
+      document.getElementById('boxtb').innerHTML='<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deletee(\''+namedelete+'\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
+    }
+    function deletee(namedelete){//Xóa một sản phẩm
+      var arr=JSON.parse(localStorage.getItem('products'));
+      for(var i=0;i<arr.length;i++){
+      if(arr[i].product == namedelete){
+        arr.splice(i, 1);
+        }
+      }
+      localStorage.setItem('products',JSON.stringify(arr));
+      document.getElementById('boxtb').style.animation="tb_2 1s forwards";
+      show();
+    }
+    function filterOf(){//Search sản phẩm cơ bản, theo tên và theo ID sản phẩm
+        var s='<tr><th>ID</th><th>name</th><th>Brand</th><th>Img</th><th>Price</th><th>Action</th></tr>';
+        var temp,temp_2;
+        var input=document.getElementById("search-box").value;
+        var filter= document.getElementById("search-box").value.toUpperCase();
+        var arr=JSON.parse(localStorage.getItem('products'));
+        for (var i = 0; i < arr.length; i++) {
+            temp=arr[i].name.toUpperCase();
+            temp_2=String(arr[i].product);
+            if (temp.indexOf(filter) > -1 || temp_2.indexOf(input) > -1 ) {
+                
+                s+='<tr><td>'+arr[i].product+'</td><td>'+arr[i].name+'</td><td>'+arr[i].brand+'</td><td><img src="'+arr[i].img+'" style="width:80px;height:80px"/></td><td>'+arr[i].price+'$</td><td><button class="delete" onclick="thongbaobox(\''+arr[i].product+'\')">&times;</button><button style="margin-left:10px" onclick="hideFixSP('+arr[i].product+')">&#9881;</button></td></tr>';    
+
+            }
+        } 
+        document.getElementById('showlist').innerHTML=s;
+      }
+    function addproduct(){//Thêm 1 sản phẩm
+      var cut=document.getElementById('imgg').value.split("\\");
+      var productArray=JSON.parse(localStorage.getItem('products'));
+      var productadd={product:document.getElementById('product').value, name:document.getElementById('name').value, brand:document.getElementById('brand').value, gender:document.getElementById('gender').value, img:cut[2], price:document.getElementById('price').value};
+      if(productadd.product=="" || productadd.name=="" || productadd.brand=="" || productadd.gender=="" || productadd.price==""){
+        alert("Hãy nhập đầy đủ thông tin");
+        return 0;
+      }
+      for(var i=0;i<productArray.length;i++)
+        if(productadd.product==productArray[i].product){
+          alert("ID sản phẩm đã tồn tại");
+          return 0;
+        }
+      productArray.push(productadd);
+      localStorage.setItem('products',JSON.stringify(productArray));
+      alert("Thêm thành công");
+      reset_1();//Reset lại thông tin điền trong box add sản phẩm
+      show();//Reset lại trang
+    }
+    function Fixproduct(){//Sửa thông tin một sản phẩm
+      var xd=0;
+      var gtri=document.getElementById('change').value;
+      var productArray=JSON.parse(localStorage.getItem('products'));
+      var ID=document.getElementById('product_2').value;
+      for(var i=0;i<productArray.length;i++)
+        if(ID==productArray[i].product){
+          xd=1;
+          switch(document.getElementById('choose').value){
+            case 'name'://Sửa tên sản phẩm
+              productArray[i].name=gtri;
+              break;
+            case 'img'://Sửa hình ảnh
+              var cut=gtri.split("\\");
+              productArray[i].img=cut[2];
+              break;
+            case 'price'://Sửa giá 
+              productArray[i].price=gtri;
+              break;
+            case 'brd'://Sửa hãng giày
+              productArray[i].brand=gtri;
+              break;
+            default:
+              break;
+          }   
+        }
+      if(xd==0) alert('ID sản phẩm không tồn tại');
+      localStorage.setItem('products',JSON.stringify(productArray));
+      alert("Sửa thành công");
+      cancelbox();//Đóng box chỉnh sửa sản phẩm
+      document.getElementById('change').value="";
+      document.getElementById('choose').value="";
+      document.getElementById('capnhat').innerHTML='<input readonly style="height:20px" type="text" id="change"/>';
+
+      show();//Reset lại trang
+    }
+    var addsp=0;
+    function hideAddSP(){
+      if(addsp==0){
+        document.getElementById('clearfix').style.display="block";
+        addsp++;
+        return 0;
+      } 
+      if(addsp==1){
+        document.getElementById('clearfix').style.display="none";
+        addsp++;
+        return 0;
+      }
+      if(addsp==2){
+        addsp=0;
+        hideAddSP();
+      }
+    }
+    function hideFixSP(obj){
+        document.getElementById('clearfix_2').style.display="block";
+        document.getElementById('flat').style.zIndex="10";
+        document.getElementById('flat').style.display="block";
+        document.getElementById("ttsp").innerHTML="ID sản phẩm: <input style='text-align:center;font-size:18px;font-style:italic;' readonly id='product_2' value='"+obj+"'>";
+        var productArray=JSON.parse(localStorage.getItem("products"));
+        for(var i=0;i<productArray.length;i++){
+          if(obj==productArray[i].product){
+            document.getElementById("ttsp2").innerHTML="<img style='height:100px;width:100px' src='"+productArray[i].img+"'>";
+            document.getElementById("ttsp3").innerHTML="Tên sản phẩm: "+productArray[i].name;
+          }
+        }
+    }
+    function reset_1(){
+      document.getElementById('product').value="";
+      document.getElementById('name').value="";
+      document.getElementById('brand').value="";
+      document.getElementById('gender').value="";
+      document.getElementById('imgg').value="";
+      document.getElementById('price').value="";
+    }
+    function cancelbox(){
+      document.getElementById("clearfix_2").style.display="none";
+      document.getElementById('flat').style.zIndex="-1";
+      document.getElementById('flat').style.display="none";
+      document.getElementById('change').value="";
+      document.getElementById('choose').value="";
+      document.getElementById('capnhat').innerHTML='<input readonly style="height:20px" type="text" id="change"/>';
+
+    }
+    function changetype(){
+      var gtri=document.getElementById('change').value;
+          switch(document.getElementById('choose').value){
+            case 'name':
+              document.getElementById('capnhat').innerHTML='<input style="height:20px" type="text" id="change"/>';
+              break;
+            case 'img':
+              document.getElementById('capnhat').innerHTML='<input style="height:20px" type="file" id="change"/>';
+              break;
+            case 'price': 
+              document.getElementById('capnhat').innerHTML='<input style="height:20px" type="text" id="change"/>';
+              break;
+            case 'brd':
+              document.getElementById('capnhat').innerHTML='<input style="height:20px" type="text" id="change"/>';
+              break;
+            default:
+              break;
+          }   
+    }
+    </script>
+</head>
+
+<body>
+    <script>
+    window.onload=function(){
+      createAdmin();  
+      show();
+       
+    }
+
+  </script>
+    <div id="flat" style="background-color:black;position:fixed;width:100%;height:100%;opacity:0.5;z-index:-1;display:none"></div>
+    <div id="clearfix_2" style="display:none;position:fixed;background-color:gray;text-align: center;padding:50px;left:40%;top: 30%;z-index:11;border-radius:20%">
+    <div id="ttsp2"></div> 
+    <div id="ttsp3"  style="color: white; font-size: 20px;"></div> 
+    <div id="ttsp" style="color: white; font-size: 20px;"></div>
+    <div style="color: white; font-size: 20px;margin-top:30px">Chọn đối tượng muốn sửa:</div>
+    <select style="font-size: 18px;" id="choose" onchange="changetype()">
+      <option value="">Choose</option>
+      <option value="name">Name</option>
+      <option value="img">Image</option>
+      <option value="price">Price</option>
+      <option value="brd">Brand</option>
+    </select>
+    <div id="capnhat"><input readonly style="height:20px" type="text" id="change"/></div>
+    <div id="confirm" style="margin-top:20px"><a href="#" style="float: left;background-color:white;text-decoration: none;font-weight:bold;padding:10px;" onclick="Fixproduct()">XÁC NHẬN</a><a href="#" style="background-color:white;text-decoration: none;font-weight:bold;padding:10px;float:right" onclick="cancelbox()">CANCEL</a></div>
+    </div>
+    <div id="nav" class="sidenav">
+        <a href="DOAN.html"><p class="logo"><span>M</span>BKT SHOP</p></a>
+        <a href="admin.html" class="icon-a"><i class="fa fa-dashboard icons"></i>&nbsp;&nbsp;Dashboard</a
+      >
+      <a href="user.html" class="icon-a"
+        ><i class="fa fa-users icons"></i>&nbsp;&nbsp;QUẢN LÍ NGƯỜI DÙNG</a
+      >
+      <a href="sanpham.html" class="icon-a"
+        ><i class="fa fa-list icons"></i>&nbsp;&nbsp;QUẢN LÍ SẢN PHẨM</a
+      >
+      <a href="donhang.html" class="icon-a"
+        ><i class="fa fa-shopping-bag icons"></i>&nbsp;&nbsp;QUẢN LÍ ĐƠN HÀNG</a
+      >
+    </div>
+    <div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
+      
+      
+    </div>
+    <div id="shows">
+    <div id="main">
+      <div class="head">
+        <div class="col-div-6">
+          <span  onclick="invinbox()"
+            style="font-size: 30px; cursor: pointer; color: white"
+            class="nav2"
+            >&#9776;QUẢN LÝ SẢN PHẨM</span
+          >
+        </div>
+        
+            
+                
+        <div class="col-div-6">
+          <div class="profile">
+            <img src="user.png" class="pro-img" />
+            <p class="profile">MBKT<span>DESIGNER</span></p>
+          </div>
+        </div>
+    <a href="#" style="text-decoration: none;" onclick="hideAddSP()"><h2 style="color: white">THÊM SẢN PHẨM>></h2></a>
+    <div id="clearfix" style="display:none">    
+    <div style="color: white; font-size: 20px;">ID:</div>
+    <input style="height:20px" type="number" id="product">
+    <div style="color: white; font-size: 20px;">Name:</div>
+    <input style="height:20px" type="text" id="name"/>
+    
+    <div style="color: white; font-size: 20px;">Image:</div>
+    <input style="height:20px" type="file"  id="imgg"/>
+    <div style="color: white; font-size: 20px;">Price:</div>
+    <input style="height:20px" type="number" id="price" />
+    <div style="color: white; font-size: 20px;">Brand:</div>
+    <select style="height:20px" id="brand">
+      <option value="">Choose</option>
+      <option value="nike">Nike</option>
+      <option value="puma">Puma</option>
+      <option value="adidas">Adidas</option>
+    </select>
+    <div style="color: white; font-size: 20px;">Gender:</div>
+    <select style="height:20px" id="gender">
+      <option value="">Choose</option>
+      <option value="man">Man</option>
+      <option value="woman">Woman</option>
+      <option value="kid">Kid</option>
+    </select>
+    <div style="margin-top:20px"><a href="#" style="background-color:white;text-decoration: none;font-weight:bold;padding:10px;padding-left:68px;padding-right:68px" onclick="addproduct()">THÊM</a></div>
+      </div>
+      </div>
+    </div>
+    <div class="col-div-8">
+      <div class="box-8">
+        <div class="content-box">
+          
+        <input style="width:100%;height:40px;font-size:15px;padding-left:20px" type="text" id="search-box" placeholder="searching..."  onkeyup="filterOf()"/>
+          
+          <table id="showlist">
+            
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

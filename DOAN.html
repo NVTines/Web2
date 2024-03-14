@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="Project.css">
+    <meta charset="utf-8" />
+    <title>Untitled Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="./vendor/js/Magnific-Popup-master/magnific-popup.css" />
+    <script src="https://kit.fontawesome.com/54a12c09af.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+		font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+		}
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: #FFFFFF;
+            z-index: 8;
+        }
+        
+        .nav {
+            padding: 3px 10vw;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .brand-logo {
+            height: 60px;
+        }
+        
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search {
+            width: 500px;
+            display: flex;
+        }
+        
+        #search-box {
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border: 1px solid #d1d1d1;
+            text-transform: capitalize;
+            background: none;
+            color: #a9a9a9;
+            outline: none;
+        }
+        
+        .search-btn {
+            width: 20%;
+            height: 40px;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #383838;
+            color: #fff;
+            text-transform: capitalize;
+            font-size: 15px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        #search-box::placeholder {
+            color: #a9a9a9;
+        }
+        
+        .nav-items a {
+            margin-left: 20px;
+        }
+        
+        .nav-items a img {
+            width: 30px;
+        }
+        
+        .links-container {
+            width: 100%;
+            display: flex;
+            padding: 7px 10vw;
+            justify-content: center;
+            list-style: none;
+            border-top: 1px solid #d1d1d1;
+        }
+        
+        .link {
+            text-transform: capitalize;
+            padding: 0 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #383838;
+            opacity: 0.5;
+            transition: 0.5s;
+			font-size: 15px;
+        }
+        
+        .link:hover {
+            opacity: 1;
+        }
+        
+        body {
+            font-family: Arial;
+            
+            background-color: #1b203d;
+        }
+        /* Header/Blog Title */
+        
+        .header h1 {
+            font-size: 50px;
+        }
+        /* Create two unequal columns that floats next to each other */
+        /* Left column */
+        
+        .leftcolumn {
+            float: left;
+            width: 60%;
+			padding-left: 10px;
+        }
+        /* Right column */
+        
+        .rightcolumn {
+            float: left;
+            width: 40%;
+            padding:0 10px;
+        }
+        /* Fake image */
+        
+        .fakeimg {
+            background-color: #aaa;
+            width: 100%;
+            padding: 20px;
+        }
+        /* Add a card effect for articles */
+        
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 25px;
+			
+        }
+		.poster {
+            margin-top: 100px;
+        }
+        
+        .beforefooter1 {
+            overflow: auto;
+            width: 33%;
+            height: 435px;
+            background-color: white;
+            margin: 20px 2.43px;
+			border-radius: 15px;	
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Footer */
+        
+        .footer {
+            clear: both;
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+        }
+        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+        
+        @media screen and (max-width: 800px) {
+            .leftcolumn,
+            .rightcolumn,
+            .beforefooter1,
+            .beforefooter2,{
+                width: 100%;
+                padding: 0;
+            }
+        }
+        /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+        
+        @media screen and (max-width: 400px) {
+            .topnav a {
+                float: none;
+                width: 100%;
+            }
+        }
+        
+        .aboutme {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .page-wrapper {
+            min-height: 100%;
+        }
+        
+        footer {
+            width: 100%;
+            height: 480px;
+            background-image: url(https://static.wixstatic.com/media/ea71bb_4f6381151e9b431f82c1210950ca5873~mv2.jpg/v1/fill/w_1899,h_743,al_c,q_85,usm_0.66_1.00_0.01/ea71bb_4f6381151e9b431f82c1210950ca5873~mv2.webp);
+			background-size:cover;
+			text-align: center;
+            overflow: hidden;
+        }
+        
+        footer .footer-content {
+            padding: 85px 0 70px 0;
+            border-bottom: 1px solid #2e2c2f;
+        }
+        
+        footer .sub-heading {
+            font-size: 20px;
+            line-height: 36px;
+            color: #aaa;
+            letter-spacing: 0.7px;
+        }
+        
+        footer .slogan {
+            color: #aaa;
+            line-height: 34px;
+            font-size: 18px;
+            letter-spacing: 0.7px;
+        }
+        
+        footer .footer-social {
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+        
+        footer .social-media:not(:last-child) {
+            margin-right: 30px;
+        }
+        
+        footer .social-popup-icon {
+            color: #fff;
+        }
+        
+        footer .footer-bottom {
+            text-align: center;
+            line-height: 75px;
+            font-size: 20px;
+            color: #aaa;
+        }
+        
+        .a {
+            display: block;
+            padding: 10px;
+            margin-right: 350px;
+            color: black;
+            font-weight: bold;
+            position: relative;
+            z-index: 0;
+            text-decoration: none;
+        }
+        
+        .a:hover {
+            color: white;
+        }
+        
+        .a:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: auto;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background-color: black;
+            transition: 1s;
+            z-index: -1;
+        }
+        
+        .a:hover:before {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+        
+        #above {
+            width: 30%;
+            height: 122px;
+            border: #000000 solid 3px;
+            text-align: center;
+            padding-top: 30px;
+            margin: 30px 525px;
+            border-radius: 100px;
+            background: #ffffff;
+        }
+a{
+  text-decoration: none;
+}
+        @media all and (max-width: 1500px) {
+            body{
+                width: 1500px;
+            }
+            .navbar{
+                width: 1500px;
+            }
+        }
+        @media all and (max-width: 1000px){
+            body{
+                width: 1200px;
+            }
+            .navbar{
+                width:1200px;
+            }
+            #head{
+                font-size: 10px;
+            }
+
+        }
+
+    </style>
+    <script src="Project.js">
+        
+    </script>
+</head>
+
+<body>
+    <script>
+            window.onload=function(){
+                slider();
+                createAdmin();
+                hideTK();        
+            }
+    </script>
+    <form>
+    <div id="logbox_0" style="position:fixed;opacity:0;z-index:-1;width:100%;height:100%;background-color:black"></div>
+    </form>
+    <form>
+    <div id="logbox">
+        <div style="border-bottom: #CDCDCD solid 1px">
+            <a href="#" onclick="out();"><input type="button"  style="padding:0 3px;float: right;font-size:30px;background: #FFFFFF;border: #FFFFFF;cursor: pointer" class="material-icons" value="backspace"></a>
+            <h2>MY ACCOUNT</h2>
+        </div>
+        <div style="padding: 40px;border-bottom: #CDCDCD solid 1px">
+            <div id="ttdn">
+            <div style="font-weight: bold">I ALREADY HAVE AN ACCOUNT</div>
+            <p>Login*<br><input type="text" value="" id="tendn"></p>
+            <p>Password*<br><input type="password" value="" id="mk"></p>
+            <div style="margin-right:25px;padding-top: 2px"><a href="#" style="color:black;" onclick="checkttdn_1()"><u>Sign in as an administration</u></a></div>
+            <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block;margin-top:20px" onclick="checkttdn()">Sign in</a>
+            </div>
+        </div>
+        <div style="padding:30px 40px">
+            <div style="font-weight: bold">I DON'T HAVE AN ACCOUNT</div>
+            <div style="margin-top: 20px;margin-bottom:50px">Enjoy added benefits and a richer experience by creating a personal account</div>
+           <div style="text-align: center	">
+			    <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block" onclick="CreateAccountBoard()">Create an Account</a>
+			</div>
+        </div>
+    </div>
+    </form>
+    <form>
+    <div id="logbox_2">
+        <div style="border-bottom: #CDCDCD solid 1px">
+            <a href="#" onclick="out_2();"><input type="button"  style="padding:0 3px;float: right;font-size:30px;background: #FFFFFF;border: #FFFFFF;cursor: pointer" class="material-icons" value="backspace"></a>
+            <h2 style="text-align: center;padding: 40px">BECOME A MEMBER</h2>
+        </div>
+        <div style="padding: 20px;text-align: center">
+            <p style="padding:20px 0px;">Create your Member profile and get first access to the very best of our products, inspiration and community.</p>
+            <input id="username" type="text" placeholder="Username*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="password" type="password" placeholder="Password*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="passwordrp" type="password" placeholder="Fill in password again*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="fullname" type="text" placeholder="Full name*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="email" type="text" placeholder="Email address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="phone" type="text" placeholder="Phone number*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="address" type="text" placeholder="Your Current address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        </div>
+        <div style="text-align: center">
+            <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;margin: 30px" onclick="createNewAccount()">Join us</a>
+            <div style="margin-top: 30px">Already a member?<a style="cursor: pointer;padding:30px 5px;text-decoration: underline;" onclick="dangnhap()">Sign in</a></div>
+        </div>
+    </div>
+    </form>
+<div id="wrapper">
+    <nav class="navbar">
+        <div class="nav">
+            <img scr="" class="brand-logo" alt="" />
+            <div class="nav-items">
+                <img src="image-removebg-preview.png" style="position: absolute;height:100px;weight:150px;left: 2%"/>
+                <div class="search">
+                    <a href="content.html?1" style="width:600px;margin-right:-150px"><input type="text" id="search-box" placeholder="search brand , products"/></a>
+                    <a href="content.html?1"><button class="search-btn" style="width:100px">search</button></a>
+                </div>
+                
+                <a href="content.html?1"><img src="cart.png" alt="" /></a>
+                <a id="login" href="#"><img src="user.png" alt="" onclick="dangnhap()"/></a>
+                <div id="tkkh" style="height:50%;color:black;margin-left:20px;margin-right:-50px;font-weight:bold">
+                    
+                </div>
+            </div>
+        </div>
+        <div><a id="dxbox"  onclick="dangxuat()" href="#" style="display:none;line-height: 15px;padding: 10px 10px;background-color: gray;text-align: center;position:absolute;right:100px;top:50%;border-radius:20px"><b>Đăng xuất</b></a></div>
+        <ul class="links-container">
+            <li class="link-item" ><a href="content.html?1" class="link" onclick="gender('woman')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">WOMEN</a></li>
+            <li class="link-item"><a href="content.html?1" class="link" onclick="gender('man')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">MEN</a></li>
+            <li class="link-item"><a href="content.html?1" class="link" onclick="gender('kid')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">KIDS</a></li>
+        </ul>
+    </nav>
+
+    <div class="header">
+        <h1 style="
+          font-family: Arial;
+          color: gray;
+          text-align: center;
+          font-size: 100px;
+          font-weight: bold;
+          margin-top: 60px;
+          margin-bottom: 50px;
+          margin-left: 300px;
+          padding-top: 50px;
+          position: absolute;
+          top: 80px;
+        ">
+            
+        </h1>
+        <img class="slideimg" src="https://i0.wp.com/images.taihinhnen.pro/save/images/02d10519dc361110690a86b4ea50b4e6/1a533aa8e5d5d99e2cc2972fb1293a29.jpg" style="width: 100%" />
+        <img class="slideimg" src="https://ragus.vn/wp-content/uploads/2020/01/cach-ch%E1%BB%8Dn-giay-chay-bo-phu-hop-10.jpg" style="width: 100%" />
+        <img class="slideimg" src="https://www.elleman.vn/wp-content/uploads/2020/01/10/01_giaychaybo_ELLE-Man_01-20.jpg" style="width: 100%" />
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <h2><a href="news.html" class="a">Meet the LeBron James Innovation Center</a></h2>
+                <h5>SPORT SCIENCE</h5>
+				<a href="news.html"><input type="button" style="background-image:url(https://s3.amazonaws.com/nikeinc/assets/104654/Nike_Sports_Research_Lab_LeBron_James_Innovation_Center_8_native_1600.jpg?1631723712);width: 100%; height: 600px;background-size: cover;cursor:pointer" value=""/></a>
+            </div>
+            <div class="card">
+                <h2><a href="news1.html" class="a">Converse and Rick Owens Continue DRKSHDW Collaboration</a></h2>
+                <h5>SEE THE WORLD WITH DIFFERENT ASPECTS</h5>
+				<a href="news1.html"><input type="button" style="background-image:url(https://s3.amazonaws.com/nikeinc/assets/103711/Converse_x_DRKSHDW_TurboDrk__172345C_5_square_1600.jpg?1626948331);width: 100%; height: 800px;background-size: cover;cursor:pointer" value=""/></a>
+            </div>
+        </div>
+        <div class="rightcolumn">
+            <div class="card">
+				<a href="new2.html"><input type="button" style="background-image:url(https://s3.amazonaws.com/nikeinc/assets/104850/fy22_q1_earnings_1920x1080_NikeNews_native_1000.jpg?1632413276);width: 100%; height:320px;background-size: cover;cursor:pointer" value=""/></a>
+                <a href="new2.html" class="aboutme">
+                    <h3>NIKE, Inc. Reports Fiscal 2022 First Quarter Results</h3>
+                </a>
+            </div>
+            <div class="card">
+				<a href="new3.html"><input type="button" style="background-image:url(https://s3.amazonaws.com/nikeinc/assets/104694/NikeNews_AirMax90_LHM_1_hd_1600.jpg?1631904523);width: 100%; height:320px;background-size: cover;cursor:pointer" value=""/></a>
+                <a href="new3.html" class="aboutme">
+                    <h3>
+                        The Air Max 90 LHM Puts Family First
+                    </h3>
+                </a>
+            </div>
+            <div class="poster">
+             <img style="width: 100%;border-radius: 25px" src="https://images.summitmedia-digital.com/spotph/images/2020/09/04/nikepark-eoss-sale-sept-2020-poster-1599216446.jpg"/>
+            </div>
+        </div>
+    </div>
+    <div style="
+        text-decoration: underline;
+        margin-top: 20px;
+        text-align: center;
+        clear: both;
+        color: white;
+      ">
+        <h2>LATEST STORIES</h2>
+    </div>
+    <div class="beforefooter1" style="float: left; clear: both">
+		<a href="new4.html"><input type="button" style="background-image:url(https://udg-about-puma-prod-endpoint.azureedge.net/-/media/images/newsroom/brand-product-news/2021/11-04-2021-pna-hq-announcement/m181.jpg?as=1&h=600&iar=1&w=800&rev=9473b0cfce1b4f87bd5e068665a784be&hash=B90E148D6CFE2AEA8B9F2217B08747D1);width: 100%; height:350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new4.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">
+                <p>PUMA OPENS DOORS TO NEW NORTH AMERICAN HEADQUARTERS IN SOMERVILLE, MASS.</p>
+            </h4>
+        </a>
+    </div>
+    <div class="beforefooter1" style="float: left">
+		<a href="new5.html"><input type="button" style="background-image:url(https://udg-about-puma-prod-endpoint.azureedge.net/-/media/images/newsroom/brand-product-news/2021/11-18-2021-pumaxking/m18_king_2.jpg?as=1&h=600&iar=1&w=800&rev=285710950a3b4d2b98827e7ac736e08c&hash=E670CE55D1C8B788C01F96081B57E8A4);width: 100%; height:350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new5.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">PUMA LAUNCHES THE PUMA KING TOP DASSLER LEGACY</h4>
+        </a>
+    </div>
+    <div class="beforefooter1" style="float: left">
+		<a href="new6.html"><input type="button" style="background-image:url(https://udg-about-puma-prod-endpoint.azureedge.net/-/media/images/newsroom/brand-product-news/2021/11-03-2021-pumaxresuede/unbenannt-12.jpg?as=1&h=600&iar=1&w=800&rev=3b118887f6f74669bcc3b3b0fef149d6&hash=DE4A2A51B65588568ABFD169B3BD7889);width: 100%; height: 350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new6.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">
+                NO TIME FOR WASTE AND TRY YOUR BEST EVERYDAY
+            </h4>
+        </a>
+    </div>
+	 <div style="
+        text-decoration: underline;
+        text-align: center;
+        clear: both;
+        color: white;
+      ">
+        <h2>POPULAR STORIES</h2>
+    </div>
+    <div class="beforefooter1" style="float: left; clear: both;margin-bottom: 80px">
+		<a href="new7.html"><input type="button" style="background-image:url(https://preview.thenewsmarket.com/Previews/ADID/StillAssets/920x690/585892.jpg);width: 100%; height: 350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new7.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">ECO-INNOVATING WITH PARLEY AND REBO IN THE FIGHT AGAINST MARINE PLASTIC POLLUTION</h4>
+        </a>
+    </div>
+    <div class="beforefooter1" style="float: left">
+		<a href="new8.html"><input type="button" style="background-image:url(https://preview.thenewsmarket.com/Previews/ADID/StillAssets/400x300/583036_v2.jpg);width: 100%; height: 350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new8.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">THREE PATHS SHAPING ADIDAS’ FUTURE TO HELP END PLASTIC WASTE</h4>
+        </a>
+    </div>
+    <div class="beforefooter1" style="float: left">
+		<a href="new9.html"><input type="button" style="background-image:url(https://preview.thenewsmarket.com/Previews/ADID/StillAssets/1920x1080/588103.jpg);width: 100%; height: 350px;background-size: cover;border-radius: 15px 15px 0px 0px;cursor:pointer" value=""/></a>
+        <a href="new9.html" class="aboutme">
+            <h4 style="text-align: center;padding: 10px 20px;">ADIDAS X PARLEY: CO-CREATING A PLASTIC FREE FUTURE</h4>
+        </a>
+    </div>
+    <footer id="footer">
+        <div class="footer-content">
+            <a href="DOAN (1).html"></a>
+            <div class="sub-heading">Design by @KIETNGUYEN</div>
+            <div class="slogan">Chasing Your Dream , MAke your own day.</div>
+            <ul class="footer-social">
+                <li class="social-media"></li>
+                <a class="social-popup-icon" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <li class="social-media"></li>
+                <a class="social-popup-icon" target="_blank" href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+
+                <li class="social-media"></li>
+                <a class="social-popup-icon" target="_blank" href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </ul>
+        </div>
+        <div class="footer-bottom">Copyright © 2021. All Rights Reserved.</div>
+    </footer>
+</div>
+</body>
+
+</html>

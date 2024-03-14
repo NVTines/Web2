@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="user.css" type="text/css" />
+    <script>
+    function show(){
+       var arr = JSON.parse(localStorage.getItem('user'));
+       var tr='<tr><th>ID</th><th>Username</th><th>Password</th><th>Name</th><th>Phone</th><th>Email</th><th>Address</th><th>Delete</th></tr>';
+       for( var i=0;i<arr.length;i++){
+          if(arr[i].usertype!="admin")
+            tr+='<tr><td>'+(i+1)+'</td><td>'+arr[i].username+'</td><td>'+arr[i].password+'</td><td>'+arr[i].fullname+'</td><td>'+arr[i].phone+'</td><td>'+arr[i].email+'</td><td>'+arr[i].address+'</td><td><button class="delete" onclick="thongbaobox(\''+arr[i].username+'\')">&times;</button></td></tr>';
+       }
+       document.getElementById('showlist').innerHTML=tr;  
+    }
+    function thongbaobox(namedelete){
+      document.getElementById('boxtb').style.animation="tb 1s forwards";
+      document.getElementById('boxtb').innerHTML='<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deletee(\''+namedelete+'\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
+    }
+    
+    function deletee(namedelete){
+      var arr=JSON.parse(localStorage.getItem('user'));
+      for(var i=0;i<arr.length;i++){
+      if(arr[i].username == namedelete){
+        arr.splice(i, 1);
+        }
+      }
+      localStorage.setItem('user',JSON.stringify(arr));
+      document.getElementById('boxtb').style.animation="tb_2 1s forwards";
+      show();
+
+    }
+    
+    </script>
+    <script src="Project.js">
+      
+    </script>
+</head>
+
+<body>
+  <script>
+    window.onload=function(){
+      createAdmin();
+      show();
+    }
+
+  </script>
+    
+    <div id="nav" class="sidenav">
+        <a href="DOAN.html"><p class="logo"><span>M</span>BKT SHOP</p></a>
+        <a href="admin.html" class="icon-a"><i class="fa fa-dashboard icons"></i>&nbsp;&nbsp;Dashboard</a
+      >
+      <a href="user.html" class="icon-a"
+        ><i class="fa fa-users icons"></i>&nbsp;&nbsp;QUẢN LÍ NGƯỜI DÙNG</a
+      >
+      <a href="sanpham.html" class="icon-a"
+        ><i class="fa fa-list icons"></i>&nbsp;&nbsp;QUẢN LÍ SẢN PHẨM</a
+      >
+      <a href="donhang.html" class="icon-a"
+        ><i class="fa fa-shopping-bag icons"></i>&nbsp;&nbsp;QUẢN LÍ ĐƠN HÀNG</a
+      >
+    </div>
+    <div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
+      
+      
+    </div>
+    <div id="shows">
+    <div id="main">
+      <div class="head">
+        <div class="col-div-6">
+
+          <span onclick="invinbox()"
+            style="font-size: 30px; cursor: pointer; color: white"
+            class="nav2"
+            >&#9776;QUẢN LÝ NGƯỜI DÙNG</span>
+        </div>
+
+        <div class="col-div-6">
+          <div class="profile">
+            <img src="user.png" class="pro-img" />
+            <p class="profile">MBKT<span>DESIGNER</span></p>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-div-8">
+      <div class="box-8">
+        <div class="content-box">
+          <table id="showlist">
+            
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

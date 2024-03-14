@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="Project.css">
+    <meta charset="utf-8" />
+    <title>Untitled Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="./vendor/js/Magnific-Popup-master/magnific-popup.css" />
+    <script src="https://kit.fontawesome.com/54a12c09af.js" crossorigin="anonymous"></script>
+<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+	body{
+		font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	}
+		#head{
+			width: 100%;
+			height: 30px;
+			background: #000000;
+			color: white;
+			font-weight: bold;
+		}
+		#afterhead{ 
+			width: 100%;
+			height: 120px;
+			border-bottom: #989898 solid 2px;
+			margin-bottom: 40px;
+		}
+		footer {
+        width: 100%;
+        height: 480px;
+         background-image: url(https://static.wixstatic.com/media/ea71bb_4f6381151e9b431f82c1210950ca5873~mv2.jpg/v1/fill/w_1899,h_743,al_c,q_85,usm_0.66_1.00_0.01/ea71bb_4f6381151e9b431f82c1210950ca5873~mv2.webp);
+		background-size:cover;
+        text-align: center;
+        overflow: hidden;
+        }
+
+        footer .footer-content {
+        padding: 85px 0 70px 0;
+        border-bottom: 1px solid #2e2c2f;
+        }
+
+        footer .sub-heading {
+        font-size: 20px;
+        line-height: 36px;
+        color: #aaa;
+        letter-spacing: 0.7px;
+        }
+
+        footer .slogan {
+        color: #aaa;
+        line-height: 34px;
+        font-size: 18px;
+        letter-spacing: 0.7px;
+        }
+
+        footer .footer-social {
+        margin-top: 40px;
+        margin-bottom: 0;
+        }
+
+        footer .social-media:not(:last-child) {
+        margin-right: 30px;
+        }
+
+        footer .social-popup-icon {
+        color: #fff;
+        }
+
+        footer .footer-bottom {
+        text-align: center;
+        line-height: 75px;
+        font-size: 20px;
+        color: #aaa;
+        }
+	   .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 100px;
+            background:#FFFFFF;
+            z-index: 12;
+        }
+        @media all and (max-width: 1500px) {
+            body{
+                width: 1500px;
+            }
+            .navbar{
+                width: 1500px;
+            }
+        }
+        @media all and (max-width: 1000px){
+            body{
+                width: 1200px;
+            }
+            .navbar{
+                width:1200px;
+            }
+            #head{
+                font-size: 10px;
+            }
+
+        }
+        .nav {
+            padding: 3px 10vw;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .brand-logo {
+            height: 60px;
+        }
+        
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search {
+            width: 500px;
+            display: flex;
+        }
+        
+        .search-box {
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border: 1px solid #d1d1d1;
+            text-transform: capitalize;
+            background: none;
+            color: #a9a9a9;
+            outline: none;
+        }
+        
+        .search-btn {
+            width: 20%;
+            height: 40px;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #383838;
+            color: #fff;
+            text-transform: capitalize;
+            font-size: 15px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        
+        .search-box::placeholder {
+            color: #a9a9a9;
+        }
+        
+        .nav-items a {
+            margin-left: 20px;
+        }
+        
+        .nav-items a img {
+            width: 30px;
+        }
+        
+        .links-container {
+            width: 100%;
+            display: flex;
+            padding: 7px 10vw;
+            justify-content: center;
+            list-style: none;
+            border-top: 1px solid #d1d1d1;
+        }
+        
+        .link {
+            text-transform: capitalize;
+            padding: 0 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #383838;
+            opacity: 0.5;
+            transition: 0.5s;
+			font-size: 15px;
+        }
+        
+        .link:hover {
+            opacity: 1;
+        }
+        
+	</style>
+	 <script src="Project.js">
+    </script>
+</head>
+
+<body>
+    <script>
+            window.onload=function(){
+                createAdmin();
+                hideTK();
+            }
+    </script>
+    <form>
+    <div id="logbox_0" style="position:fixed;opacity:0;z-index:-1;width:100%;height:100%;background-color:black"></div>
+    </form>
+    <form>
+    <div id="logbox">
+        <div style="border-bottom: #CDCDCD solid 1px">
+            <a href="#" onclick="out();"><input type="button"  style="padding:0 3px;float: right;font-size:30px;background: #FFFFFF;border: #FFFFFF;cursor: pointer" class="material-icons" value="backspace"></a>
+            <h2>MY ACCOUNT</h2>
+        </div>
+        <div style="padding: 40px;border-bottom: #CDCDCD solid 1px">
+            <div id="ttdn">
+            <div style="font-weight: bold">I ALREADY HAVE AN ACCOUNT</div>
+            <p>Login*<br><input type="text" value="" id="tendn"></p>
+            <p>Password*<br><input type="password" value="" id="mk"></p>
+            <div style="margin-right:25px;padding-top: 2px"><a href="#" style="color:black;"><u>Forgot your password?</u></a></div> 
+            <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block;margin-top:20px" onclick="checkttdn()">Sign in</a>
+            </div>
+        </div>
+        <div style="padding:30px 40px">
+            <div style="font-weight: bold">I DON'T HAVE AN ACCOUNT</div>
+            <div style="margin-top: 20px;margin-bottom:20px">Enjoy added benefits and a richer experience by creating a personal account</div>
+           <div style="text-align: center   ">
+                <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block" onclick="CreateAccountBoard()">Create an Account</a>
+            </div>
+        </div>
+    </div>
+    </form>
+    <form>
+    <div id="logbox_2">
+        <div style="border-bottom: #CDCDCD solid 1px">
+            <a href="#" onclick="out_2();"><input type="button"  style="padding:0 3px;float: right;font-size:30px;background: #FFFFFF;border: #FFFFFF;cursor: pointer" class="material-icons" value="backspace"></a>
+            <h2 style="text-align: center;padding: 30px">BECOME A MEMBER</h2>
+        </div>
+        <div style="padding: 20px;text-align: center">
+            <p style="padding:20px 0px;">Create your Member profile and get first access to the very best of our products, inspiration and community.</p>
+            <input id="username" type="text" placeholder="Username*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="password" type="password" placeholder="Password*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="passwordrp" type="password" placeholder="Fill in password again*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="fullname" type="text" placeholder="Full name*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="email" type="text" placeholder="Email address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="phone" type="text" placeholder="Phone number*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+            <input id="address" type="text" placeholder="Your Current address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        </div>
+        <div style="text-align: center">
+            <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;margin: 30px" onclick="createNewAccount()">Join us</a>
+            <div style="margin-top: 30px">Already a member?<a style="cursor: pointer;padding:30px 5px;text-decoration: underline;" onclick="dangnhap()">Sign in</a></div>
+        </div>
+    </div>
+    </form>
+	<div id="wrapper">
+		<div id="head">
+			<div style="width: 25%;float: left;text-align: center;padding-top: 6px;">FREE DELIVERY FOR MEMBERS</div>
+			<div style="width: 25%;float: left;text-align: center;padding-top: 6px;">60 DAYS RETURNS & EXCHANGES</div>
+			<div style="width: 25%;float: left;text-align: center;padding-top: 6px;">ALL PRODUCTS ARE ON SPECIAL OFFER  </div>
+			<div style="width: 25%;float: left;text-align: center;padding-top: 6px;">FASHIONABLE LIFESTYLE</div>
+		</div>
+	<nav class="navbar">
+        <div class="nav">
+            <img scr="" class="brand-logo" alt="" />
+            <div class="nav-items">
+                <img src="image-removebg-preview.png" style="position: absolute;height:100px;weight:150px;left: 2%"/>
+                <div class="search">
+                    <a href="content.html?1" style="width:600px;margin-right:-150px"><input type="text" class="search-box" placeholder="search brand , products"/></a>
+                    <a href="content.html?1"><button class="search-btn" style="width:100px">search</button></a>
+                </div>
+                <a href="content.html?1"><img src="cart.png" alt="" /></a>
+                <a id="login" href="#"><img src="user.png" alt="" onclick="dangnhap()"/></a>
+                <div id="tkkh" style="height:50%;color:black;margin-left:20px;margin-right:-50px;font-weight:bold">
+                    
+                </div>
+            </div>
+        </div>
+        <div><a id="dxbox"  onclick="dangxuat()" href="#" style="display:none;line-height: 15px;padding: 10px 10px;background-color: gray;text-align: center;position:absolute;right:100px;top:50%;border-radius:20px"><b>Đăng xuất</b></a></div>
+
+        <ul class="links-container">
+            <li class="link-item"><a href="DOAN.html" class="link" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">HOME</a></li>
+            <li class="link-item" ><a href="content.html?1" class="link" onclick="gender('woman')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">WOMEN</a></li>
+            <li class="link-item"><a href="content.html?1" class="link" onclick="gender('man')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">MEN</a></li>
+            <li class="link-item"><a href="content.html?1" class="link" onclick="gender('kid')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">KIDS</a></li>
+        </ul>
+    </nav>
+		<div>
+			<div style="padding-top: 100px">
+				<div style="text-align: center;font-weight: bold;text-decoration: underline;padding-right: 1150px">MAKE WITH RECYCLED MATERIALS</div>
+				<div style="text-align: center;font-size: 35px"><h2>ECO-INNOVATING WITH PARLEY AND REBO IN THE FIGHT AGAINST MARINE PLASTIC POLLUTION</h2>
+				</div>
+				<div style="text-align: center"><i>June 3, 2021</i></div>
+			</div>
+			<div>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/920x690/585892.jpg" style="width: 65%;padding: 40px;float: left;clear: both"/>
+			</div>
+			<div style="padding: 40px;text-align: center;font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, 'sans-serif';text-decoration: underline">
+				<p><h3>WE ARE IN HURRY</h3></p>
+			</div>
+			<div style="padding: 40px;text-align: center">
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/320x320/585894.jpg" style="width: 15%;height: 215px"/>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/320x320/585895.jpg" style="width: 15%;height: 215px"/>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/400x300/585896_v3.jpg" style="width: 15%;height: 215px"/>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/320x320/585893.jpg" style="width: 15%;height: 215px"/>
+			</div>
+		    <div style="font-size: 20px">
+				<p style="width: 65%;padding: 40px;text-indent: 50px">This year will mark the fourth year of adidas x Parley Run for the Oceans. To-date, adidas x Parley Run for the Oceans has united over 3 million runners around the world, collectively clocking up 25.5 million KMs and raising $2.5 million to help Parley develop its initiatives and educational programs in the fight against marine plastic pollution. In 2019, 92 schools were enrolled in the program and are now educations hubs, as well as plastic interception points for the local community. As a result, 70,000 kids and their families participated in the program.</p>
+				<p style="width: 65%;padding: 40px;font-weight: bold;font-size: 30px">"AS A GLOBAL BRAND, AND AS GLOBAL CITIZENS, WE HAVE A BIG ROLE TO PLAY IN CONSERVING THE OCEANS AND OUR PLANET. IT IS OUR RESPONSIBILITY TO USE OUR PLATFORMS, PRODUCTS, AND VOICES TO NOT JUST RAISE AWARENESS, BUT TO PUT INTO EFFECT REAL ACTION."</p>
+				<p style="width: 65%;padding: 40px;text-indent: 50px">Once again, empowering runners worldwide to make a difference, for every kilometre ran between May 28 – June 8 via the adidas Running app (Strava/Joyrun), together with Parley we will clean up the equivalent weight of 10 plastic bottles, up to a maximum of 500,000 lbs of marine plastic waste from beaches, remote islands, and coastlines.</p>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/640x480/585893.jpg" style="width: 50%;margin: 80px"/>
+				<p style="width: 65%;padding: 40px;font-weight: bold;font-size: 30px">"MORE THAN A PARTNER, ADIDAS HAS BEEN A TRUE ALLY, THE FAMILY MEMBER WE SO URGENTLY NEEDED ON OUR SIDE TO PROVE THAT INDUSTRY CAN BE THE KEY THAT SCALES AND ACCELERATES SOLUTIONS TO THE MASSIVE ENVIRONMENTAL PROBLEMS WE FACE.</p>
+				<p style="width: 65%;padding: 40px;font-weight: bold;font-size: 30px">WE BELIEVE THAT COLLABORATION, CREATIVITY, AND ECO-INNOVATION IS THE WINNING FORMULA TO SAVE OUR OCEANS AND END THE GLOBAL PLASTIC CRISIS THREATENING THE NATURAL WORLD, OUR OWN HEALTH AND OUR FUTURE. EVERYONE WHO JOINS THE RUN HELPS DRIVE THIS VISION FORWARD."</p>
+				<p style="width: 65%;padding: 40px;text-indent: 50px">And now, for the first time, scaling the initiative beyond June 8, we and Parley have partnered with REBO to introduce a limited-edition adidas x REBO smart water bottle in our continued fight to help end plastic waste.</p>
+				<img src="https://preview.thenewsmarket.com/Previews/ADID/StillAssets/640x480/585896_v3.jpg" style="width: 50%;margin: 80px"/>
+				<p style="width: 65%;padding: 40px;text-indent: 50px">REBO’s interconnected technology embedded in the cap tracks the water you drink, the plastic bottles avoided, and issues plastic credits to pay the cost of collecting tossed away plastic bottles. 1 bottle drunk = 1 plastic bottle collected. The REBO app is synched to the Runtastic Adidas Running app to dynamically recommend optimal hydration needs. The plastic collection cost is paid by REBO and its sponsors and goes to the Parley Global Cleanup Network, an alliance of organizations that collaborate to remove plastic waste from beaches, remote islands, rivers, mangroves in coastal communities.</p>
+				<p style="width: 65%;padding: 40px;font-weight: bold;font-size: 30px">"WE ARE RUNNING OUT OF TIME TO TURN THE TIDE ON PLASTIC WASTE AND TECHNOLOGY CAN HELP CHANGE THE COURSE.  WITH THE LIMITED-EDITION REBO X ADIDAS X PARLEY SMART BOTTLE WE CAN BECOME FOOT-SOLDIERS IN THE FIGHT AGAINST PLASTIC WASTE.</p>
+				<p style="width: 65%;padding: 40px;font-weight: bold;font-size: 30px;margin-bottom: 100px">EVERY SIP TO STAY HYDRATED CONTRIBUTES TO CLEANING THE PLANET FROM PLASTIC WASTE. JOIN RUN FOR THE OCEANS AND THE HYDRATION REVOLUTION."</p>
+		    </div>
+		<footer id="footer">
+        <div class="footer-content">
+        <a href="DOAN (1).html"></a>
+        <div class="sub-heading">Design by @KIETNGUYEN</div>
+        <div class="slogan">Chasing Your Dream , MAke your own day.</div>
+        <ul class="footer-social">
+          <li class="social-media"></li>
+            <a class="social-popup-icon" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+      
+          <li class="social-media"></li>
+            <a class="social-popup-icon" target="_blank" href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+
+          <li class="social-media"></li>
+            <a class="social-popup-icon" target="_blank" href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+         
+        </ul>
+      </div>
+      <div class="footer-bottom">Copyright © 2021. All Rights Reserved.</div>
+    </footer>
+		</div>
+	</div>
+</body>
+</html>
