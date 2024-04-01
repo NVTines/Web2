@@ -1,7 +1,8 @@
 <?php
-    echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
-    </div>
-    <div id="shows">
+  echo 
+  '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
+  </div>
+  <div id="shows">
     <div id="main">
       <div class="head">
         <div class="col-div-6">
@@ -42,5 +43,5 @@
         </div>
       </div>
     </div>
-    </div>';
+  </div>';
 ?>

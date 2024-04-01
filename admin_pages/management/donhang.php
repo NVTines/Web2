@@ -1,5 +1,6 @@
 <?php
-    echo '<div id="shows">
+    echo 
+  '<div id="shows">
     <div id="main">
       <div class="head">
         <div class="col-div-6">

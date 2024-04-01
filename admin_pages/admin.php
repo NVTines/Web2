@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <?php require_once "../database.php"; ?>
   <script>
     window.onload = function() {
       CountCustomer();
