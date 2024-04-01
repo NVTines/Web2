@@ -145,16 +145,20 @@ body {
 }
 
 .col-div-8 {
-    width: 87%;
+    width: 100%;
+    display:flex;
+    justify-content: center;
 }
 
 .content-box {
-    padding: 20px;
+    padding: 0;
 }
+
 
 .box-8 {
     margin-left: 300px;
-    width: 100%;
+    width: 80%;
+    
 }
 
 table {
