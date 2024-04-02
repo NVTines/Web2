@@ -365,7 +365,7 @@ a {
   width: 40%;
   opacity: 0;
   box-sizing: border-box;
-  border: solid 2px black;
+  border-right: 5px solid black;
   text-decoration: none;
 }
 
@@ -405,7 +405,7 @@ a {
   width: 40%;
   opacity: 0;
   box-sizing: border-box;
-  border: solid 2px black;
+  border-left: solid 5px black;
   right: 0px;
   text-decoration: none;
 }

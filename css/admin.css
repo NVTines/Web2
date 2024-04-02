@@ -266,3 +266,16 @@ th {
     from{margin-left: -300px}
     to{margin-left: 0px}
 }
+
+/* MANAGE BUTTON */
+.mng_btn{
+    color:white;
+    background:none;
+    border:none;
+    cursor:pointer;
+    border-radius:7px;
+    font-size:25px;
+}
+.mng_btn:hover{
+    color: #85BCFF;
+}

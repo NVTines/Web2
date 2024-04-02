@@ -8,7 +8,7 @@
     <p>Login*<br><input type="text" value="" id="tendn"></p>
     <p>Password*<br><input type="password" value="" id="mk"></p>
     <div style="margin-right:25px;padding-top: 2px"><a href="#" style="color:black;" onclick="checkttdn_1()"><u>Sign in as an administration</u></a></div>
-    <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block;margin-top:20px" onclick="checkttdn()">Sign in</a>
+    <a href="#" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block;margin-top:20px" onclick="">Sign in</a>
     </div>
 </div>
 <div style="padding:30px 40px">
