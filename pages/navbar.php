@@ -8,7 +8,7 @@
         </div>
         
         <a href="index.php?page=urcart"><img src="img/cart.png" alt="" /></a>
-        <a id="login" href="#"><img src="img/user.png" alt="" onclick="dangnhap()"/></a>
+        <a id="login" style="cursor:pointer"><img src="img/user.png" alt="" onclick="dangnhap()"/></a>
         <div id="tkkh" style="height:50%;color:black;margin-left:20px;margin-right:-50px;font-weight:bold">
             
         </div>
@@ -16,7 +16,7 @@
 </div>
 <div><a id="dxbox"  onclick="dangxuat()" href="#" style="display:none;line-height: 15px;padding: 10px 10px;background-color: gray;text-align: center;position:absolute;right:100px;top:50%;border-radius:20px"><b>Đăng xuất</b></a></div>
 <ul class="links-container">
-    <li class="link-item" ><a href="index.php?page=shopping" class="link" onclick="gender('woman')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">WOMEN</a></li>
-    <li class="link-item"><a href="index.php?page=shopping" class="link" onclick="gender('man')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">MEN</a></li>
-    <li class="link-item"><a href="index.php?page=shopping" class="link" onclick="gender('kid')" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">KIDS</a></li>
+    <li class="link-item" ><a href="index.php?page=shopping" class="link" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">WOMEN</a></li>
+    <li class="link-item"><a href="index.php?page=shopping" class="link" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">MEN</a></li>
+    <li class="link-item"><a href="index.php?page=shopping" class="link" style="font-weight:bold;font-size:15px;margin-left:20px;margin-right:20px">KIDS</a></li>
 </ul>

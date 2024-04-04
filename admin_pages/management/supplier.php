@@ -1,4 +1,5 @@
 <?php
+  $db = new database();
   echo 
     '<div id="shows">
       <div id="main">
@@ -20,40 +21,8 @@
           <div class="clearfix"></div>
         </div>
       </div>';
-  $db = new database();
   if(isset($_GET["id"])){
-    $id = $_GET["id"];
-    $sql = "SELECT p.* FROM product as p, supplierdetail as sd WHERE sd.SupplierID = '".$id."' AND sd.ProductID = p.ProductID";
-    echo 
-      '<div class="col-div-8">
-        <div class="box-8">
-          <div class="content-box">
-            <table id="showlist">
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Status</th>
-              </tr>
-              <tr>';
-    if($result = $db->get_data($sql)){
-      while($rows = $results->fetch_assoc()){
-        echo 
-          '<td>'.$rows["ProductID"].'</td>
-          <td>'.$rows["ProductName"].'</td>
-          <td>'.$rows["IMG"].'</td>
-          <td>'.$rows["Description"].'</td>
-          <td>'.$rows["status"].'</td>';
-      }
-    }
-    echo 
-              '</tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>';
+    require "supplierdetail.php";
   }else{
     echo 
       '<div class="col-div-8">
@@ -82,7 +51,7 @@
                 <td>'.$rows["status"].'</td>
                 <td>
                   <a href="admin.php?key=ncc&id='.$rows["SupplierID"].'">
-                    <button class="mng_btn" id="mng_btn">
+                    <button class="info_btn" id="info_btn">
                       <i class="fa-solid fa-circle-info"></i>
                     </button>
                   </a>

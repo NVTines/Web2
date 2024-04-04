@@ -3,7 +3,7 @@
         private $servername = "localhost";
         private $username = "root";
         private $password = "";
-        private $dbname = "website2"; 
+        private $dbname = "laptrinhweb2"; 
         private $conn;
 
         function __construct() {

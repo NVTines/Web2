@@ -268,7 +268,7 @@ th {
 }
 
 /* MANAGE BUTTON */
-.mng_btn{
+.info_btn{
     color:white;
     background:none;
     border:none;
@@ -276,6 +276,17 @@ th {
     border-radius:7px;
     font-size:25px;
 }
-.mng_btn:hover{
+.info_btn:hover{
     color: #85BCFF;
+}
+.quit_btn{
+    color:rgb(255, 145, 145);
+    background:none;
+    border:none;
+    cursor:pointer;
+    border-radius:7px;
+    font-size:25px;
+}
+.quit_btn:hover{
+    color:red;
 }
