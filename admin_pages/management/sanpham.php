@@ -9,7 +9,7 @@ function showProducts()
   product.ProductName AS Name,
   producer.ProducerName AS Brand,
   product.IMG AS Img,
-  product.Quantity AS Amount,
+  product.Quantity,
   product.ProductPrice AS Price
 FROM 
 	product
@@ -27,18 +27,14 @@ ON
       <div id="main">
         <div class="head">
           <div class="col-div-6">
-            <span  onclick="invinbox()"
-              style="font-size: 30px; cursor: pointer; color: white"
-              class="nav2"
-              >&#9776;QUẢN LÝ SẢN PHẨM</span
-            >
+            <span class="nav2" onclick="invinbox()" style="font-size: 30px; cursor: pointer; color: white">
+              &#9776;   QUẢN LÝ SẢN PHẨM
+            </span>
           </div>
           <div class="col-div-6">
-            <div class="profile">
-              <img src="user.png" class="pro-img" />
-              <p class="profile">MBKT<span>DESIGNER</span></p>
-            </div>
-          </div>
+            <button class="add-product-button">Thêm sản phẩm</button>
+            <button class="add-product-button">Nhập thêm sản phẩm</button>
+          </div>  
           <div class="clearfix"></div>
         </div>
       </div>
@@ -50,9 +46,9 @@ ON
                 <th>ID</th>
                 <th>Name</th>
                 <th>Brand</th>
-                <th>Img</th>
+                <th>Image</th>
                 <th>Price</th>
-                <th>Amount</th>
+                <th>Quantity</th>
                 <th>Action</th>
               </tr>';
   if ($result->num_rows > 0) {
@@ -64,13 +60,9 @@ ON
         <td>' . $row['ID'] . '</td>
         <td>' . $row['Name'] . '</td>
         <td>' . $row['Brand'] . '</td>
-        <td>' . "..." . '</td>
+        <td>' . $img . '</td>
         <td>' . "$" . $row['Price'] . '</td>
-        <td>' . $row['Amount'] . '</td>
-        <td>'. 
-          $img
-        .
-        '</td>
+        <td>' . $row['Quantity'] . '</td>
         <td>
           <button class="delete" onclick="thongbaobox()">&times;</button>
           <button style="margin-left:10px" onclick="hideFixSP()">&#9881;</button>

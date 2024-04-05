@@ -290,3 +290,14 @@ th {
 .quit_btn:hover{
     color:red;
 }
+
+/* MANAGE BUTTONS */
+.add-product-button{
+    color:white;
+    background-color: #272c4a;
+    height: auto;
+    cursor:pointer;
+    border-radius:7px;
+    margin-left: 30px;
+    font-size:30px;
+}
