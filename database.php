@@ -22,6 +22,7 @@
                 return false;
             }
         }
+        
         function get_data($sql){
             return $this->conn->query($sql);
         }
