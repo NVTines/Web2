@@ -231,6 +231,7 @@ th {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(126deg);
     }
@@ -250,54 +251,88 @@ th {
     font-weight: 700;
     font-size: 2em;
 }
-@keyframes navside{
-    from{left: -300px}
-    to{left: 0px}
+
+@keyframes navside {
+    from {
+        left: -300px
+    }
+
+    to {
+        left: 0px
+    }
 }
-@keyframes navside_2{
-    from{left: 0px}
-    to{left: -300px}
+
+@keyframes navside_2 {
+    from {
+        left: 0px
+    }
+
+    to {
+        left: -300px
+    }
 }
-@keyframes full{
-    from{margin-left: 0px}
-    to{margin-left: -300px}
+
+@keyframes full {
+    from {
+        margin-left: 0px
+    }
+
+    to {
+        margin-left: -300px
+    }
 }
-@keyframes full_2{
-    from{margin-left: -300px}
-    to{margin-left: 0px}
+
+@keyframes full_2 {
+    from {
+        margin-left: -300px
+    }
+
+    to {
+        margin-left: 0px
+    }
 }
 
 /* MANAGE BUTTON */
-.info_btn{
-    color:white;
-    background:none;
-    border:none;
-    cursor:pointer;
-    border-radius:7px;
-    font-size:25px;
+.info_btn {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 25px;
 }
-.info_btn:hover{
+
+.info_btn:hover {
     color: #85BCFF;
 }
-.quit_btn{
-    color:rgb(255, 145, 145);
-    background:none;
-    border:none;
-    cursor:pointer;
-    border-radius:7px;
-    font-size:25px;
+
+.quit_btn {
+    color: rgb(255, 145, 145);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 25px;
 }
-.quit_btn:hover{
-    color:red;
+
+.quit_btn:hover {
+    color: red;
 }
 
 /* MANAGE BUTTONS */
-.add-product-button{
-    color:white;
+.add-product-button {
+    color: white;
     background-color: #272c4a;
-    height: auto;
-    cursor:pointer;
-    border-radius:7px;
-    margin-left: 30px;
-    font-size:30px;
+    height: 100%;
+    cursor: pointer;
+    float: right;
+    border-radius: 7px;
+    margin-right: 10px;
+    font-size: 35px;
+}
+
+.add-product-button ion-icon {
+    display: block;
+    margin: auto;
+    /* Center both horizontally and vertically */
 }
