@@ -8,6 +8,7 @@
     <title>MBKT Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
@@ -16,6 +17,10 @@
 </head>
 
 <body>
+    <?php 
+        session_set_cookie_params(1800);
+        session_start();
+    ?>
     <script>
         window.onload=function(){
             slider();

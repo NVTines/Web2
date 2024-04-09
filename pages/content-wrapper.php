@@ -1,4 +1,9 @@
 <?php   
+    if(isset($_SESSION['UserID'])){
+        $loginCheck = true;
+    }else{
+        $loginCheck = false;
+    }
     if(isset($_GET['page'])){
         $page_name = $_GET['page'];
         switch($page_name){
@@ -28,6 +33,13 @@
                 break;
             case 'urcart':
                 require "pages/cart.php";
+                break;
+            case 'info':
+                if($loginCheck){
+                    require "pages/info.php";
+                }else{
+                    require "pages/error.php";
+                }
                 break;
         }
     }else{

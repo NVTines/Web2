@@ -2,8 +2,16 @@ var today = new Date();
 var date = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 var dateTime = date + ' ' + time;
-
-
+function previewImage(event){
+    var avt = document.getElementById("avt-info");
+    avt.src = URL.createObjectURL(event.target.files[0]);
+    avt.onload = function(){
+        URL.revokeObjectURL(avt.src);
+    }
+}
+function goToMain(){
+    window.location.href="index.php";
+}
 function total() {//Tính tổng giá các sản phẩm của hóa đơn (kèm tax 10%)
     var totalprice = 0.0;
     var pricenottax = 0.0;

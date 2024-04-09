@@ -13,16 +13,14 @@
                     console.log(response);
                     if (response['status'] === "error") {
                         Swal.fire({
-                            title: 'Tài khoản / Mật khẩu không tồn tại',
-                            text: 'Đăng nhập không thành công',
+                            title: 'Đăng nhập không thành công',
+                            text: 'Tài khoản/mật khẩu không đúng.',
                             icon: 'error',
                             confirmButtonText: 'OK'
                         })
-                    }
-
-                    if (response['status'] === "success") {
+                    }else if (response['status'] === "success") {
                         Swal.fire({
-                            title: 'Đăng nhập thành công!',
+                            title: 'Đăng nhập thành công',
                             text: 'Bạn đã đăng nhập tài khoản thành công.',
                             icon: 'success',
                             confirmButtonText: 'OK'
@@ -47,9 +45,9 @@
     <div id="ttdn">
         <form id="login-form" class="login-form" method="POST" >
             <label for="tendn" class="label-usr" id="label-usr"><b>Username</b></label></br>
-            <input type="text" id="tendn" class="tendn"/></br>
+            <input required type="text" id="tendn" class="tendn"/></br>
             <label for="mk" class="label-pwd" id="label-pwd"><b>Password</b></label></br>
-            <input type="password" id="mk" class="mk"/></br>
+            <input required type="password" id="mk" class="mk"/></br>
             <button type="submit" class="login-btn" id="login-btn" style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;display:block;margin-top:20px">Sign in</button>
         </form>
     </div>
