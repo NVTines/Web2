@@ -32,10 +32,10 @@ ON
             </span>
           </div>
           <div class="col-div-6">
-          <button class="add-product-button">
+          <button title="Nhập sản phẩm" class="add-product-button">
           <ion-icon name="download-outline"></ion-icon>
           </button> 
-          <button class="add-product-button">
+          <button title="Thêm sản phẩm mới" class="add-product-button">
           <ion-icon name="add-circle-outline"></ion-icon>
           </button>
           </div>
