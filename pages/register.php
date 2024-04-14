@@ -109,18 +109,18 @@
 <div style="padding: 20px;text-align: center">
     <form id="regis-form" class="regis-form" method="POST">
         <p style="padding:20px 0px;">Create your Member profile and get first access to the very best of our products, inspiration and community.</p>
-        <input required id="username" type="text" placeholder="Username*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
-        <input required onblur="pwdCheck()" id="password" type="password" placeholder="Password*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="username" type="text" placeholder="Username*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required onblur="pwdCheck()" id="password" type="password" placeholder="Password*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
         <p id="check_pwd" class="check_pwd" style="color:red;font-style:italic;float:left;display:none;">
             (At least 1 lower & upper case letter, 1 number, 1 special character, 8 up to 15 characters in length) 
         </p>
-        <input required onblur="pwdMatchCheck()" id="passwordrp" type="password" placeholder="Fill in password again*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required onblur="pwdMatchCheck()" id="passwordrp" type="password" placeholder="Fill in password again*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
         <p id="error_pwdrp" class="error_pwdrp" style="color:red;font-style:italic;float:left;display:none;">Incorrect Password</p>
-        <input required id="surname" type="text" placeholder="Surname*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
-        <input required id="name" type="text" placeholder="Name*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
-        <input required id="email" type="text" placeholder="Email address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
-        <input required id="phone" type="text" placeholder="Phone number*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
-        <input required id="address" type="text" placeholder="Your Current address*" style="width: 100%;height: 50px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="surname" type="text" placeholder="Surname*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="name" type="text" placeholder="Name*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="email" type="text" placeholder="Email address*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="phone" type="text" placeholder="Phone number*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
+        <input required id="address" type="text" placeholder="Your Current address*" style="width: 100%;height: 32px;margin: 10px 0px;font-weight: bold;font-size: 15px;padding: 10px"/><br>
         <button style="cursor: pointer;font-size:20px;background-color:black;color:white;padding:10px 30px;text-align: center;margin-top:10px">Join us</button>
     </form> 
 </div>
