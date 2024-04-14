@@ -94,50 +94,57 @@
 
 
 <div class="small-container">
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <div class="table-responsive-md" style="height:300px; overflow-y:scroll; width: 100%;">
-                <table class="table table-hover border text-cennter">
-                    <thead class="">
-                        <tr class="bg-dark text-light">
-                            <th scope="col">Image</th>
-                            <th scope="col">ProductName</th>
-                            <th scope="col">Size</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Color</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cart-data">
+    <table id="dssp">
+        <thead class="">
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">ProductName</th>
+                <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Color</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody id="cart-data">
+            <tr class="align-middle">
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+            </tr>
+            <tr class="align-middle">
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+                <td>Nike Blazer Low X</td>
+            </tr>
+        </tbody>
+    </table>
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="card m-4" style="width:35%; float:right;">
-        <div class="card-header">
-            Thanh Toán Đơn Hàng
-        </div>
-        <table class="table table-hover text-cennter">
-            <tbody id="totalHoaDon">
-                <tr>
-                    <td>Subtotal</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Tax</td>
-                    <td>10%</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td></td>
-                </tr>
-            </tbody>
+    <div class="card" style="width:35%; float:right; margin:1.5rem;">
+        <table id="totalHoaDon">
+            <tr>
+                <td>Subtotal</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tax</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td></td>
+            </tr>
         </table>
 
-        <button type="button" onclick="hienHD()" class='btn btn-sm text-white custom-bg shadow-none' style="background: #ff523b;">Thanh
+        <button type="button" onclick="hienHD()" class='' style="background: #ff523b; border-radius: 30px; width:20%; height:30px; border:none; float:right; cursor:pointer;">Thanh
             Toán</button>
     </div>
 
@@ -220,26 +227,27 @@
 
                 <td style="text-align: center">
                     <a style="
-            color: white;
-            background: #ff523b;
-            padding: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 20px;
-            border-radius: 20px;
-            " onclick="reset()">
+                color: white;
+                background: #ff523b;
+                padding: 10px;
+                font-weight: bold;
+                cursor: pointer;
+                margin: 20px;
+                border-radius: 20px;
+                " onclick="reset()">
                         Reset
                     </a>
                 </td>
             </tr>
         </table>
     </form>
+</div>
 
 
 
 
 
-    <!-- <div style="margin-right: 40px;">
+<!-- <div style="margin-right: 40px;">
         <div class="total-price">
             <table id="totalHoaDon">
                 <tr>
@@ -272,7 +280,7 @@
     </div> -->
 
 
-    <!-- <table id="dssp">
+<!-- <table id="dssp">
         <tr>
             <th>Product</th>
             <th>ID Product</th>
