@@ -69,3 +69,7 @@ th:last-child {
     width: 100%;
     max-width: 450px;
 }
+
+.align-middle {
+    vertical-align: middle !important;
+}
