@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.navbar {
+.P-navbar {
   position: sticky;
   top: 0;
   left: 0;
@@ -74,15 +74,6 @@
   width: 30px;
 }
 
-.links-container {
-  width: 100%;
-  display: flex;
-  padding: 7px 10vw;
-  justify-content: center;
-  list-style: none;
-  border-top: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
-}
 
 .link {
   text-transform: capitalize;
@@ -311,7 +302,7 @@ a {
     width: 1500px;
   }
 
-  .navbar {
+  .P-navbar {
     width: 1500px;
   }
 }
@@ -321,7 +312,7 @@ a {
     width: 1000px;
   }
 
-  .navbar {
+  .P-navbar {
     width: 1000px;
   }
 
@@ -625,15 +616,46 @@ input.form-col {
   margin-top: 50px;
   cursor: pointer;
 }
-.homepage-btn:hover{
-  background-color:#94C1F9;
-  scale:1.1;
+
+.homepage-btn:hover {
+  background-color: #94C1F9;
+  scale: 1.1;
 }
-.admin-pages-btn{
-  color:black;
-  font-size:22px;
+
+.admin-pages-btn {
+  color: black;
+  font-size: 22px;
 }
-.admin-pages-btn:hover{
-  scale:1.1;
-  color:#383838;
+
+.admin-pages-btn:hover {
+  scale: 1.1;
+  color: #383838;
+}
+
+.label-for-regis {
+  width: 20%;
+  margin-top: 25px;
+  font-weight: bolder;
+  float: left;
+  text-align: left;
+}
+
+.box-validate-regis {
+  color: red;
+  background-color: lightpink;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+  display: none;
+  border-radius: 10px;
+}
+
+.regis-input {
+  width: 80%;
+  height: 50px;
+  margin: 10px 0px;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px;
+  border: solid black 1px;
 }
