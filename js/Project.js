@@ -106,6 +106,10 @@ function CreateAccountBoard() {
     document.getElementById('logbox_2').style.opacity = "1";
     document.getElementById('logbox').style.zIndex = "-1";
     document.getElementById('logbox').style.opacity = "0";
+    
+    document.getElementById('tendn').value = "";
+    document.getElementById('mk').value = "";
+    
 }
 function out_2() {
     document.getElementById('logbox_2').style.opacity = "0";
@@ -113,6 +117,22 @@ function out_2() {
     document.getElementById('wrapper').style.opacity = "1";
     document.getElementById('logbox_0').style.opacity = "0";
     document.getElementById('logbox_0').style.zIndex = "-1";
+    
+    document.getElementById('username').value = "";
+    document.getElementById('password').value = "";
+    document.getElementById('passwordrp').value = "";
+    document.getElementById('surname').value = "";
+    document.getElementById('name').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('address').value = "";
+
+    document.getElementsByClassName("box-validate-regis")[0].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[1].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[2].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[3].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[4].style.display="none";
+
 }
 function dangnhap() {
     document.getElementById('wrapper').style.opacity = "0.2";
@@ -122,6 +142,21 @@ function dangnhap() {
     document.getElementById('logbox_2').style.zIndex = "-1";
     document.getElementById('logbox_0').style.zIndex = "8";
     document.getElementById('logbox_0').style.opacity = "0.2";
+
+    document.getElementById('username').value = "";
+    document.getElementById('password').value = "";
+    document.getElementById('passwordrp').value = "";
+    document.getElementById('surname').value = "";
+    document.getElementById('name').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('address').value = "";
+
+    document.getElementsByClassName("box-validate-regis")[0].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[1].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[2].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[3].style.display="none";
+    document.getElementsByClassName("box-validate-regis")[4].style.display="none";
 }
 function out() {
     document.getElementById('logbox').style.opacity = "0";
@@ -129,6 +164,10 @@ function out() {
     document.getElementById('wrapper').style.opacity = "1";
     document.getElementById('logbox_0').style.opacity = "0";
     document.getElementById('logbox_0').style.zIndex = "-1";
+
+    document.getElementById('tendn').value = "";
+    document.getElementById('mk').value = "";
+
 }
 
 
