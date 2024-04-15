@@ -1,31 +1,20 @@
 <?php
   $db = new database();
-  echo 
-    '<div id="shows">
-      <div id="main">
-        <div class="head">
-          <div class="col-div-6">
-  
-            <span onclick="invinbox()"
-              style="font-size: 30px; cursor: pointer; color: white"
-              class="nav2"
-              >&#9776;QUẢN LÝ NHÀ CUNG CẤP</span>
-          </div>
-  
-          <div class="col-div-6">
-            <div class="profile">
-              <img src="user.png" class="pro-img" />
-              <p class="profile">MBKT<span>DESIGNER</span></p>
-            </div>
-          </div>
-          <div class="clearfix"></div>
-        </div>
-      </div>';
+  echo '<div id="shows">';
   if(isset($_GET["id"])){
-    require "supplierdetail.php";
-  }else{
+    require "management/supplierdetail.php";
+  }else if(isset($_GET["func"])){
+    require "management/addSupplier.php";
+  }
+  else{
     echo 
-      '<div class="col-div-8">
+      '<div class="col-div-8" style="margin:20px 0px;">
+        <div class="box-8">
+          <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ NHÀ CUNG CẤP</div>
+          <a href="admin.php?key=ncc&func=add" id="add-btn-supplier">THÊM</a>
+        </div>
+      </div>
+      <div class="col-div-8">
         <div class="box-8">
           <div class="content-box">
             <table id="showlist">
@@ -55,6 +44,11 @@
                       <i class="fa-solid fa-circle-info"></i>
                     </button>
                   </a>
+                  <a href="deleteSupplier.php">
+                      <button class="quit_btn" id="quit_btn">
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                  </a>
                 </td>';            
               }    
             }
@@ -63,8 +57,8 @@
             </table>
           </div>
         </div>
-      </div>
-    </div>';
+      </div>';
   }
+  echo '</div>';
   
             
