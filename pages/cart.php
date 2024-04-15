@@ -87,16 +87,6 @@ if ($login == 0) {
         </div>
 
         <div class='mb-3'>
-            <label for='nnmail' class='form-label'>Email</label>
-            <input name='nnmail' type='email' class='form-control' id='nnmail'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nncity' class='form-label'>Province-City</label>
-            <input name='nncity' type='text' class='form-control' id='nncity'>
-        </div>
-
-        <div class='mb-3'>
             <label for='nndiachi' class='form-label'>Address</label>
             <input name='nndiachi' type='address' class='form-control' id='nndiachi'>
         </div>
@@ -110,13 +100,6 @@ if ($login == 0) {
                 <option value='2'>Prefer Not to Say</option>
             </select>
         </div>
-
-
-        <div class='mb-3'>
-            <label for='nnngaysinh' class='form-label'>Date of Birth</label>
-            <input name='nnngaysinh' type='date' class='form-control' id='nnngaysinh'>
-        </div>
-
 
         <div class='mb-3'>
             <label for='pttt' class='form-label'>Payments</label>
