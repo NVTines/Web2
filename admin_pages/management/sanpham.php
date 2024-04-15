@@ -12,12 +12,6 @@
             >&#9776;QUẢN LÝ SẢN PHẨM</span
           >
         </div>
-        <div class="col-div-6">
-          <div class="profile">
-            <img src="user.png" class="pro-img" />
-            <p class="profile">MBKT<span>DESIGNER</span></p>
-          </div>
-        </div>
         <div class="clearfix"></div>
       </div>
     </div>
