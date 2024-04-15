@@ -231,6 +231,7 @@ th {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(126deg);
     }
@@ -250,43 +251,184 @@ th {
     font-weight: 700;
     font-size: 2em;
 }
-@keyframes navside{
-    from{left: -300px}
-    to{left: 0px}
+
+@keyframes navside {
+    from {
+        left: -300px
+    }
+
+    to {
+        left: 0px
+    }
 }
-@keyframes navside_2{
-    from{left: 0px}
-    to{left: -300px}
+
+@keyframes navside_2 {
+    from {
+        left: 0px
+    }
+
+    to {
+        left: -300px
+    }
 }
-@keyframes full{
-    from{margin-left: 0px}
-    to{margin-left: -300px}
+
+@keyframes full {
+    from {
+        margin-left: 0px
+    }
+
+    to {
+        margin-left: -300px
+    }
 }
-@keyframes full_2{
-    from{margin-left: -300px}
-    to{margin-left: 0px}
+
+@keyframes full_2 {
+    from {
+        margin-left: -300px
+    }
+
+    to {
+        margin-left: 0px
+    }
 }
 
 /* MANAGE BUTTON */
-.info_btn{
-    color:white;
-    background:none;
-    border:none;
-    cursor:pointer;
-    border-radius:7px;
-    font-size:25px;
+.info_btn {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 25px;
 }
-.info_btn:hover{
+
+.info_btn:hover {
     color: #85BCFF;
 }
-.quit_btn{
-    color:rgb(255, 145, 145);
-    background:none;
-    border:none;
-    cursor:pointer;
-    border-radius:7px;
-    font-size:25px;
+
+.quit_btn {
+    color: rgb(255, 145, 145);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 25px;
 }
-.quit_btn:hover{
-    color:red;
+
+.quit_btn:hover {
+    color: red;
+}
+
+#add-btn-supplier {
+    font-weight: bold;
+    margin: 20px;
+    float: right;
+    padding: 15px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#add-btn-supplier:hover {
+    background-color: darkgreen;
+    scale: 1.1;
+}
+
+.manage-name-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    margin: 20px;
+    float: left;
+    font-weight: bold;
+}
+
+.manage-name-btn:hover {
+    scale: 1.025;
+}
+
+/* SUPPLIER */
+
+#supplier-create-form {
+    padding: 100px 0px;
+    margin: 20px;
+    background-color: #1b203d;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.sup-input {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sup-btn {
+    margin: 50px 0px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.sup-create-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sup-create-input {
+    width: 75%;
+    height: 30px;
+    font-weight: bold;
+    border: solid 1px black;
+}
+
+#sup-submit-btn {
+    padding: 15px 30px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+#sup-submit-btn:hover {
+    scale: 1.1;
+    background-color: darkgreen;
+}
+
+#sup-reset-btn {
+    padding: 15px 30px;
+    color: white;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+#sup-reset-btn:hover {
+    scale: 1.1;
+    background-color: cadetblue;
+}
+
+#back-btn-supplier{
+    font-weight: bold;
+    margin: 20px;
+    float: right;
+    padding: 15px;
+    background-color:dodgerblue;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#back-btn-supplier:hover{
+    background-color:deepskyblue;
+    scale: 1.1;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width:1450px) {
+    #content{
+        width:1450px;
+    }
 }
