@@ -15,10 +15,11 @@
   <?php require_once "../database.php"; ?>
   <script>
     window.onload = function() {
-      CountCustomer();
-      CountOrder();
-      CountProduct();
-      CountSold();
+      // CountCustomer();
+      // CountOrder();
+      // CountProduct();
+      // CountSold();
+      countAll();
     }
   </script>
   <div id="header">
