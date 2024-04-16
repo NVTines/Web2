@@ -1,17 +1,31 @@
-function CountCustomer() {
-    var c = JSON.parse(localStorage.getItem("user"));
-    document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
+//Dashboard ====================================================================================
+function countAll(){
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "functions/dashboard.php", true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+      let response = JSON.parse(this.responseText);
+      document.getElementById("customers").innerHTML = "</br><span>" + response.countKH + "</span>";
+      document.getElementById("products").innerHTML = "</br><span>" + response.countSP + "</span>";
+      document.getElementById("orders").innerHTML = "</br><span>" + response.countDHDD + "</span>";
+      document.getElementById("soldproducts").innerHTML = "</br><span>" + response.countSPBD + "</span>";
   }
+  xhr.send('countAll');
+}
+// function CountCustomer() {
+//     var c = JSON.parse(localStorage.getItem("user"));
+//     document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
+//   }
 
-  function CountOrder() {
-    var c = JSON.parse(localStorage.getItem("HDKH"));
-    document.getElementById("orders").innerHTML = c.length + "<br/><span>Orders</span>";
-  }
+//   function CountOrder() {
+//     var c = JSON.parse(localStorage.getItem("HDKH"));
+//     document.getElementById("orders").innerHTML = c.length + "<br/><span>Orders</span>";
+//   }
 
-  function CountProduct() {
-    var c = JSON.parse(localStorage.getItem("products"));
-    document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
-  }
+//   function CountProduct() {
+//     var c = JSON.parse(localStorage.getItem("products"));
+//     document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
+//   }
   var mid_3;
 
   function Quantity(temp, temp_1) {
@@ -30,17 +44,17 @@ function CountCustomer() {
     return s;
   }
 
-  function CountSold() {
-    var c = JSON.parse(localStorage.getItem("HDKH"));
-    var sum = 0;
-    for (var i = 0; i < c.length; i++)
-      for (var j = 0; j < c[i].cthoadon.length; j++)
-        if (c[i].cthoadon[j].product == mid_3) continue;
-        else {
-          sum += Quantity(c[i].cthoadon[j].product, c[i].IDhd);
-        }
-    document.getElementById("soldproducts").innerHTML = sum + "<br/><span>Products Sold</span>";
-  }
+  // function CountSold() {
+  //   var c = JSON.parse(localStorage.getItem("HDKH"));
+  //   var sum = 0;
+  //   for (var i = 0; i < c.length; i++)
+  //     for (var j = 0; j < c[i].cthoadon.length; j++)
+  //       if (c[i].cthoadon[j].product == mid_3) continue;
+  //       else {
+  //         sum += Quantity(c[i].cthoadon[j].product, c[i].IDhd);
+  //       }
+  //   document.getElementById("soldproducts").innerHTML = sum + "<br/><span>Products Sold</span>";
+  // }
 
 
 // San pham ========================================================================
