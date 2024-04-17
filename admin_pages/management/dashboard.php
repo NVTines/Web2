@@ -98,7 +98,7 @@ echo
             <div class="mask half">
               <div class="fill"></div>
             </div>
-            <div class="inside-circle"></div>
+            <div id="percent" class="inside-circle"></div>
           </div>
         </div>
       </div>
