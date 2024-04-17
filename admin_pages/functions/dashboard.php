@@ -10,6 +10,7 @@ if (isset($_POST['countAll'])) {
     $countSP = 0;
     $countDHDD = 0;
     $countSPBD = 0;
+    $percent=0;
     
     // Lấy số lượng khách hàng
     $res1 = $dtb->mysqli_query("SELECT COUNT(*) AS `customer_count` FROM `customer`");
@@ -44,11 +45,27 @@ if (isset($_POST['countAll'])) {
         }
     }
 
+    //tỉ lệ 
+    $res5=$dtb->selectAll('bill');
+    $hd=0;
+    $hdtc=0;
+    while($row5=$res5->fetch_assoc()){
+        if($row5['status']=='Đã Nhận Hàng'){
+            $hd++;
+            $hdtc++;
+        }
+        else {
+            $hd++;
+        }
+    }
+
+    $percent=($hdtc/$hd)*100;
     $response = array(
         'countKH' => $countKH,
         'countSP' => $countSP,
         'countDHDD' => $countDHDD,
-        'countSPBD' => $countSPBD
+        'countSPBD' => $countSPBD,
+        'percent'=> $percent
     );
     echo json_encode($response);
 }
