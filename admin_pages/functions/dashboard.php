@@ -37,7 +37,12 @@ if (isset($_POST['countAll'])) {
     }
 
     //lấy sản phẩm bán được
-    
+    $res4=$dtb->mysqli_query("SELECT SUM(`Quantity`) AS `quantity` FROM `billdetail`");
+    if($res4){
+        if($row3=$res4->fetch_assoc()){
+            $countSPBD=$row3['quantity'];
+        }
+    }
 
     $response = array(
         'countKH' => $countKH,
