@@ -88,7 +88,7 @@ echo
     <div class="col-div-4">
       <div class="box-4">
         <div class="content-box">
-          <p>Total Sale<span>View All</span></p>
+          <p style="text-align:center;">Total Sale</p>
 
           <div class="circle-wrap">
           <div class="circle">
