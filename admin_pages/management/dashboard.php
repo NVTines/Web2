@@ -1,5 +1,5 @@
 <?php
-echo 
+echo
 '<div id="shows">
   <div id="main">
     <div class="head">
@@ -14,26 +14,38 @@ echo
     </div>
     <div class="col-div-3">
       <div class="box">
+        <h4>Số lượng khách hàng</h4>
+        <div class="flex">
         <p id="customers"></p>
         <i class="fa fa-users box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
       <div class="box">
+        <h4>Số Sản Phẩm</h4>
+        <div class="flex">
         <p id="products"></p>
         <i class="fas fa-list box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
-      <div class="box">
+    <div class="box">
+        <h4>Đơn hàng thành công</h4>
+        <div class="flex">
         <p id="orders"></p>
         <i class="fa fa-shopping-bag box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
-      <div class="box">
+    <div class="box">
+        <h4>Số lượng bán ra</h4>
+        <div class="flex">
         <p id="soldproducts"></p>
         <i class="fa fa-tasks box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="clearfix"></div>
