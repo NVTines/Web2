@@ -119,14 +119,28 @@ body {
 }
 
 .box p {
+    vertical-align: middle; 
     font-size: 35px;
     color: white;
     font-weight: bold;
     line-height: 30px;
-    padding-left: 10px;
-    margin-top: 20px;
+    /* padding-left: 10px;
+    margin-top: 20px; */
+    margin: 0;
+    text-align: center;
     display: inline-block;
     /*các items sẽ được xếp cùng nhau trên một dòng nhưng vẫn set width, height, margin, padding đủ 4 hướng*/
+}
+
+.box h4{
+ margin: 0;
+ color: #f1f1f1;
+}
+
+.box .flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .box p span {
@@ -136,10 +150,11 @@ body {
 }
 
 .box-icon {
+    padding-top: 25px;
     font-size: 40px !important;
     /*độ ưu tiên trong cùng file css chứ không cần quan tâm các định nghĩa được viết sau.*/
     float: right;
-    margin-top: 35px !important;
+    /* margin-top: 35px !important; */
     color: #818181;
     padding-right: 10px;
 }
