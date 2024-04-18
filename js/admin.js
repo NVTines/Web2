@@ -52,21 +52,38 @@ function show() {
   }
   document.getElementById('showlist').innerHTML = tr;
 }
-function thongbaobox(namedelete) {
+
+function thongbaobox(productID) {
   document.getElementById('boxtb').style.animation = "tb 1s forwards";
-  document.getElementById('boxtb').innerHTML = '<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deletee(\'' + namedelete + '\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
+  document.getElementById('boxtb').innerHTML = '<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deleteAdminProduct(\'' + productID + '\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
 }
-function deletee(namedelete) {//Xóa một sản phẩm
-  var arr = JSON.parse(localStorage.getItem('products'));
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].product == namedelete) {
-      arr.splice(i, 1);
+
+function deleteAdminProduct(productID) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'delete_product.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        // Assuming the deletion was successful, remove the row from the table
+        var row = document.getElementById('row_' + productID);
+        if (row) {
+          row.parentNode.removeChild(row);
+        }
+        // Show a success message or perform any other actions
+      } else {
+        console.error('Error:', xhr.status);
+        // Handle errors
+      }
     }
-  }
-  localStorage.setItem('products', JSON.stringify(arr));
-  document.getElementById('boxtb').style.animation = "tb_2 1s forwards";
-  show();
+  };
+  // Send the request with the product ID as a parameter
+  xhr.send('id=' + encodeURIComponent(productID));
 }
+
+
+
 function filterOf() {//Search sản phẩm cơ bản, theo tên và theo ID sản phẩm
   var s = '<tr><th>ID</th><th>name</th><th>Brand</th><th>Img</th><th>Price</th><th>Action</th></tr>';
   var temp, temp_2;
@@ -215,23 +232,6 @@ function show() {
       tr += '<tr><td>' + (i + 1) + '</td><td>' + arr[i].username + '</td><td>' + arr[i].password + '</td><td>' + arr[i].fullname + '</td><td>' + arr[i].phone + '</td><td>' + arr[i].email + '</td><td>' + arr[i].address + '</td><td><button class="delete" onclick="thongbaobox(\'' + arr[i].username + '\')">&times;</button></td></tr>';
   }
   document.getElementById('showlist').innerHTML = tr;
-}
-function thongbaobox(namedelete) {
-  document.getElementById('boxtb').style.animation = "tb 1s forwards";
-  document.getElementById('boxtb').innerHTML = '<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deletee(\'' + namedelete + '\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
-}
-
-function deletee(namedelete) {
-  var arr = JSON.parse(localStorage.getItem('user'));
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].username == namedelete) {
-      arr.splice(i, 1);
-    }
-  }
-  localStorage.setItem('user', JSON.stringify(arr));
-  document.getElementById('boxtb').style.animation = "tb_2 1s forwards";
-  show();
-
 }
 
 // Don hang ========================================================================

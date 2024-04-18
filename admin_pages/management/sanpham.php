@@ -11,17 +11,16 @@ function showProducts()
   product.IMG AS Img,
   product.Quantity,
   product.ProductPrice AS Price
-FROM 
+  FROM 
 	product
-JOIN 
+  JOIN 
   producer 
-ON 
-  product.ProducerID = producer.ProducerID;
-";
+  ON 
+  product.ProducerID = producer.ProducerID;";
   $result = $db->get_data($query);
 
   echo
-  '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
+  '<div id="boxtb" style="background-color:white;height:-100px;width:480px;position:fixed;z-index:10;right:0;display:flex">
     </div>
     <div id="shows">
       <div id="main">
@@ -48,13 +47,14 @@ ON
             <table id="showlist">
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Image</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Action</th>
+                <th>Tên</th>
+                <th>Hãng</th>
+                <th>Hình</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th></th>
               </tr>';
+
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       $encoded_image = base64_encode($row['Img']);
@@ -68,16 +68,37 @@ ON
         <td>' . "$" . $row['Price'] . '</td>
         <td>' . $row['Quantity'] . '</td>
         <td>
-          <button class="delete" onclick="thongbaobox()">&times;</button>
-          <button style="margin-left:10px" onclick="hideFixSP()">&#9881;</button>
+          <button class="delete" onclick="thongbaobox(' . $row['ID']  . ')">Xóa</button>
+          <button class="modify" onclick="hideFixSP()">Sửa</button>
         </td>
       </tr>';
     }
   }
   echo '
-</table>
-</div>
-</div>
-</div>
-</div>';
+        </table>
+       </div>
+      </div>
+    </div>
+  </div>';
+}
+
+function deleteProduct($id)
+{
+  $db = new database();
+  $query = "DELETE FROM product WHERE ProductID = $id";
+  $result = $db->get_data($query);
+  if ($result) {
+    echo "success";
+  } else {
+    echo "error";
+  }
+}
+
+// Check if the request contains the product ID
+if (isset($_POST['id'])) {
+  // Call the deleteProduct function with the provided ID
+  deleteProduct($_POST['id']);
+} else {
+  // Handle the case where the ID is not provided
+  echo "error: No product ID provided";
 }

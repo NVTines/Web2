@@ -26,6 +26,7 @@
         function get_data($sql){
             return $this->conn->query($sql);
         }
+        
         function close_dtb(){
             $this->conn->close();
         }

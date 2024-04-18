@@ -336,3 +336,25 @@ th {
     margin: auto;
     /* Center both horizontally and vertically */
 }
+
+button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.delete {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  button.modify {
+    background-color: #4caf50; /* Green */
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #555; /* Dark gray */
+  }
