@@ -16,21 +16,12 @@
             }
             ?>
             <?php
-            if ($login == 1) 
-            {
-                    echo "<a href='index.php?page=urbill' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
+            if ($login == 1) {
+                echo "<a href='index.php?page=urbill' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
             }
             ?>
-            <!-- <a href="bill.php" onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a> -->
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
-                    <!-- 
-                    <div class="text-end mb-4">
-                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#add-product">
-                            <i class="bi bi-plus-square"></i> Add
-                        </button>
-                    </div> -->
-
                     <div class="table-responsive-md" style="height:300px; overflow-y:scroll; width: 65%;">
                         <table class="table table-hover border text-cennter">
                             <thead class="sticky-top">
@@ -61,7 +52,14 @@
                             </tbody>
                         </table>
 
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" class='btn btn-sm text-white custom-bg shadow-none' style="float:right;">Thanh Toán</button>
+                        <?php
+                        if ($login == 1)
+                        {
+                            echo "<button type='button' data-bs-toggle='modal' data-bs-target='#checkoutModal' class='btn btn-sm text-white custom-bg shadow-none' style='float:right;'>Thanh Toán</button>";
+                        } else {
+                            echo "<p class='text-center text-danger'>Xin Mời Đăng Nhập Tài Khoản</p>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -70,82 +68,9 @@
 </div>
 
 <?php
-    $data="";
-    if($login==0)
-    {
-        $data.="<form action='' id='hoadon' style=''>
-        <h1 style='text-align: center;margin-bottom:10px'><i>Payment Form</i></h1>
-
-        <div class='mb-3'>
-            <label for='surname' class='form-label'>SurName</label>
-            <input name='surname' type='text' class='form-control' id='surname'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='name' class='form-label'>Name</label>
-            <input name='name' type='text' class='form-control' id='name'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nnsdt' class='form-label'>Phone Number</label>
-            <input name='nnsdt' type='phone' class='form-control' id='nnsdt'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nnmail' class='form-label'>Email</label>
-            <input name='nnmail' type='email' class='form-control' id='nnmail'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nncity' class='form-label'>Province-City</label>
-            <input name='nncity' type='text' class='form-control' id='nncity'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nndiachi' class='form-label'>Address</label>
-            <input name='nndiachi' type='address' class='form-control' id='nndiachi'>
-        </div>
-
-        <div class='mb-3'>
-            <label for='nngioitinh' class='form-label'>Gender</label>
-            <select id='nngioitinh' style='float:right;' name='nngioitinh'>
-                <option value='' selected>Select gender</option>
-                <option value='0'>Male</option>
-                <option value='1'>Female</option>
-                <option value='2'>Prefer Not to Say</option>
-            </select>
-        </div>
-
-
-        <div class='mb-3'>
-            <label for='nnngaysinh' class='form-label'>Date of Birth</label>
-            <input name='nnngaysinh' type='date' class='form-control' id='nnngaysinh'>
-        </div>
-
-
-        <div class='mb-3'>
-            <label for='pttt' class='form-label'>Payments</label>
-            <select id='pttt' style='float:right;' name='pttt'>
-                <option selected value=''>Select Option</option>
-                <option value='1'>VisaCard</option>
-                <option value='2'>Paypal</option>
-                <option value='3'>Internet Banking</option>
-                <option value='4'>Cash</option>
-            </select>
-        </div>
-
-        <div class='form-floating mb-3'>
-            <textarea class='form-control' placeholder='Leave a comment here' id='delivery' name='delivery'></textarea>
-            <label for='note'>Comments</label>
-        </div>
-
-
-        <button type='submit' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
-        <button onclick='reset()' class='btn btn-sm text-white shadow-none' style='float:left; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Reset</button>
-
-        </form>";
-    } else {
-        $data.="<form action='' id='hoadon' style=''>
+$data = "";
+if ($login = 1) {
+    $data .= "<form action='' id='hoadon' style=''>
         <h1 style='text-align: center;margin-bottom:10px'><i>Payment Form</i></h1>
         <div class='mb-3'>
         <label for='pttt' class='form-label'>Payments</label>
@@ -165,10 +90,9 @@
 
 
     <button type='submit' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
-    <button onclick='reset()' class='btn btn-sm text-white shadow-none' style='float:left; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Reset</button>
 
     </form>";
-    }
+}
 ?>
 
 <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
