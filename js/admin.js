@@ -10,53 +10,10 @@ function countAll() {
       document.getElementById('orders').innerHTML = response.countDHDD;
       document.getElementById('soldproducts').innerHTML = response.countSPBD;
       document.getElementById('percent').innerHTML = response.percent;
+      document.documentElement.style.setProperty("--change", parseFloat(response.percent)*1.8+"deg");
   }
   xhr.send('countAll');
 }
-function CountCustomer() {
-    var c = JSON.parse(localStorage.getItem("user"));
-    document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
-  }
-
-  function CountOrder() {
-    var c = JSON.parse(localStorage.getItem("HDKH"));
-    document.getElementById("orders").innerHTML = c.length + "<br/><span>Orders</span>";
-  }
-
-  function CountProduct() {
-    var c = JSON.parse(localStorage.getItem("products"));
-    document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
-  }
-  var mid_3;
-
-  function Quantity(temp, temp_1) {
-    var s = 0;
-    var arr = JSON.parse(localStorage.getItem('HDKH'));
-    for (var i = 0; i < arr.length; i++)
-      if (arr[i].IDhd == temp_1) {
-        for (var j = 0; j < arr[i].cthoadon.length; j++) {
-          if (temp == arr[i].cthoadon[j].product) {
-            s++;
-            mid_3 = arr[i].cthoadon[j].product;
-          }
-        }
-        break;
-      }
-    return s;
-  }
-
-  function CountSold() {
-    var c = JSON.parse(localStorage.getItem("HDKH"));
-    var sum = 0;
-    for (var i = 0; i < c.length; i++)
-      for (var j = 0; j < c[i].cthoadon.length; j++)
-        if (c[i].cthoadon[j].product == mid_3) continue;
-        else {
-          sum += Quantity(c[i].cthoadon[j].product, c[i].IDhd);
-        }
-    document.getElementById("soldproducts").innerHTML = sum + "<br/><span>Products Sold</span>";
-  }
-
 
 // San pham ========================================================================
   function show(){
