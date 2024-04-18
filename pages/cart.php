@@ -16,7 +16,13 @@
                 $login = 1;
             }
             ?>
-            <a href="purchase.php" onclick='checkLoginToBill($login,$_SESSION[uId])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>
+            <?php
+            if ($login == 1) 
+            {
+                    echo "<a href='purchase.php'onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
+            }
+            ?>
+            <!-- <a href="bill.php" onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a> -->
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <!-- 
