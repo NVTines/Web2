@@ -1,3 +1,18 @@
+function countAll() {
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "functions/dashboard.php", true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+      let response = JSON.parse(this.responseText);
+      document.getElementById('customers').innerHTML = response.countKH;
+      document.getElementById('products').innerHTML = response.countSP;
+      document.getElementById('orders').innerHTML = response.countDHDD;
+      document.getElementById('soldproducts').innerHTML = response.countSPBD;
+      document.getElementById('percent').innerHTML = response.percent;
+  }
+  xhr.send('countAll');
+}
 function CountCustomer() {
     var c = JSON.parse(localStorage.getItem("user"));
     document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
