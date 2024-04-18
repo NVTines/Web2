@@ -24,34 +24,6 @@
 
     let uId = "";
 
-    function setActive() {
-        let navbar = document.getElementById('dashboard-menu');
-        let a_tags = navbar.getElementsByTagName('a');
-
-        for (i = 0; i < a_tags.length; i++) {
-            let file = a_tags[i].href.split('/').pop(); // example.php
-            let file_name = file.split('.')[0];
-
-            if (document.location.href.indexOf(file_name) >= 0) {
-                a_tags[i].classList.add('active');
-            }
-        }
-    }
-
-    function setActive() {
-        let navbar = document.getElementById('navbar');
-        let a_tags = navbar.getElementsByTagName('a');
-
-        for (i = 0; i < a_tags.length; i++) {
-            let file = a_tags[i].href.split('/').pop(); // example.php
-            let file_name = file.split('.')[0];
-
-            if (document.location.href.indexOf(file_name) >= 0) {
-                a_tags[i].classList.add('active');
-            }
-        }
-    }
-
     function checkLoginToCart(product_id, user_id) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/cart.php", true);
@@ -126,21 +98,6 @@
     }
 
 
-
-    function getVnngioitinh(value) {
-        switch (value) {
-            case '0':
-                return 'Male';
-            case '1':
-                return 'Female';
-            case '2':
-                return 'Prefer Not to Say';
-            default:
-                return '';
-        }
-    }
-
-
     function getVpttt(value) {
         switch (value) {
             case '1':
@@ -171,8 +128,7 @@
         xhr.send('get_product_cart' + '&cart_id=' + cart_id);
     }
 
-    setActive();
     window.onload = function() {
-        get_product_cart(<?php echo isset($_SESSION['cart_idUser']) ? $_SESSION['cart_idUser'] : $_SESSION['cart_idNoUser'] ?>);
+        get_product_cart(<?php echo isset($_SESSION['cart_idUser']) ? $_SESSION['cart_idUser'] : -1 ?>);
     }
 </script>
