@@ -55,6 +55,18 @@ class database
 
 
 
+
+
+
+
+    function mysqli_query($data){
+        $result = $this->conn->query($data);
+        if ($result !== FALSE) {
+            return $result;
+        } else {
+            return false;
+        }
+    } 
     function filteration($data)
     {
         foreach ($data as $key => $value) {
@@ -66,7 +78,6 @@ class database
         }
         return $data;
     }
-
     function selectAll($table)
     {
         $con = $this->conn;
@@ -90,7 +101,6 @@ class database
             die("Query cannot be executed -Select");
         }
     }
-
     function update($sql, $values, $datatypes)
     {
         $con = $this->conn;
@@ -108,7 +118,6 @@ class database
             die("Query cannot be executed -Update");
         }
     }
-
     function insert($sql, $values, $datatypes)
     {
         $con = $this->conn;
@@ -126,7 +135,6 @@ class database
             die("Query cannot be executed - Insert");
         }
     }
-
     function delete($sql, $values, $datatypes)
     {
         $con = $this->conn;
