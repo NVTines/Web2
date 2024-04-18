@@ -49,8 +49,7 @@ if (isset($_SESSION['UserID'])) {
                                 <div>
                                 $dataCart
                                 </div>
-                                <a href='purchase_detail.php?bill_id=$row2[BillID]' class='btn edit text-center text-success'>Xem Chi Tiết</a>
-                                
+                                <a href='index.php?page=bill_detail&bill_id=$row2[BillID]' class='btn edit text-center text-success'>Xem Chi Tiết</a> 
                             </div>
                         </div>
                     donhang;
