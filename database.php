@@ -44,6 +44,10 @@ class database
     {
         return $this->pdo;
     }
+    function get_conn()
+    {
+        return $this->conn;
+    }
     function changeImgByPDO($filePath, $sql)
     {
         $blob = fopen($filePath, 'rb');
