@@ -6,8 +6,7 @@
 </head>
 
 <?php
-require_once __DIR__ . "/../../database.php";
-session_start();
+require_once __DIR__ . "/../database.php";
 $login = 0;
 if (isset($_SESSION['UserID'])) {
     $login = 1;
@@ -19,7 +18,7 @@ if (isset($_SESSION['UserID'])) {
     <div class="row">
         <?php
         $dtb = new database();
-        $res1 = $dtb->select("SELECT * FROM `customer` WHERE `UserID`=?", [$_SESSION['uId']], 'i');
+        $res1 = $dtb->select("SELECT * FROM `customer` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
         if (mysqli_num_rows($res1) > 0) {
             $row1 = $res1->fetch_assoc();
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `CustomerID`=?", [$row1['CustomerID']], 'i');
