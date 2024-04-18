@@ -236,10 +236,13 @@ th {
     background-color: #f7403b;
 }
 
+:root{
+    --change:0deg;
+}
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
-    /* animation: fill ease-in-out 3s; */
-    transform: rotate(126deg);
+    animation: fill ease-in-out 3s;
+    transform: rotate(var(--change));
 }
 
 @keyframes fill {
@@ -248,19 +251,9 @@ th {
     }
 
     100% {
-        transform: rotate(126deg);
+        transform: rotate(var(--change));
     }
 }
-
-/* @keyframes fill {
-    0% {
-        transform: rotate(var(0deg));
-    }
-
-    100% {
-        transform: rotate(var(--end-rotate));
-    }
-} */
 
 .circle-wrap .inside-circle {
     width: 130px;
