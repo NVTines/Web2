@@ -19,7 +19,7 @@
             <?php
             if ($login == 1) 
             {
-                    echo "<a href='purchase.php'onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
+                    echo "<a href='index.php?page=urbill'onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
             }
             ?>
             <!-- <a href="bill.php" onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a> -->
