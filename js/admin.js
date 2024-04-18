@@ -1,17 +1,33 @@
-function CountCustomer() {
-    var c = JSON.parse(localStorage.getItem("user"));
-    document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
-  }
+function countAll() {
 
-  function CountOrder() {
-    var c = JSON.parse(localStorage.getItem("HDKH"));
-    document.getElementById("orders").innerHTML = c.length + "<br/><span>Orders</span>";
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "functions/dashboard.php", true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+      let response = JSON.parse(this.responseText);
+      document.getElementById('customers').innerHTML = response.countKH;
+      document.getElementById('products').innerHTML = response.countSP;
+      document.getElementById('orders').innerHTML = response.countDHDD;
+      document.getElementById('soldproducts').innerHTML = response.countSPBD;
+      document.getElementById('percent').innerHTML = response.percent;
   }
+  xhr.send('countAll');
+}
 
-  function CountProduct() {
-    var c = JSON.parse(localStorage.getItem("products"));
-    document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
-  }
+// function CountCustomer() {
+//     var c = JSON.parse(localStorage.getItem("user"));
+//     document.getElementById("customers").innerHTML = c.length - 1 + "</br><span>Customers</span>";
+//   }
+
+//   function CountOrder() {
+//     var c = JSON.parse(localStorage.getItem("HDKH"));
+//     document.getElementById("orders").innerHTML = c.length + "<br/><span>Orders</span>";
+//   }
+
+//   function CountProduct() {
+//     var c = JSON.parse(localStorage.getItem("products"));
+//     document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
+//   }
   var mid_3;
 
   function Quantity(temp, temp_1) {
