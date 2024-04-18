@@ -34,6 +34,9 @@
             case 'urcart':
                 require "pages/cart.php";
                 break;
+            case 'urbill';
+                require "pages/bill.php";
+                break;
             case 'info':
                 if($loginCheck){
                     require "pages/info.php";
