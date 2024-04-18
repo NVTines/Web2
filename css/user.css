@@ -146,7 +146,7 @@ body {
 
 .col-div-8 {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
@@ -158,7 +158,7 @@ body {
 .box-8 {
     margin-left: 300px;
     width: 80%;
-    
+
 }
 
 table {
@@ -174,34 +174,108 @@ th {
     color: #ddd;
     border-bottom: 1px solid #81818149;
 }
-@keyframes tb{
-    from{top: -20%}
-    to{top: 0%}
-}
-@keyframes tb_2{
-    from{top: 0%}
-    to{top: -20%}
-}
-@keyframes navside{
-    from{left: -300px}
-    to{left: 0px}
-}
-@keyframes navside_2{
-    from{left: 0px}
-    to{left: -300px}
-}
-@keyframes full{
-    from{margin-left: 0px}
-    to{margin-left: -300px}
-}
-@keyframes full_2{
-    from{margin-left: -300px}
-    to{margin-left: 0px}
+
+@keyframes tb {
+    from {
+        top: -20%
+    }
+
+    to {
+        top: 0%
+    }
 }
 
-#boxtb a{
-    text-decoration: none;
+@keyframes tb_2 {
+    from {
+        top: 0%
+    }
+
+    to {
+        top: -20%
+    }
 }
-#boxtb a:hover{
+
+@keyframes navside {
+    from {
+        left: -300px
+    }
+
+    to {
+        left: 0px
+    }
+}
+
+@keyframes navside_2 {
+    from {
+        left: 0px
+    }
+
+    to {
+        left: -300px
+    }
+}
+
+@keyframes full {
+    from {
+        margin-left: 0px
+    }
+
+    to {
+        margin-left: -300px
+    }
+}
+
+@keyframes full_2 {
+    from {
+        margin-left: -300px
+    }
+
+    to {
+        margin-left: 0px
+    }
+}
+
+#boxtb {
+    background-color: white;
+    position: fixed;
+    z-index: 10;
+    right: 45%;
+    width: 10%;
+}
+
+#boxtb a {
+    text-decoration: none;
+    margin: 30px;
+}
+
+#boxtb-title {
+    font-weight: bold;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size:17px;
+    padding:20px;
+}
+
+.confirm-btn-boxtb {
+    padding:10px;
+    text-align: center;
+    font-weight: bold;
+    background-color:whitesmoke;
+}
+
+#yes-btn {
+    color: deepskyblue;
+}
+
+#yes-btn:hover {
+    color: skyblue;
+}
+
+#no-btn {
+    color: crimson;
+}
+
+#no-btn:hover {
     color: red;
 }

@@ -28,9 +28,14 @@ echo
             <td>'.$rows["SupplierName"].'</td>
             <td>'.$rows["Address"].'</td>
             <td>'.$rows["Phone"].'</td>
-            <td>'.$rows["FaxNumber"].'</td>
-            <td>'.$rows["status"].'</td>
-            <td>
+            <td>'.$rows["FaxNumber"].'</td>';
+            if($rows['status']=="1"){
+                echo '<td style="color:green;font-weight:bold;">ĐANG HOẠT ĐỘNG</td>';  
+            }else{
+                echo '<td style="color:red;font-weight:bold;">NGƯNG HOẠT ĐỘNG</td>'; 
+            }
+            echo
+            '<td>
                 <a href="admin.php?key=ncc">
                     <button class="quit_btn" id="quit_btn">
                         <i class="fa-solid fa-circle-xmark"></i>
@@ -56,7 +61,6 @@ echo
                     <th>Name</th>
                     <th>Image</th>
                     <th>Description</th>
-                    <th>Status</th>
                 </tr>
                 <tr>';
 if($results = $db->get_data($sql)){
@@ -65,8 +69,7 @@ if($results = $db->get_data($sql)){
         '<td>'.$rows["ProductID"].'</td>
         <td>'.$rows["ProductName"].'</td>
         <td>'.$rows["IMG"].'</td>
-        <td>'.$rows["Description"].'</td>
-        <td>'.$rows["status"].'</td>';
+        <td>'.$rows["Description"].'</td>';    
     }
 }
 echo 
