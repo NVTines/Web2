@@ -22,8 +22,6 @@
         document.getElementsByClassName('alert')[0].remove();
     }
 
-    let uId = "";
-
     function checkLoginToCart(product_id, user_id) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/cart.php", true);
@@ -39,23 +37,6 @@
             }
         }
         xhr.send('add_cart&product_id=' + product_id + '&user_id=' + user_id);
-    }
-
-    function checkNoLoginToCart(product_id) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/cart.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (this.responseText == 1) {
-                // alert('success', 'Cart Added!', 'cart-alert');
-                console.log(this.responseText);
-                //get_product_cart(user_id);
-            } else {
-                // alert('error', 'Add cart failed!', 'cart-alert');
-                console.log(this.responseText);
-            }
-        }
-        xhr.send('add_cart_nouser&product_id=' + product_id);
     }
 
     // function checkCart(product_id) {
@@ -76,27 +57,60 @@
     //         xhr.send('add_cart&product_id=' + product_id + '&user_id=' + -1);
     // }
 
-    function checkLoginToBill(status, user_id) {
-        if (status) {
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "ajax/bill.php", true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-                if (this.responseText == 1) {
-                    // alert('success', 'Cart Added!', 'cart-alert');
-                    console.log(this.responseText);
-                    get_product_cart(user_id);
-                } else {
-                    // alert('error', 'Add cart failed!', 'cart-alert');
-                    console.log(this.responseText);
-                }
-            }
-            xhr.send('add_bill' + '&user_id=' + user_id);
-        } else {
-            alert('error', 'Please login to book room!');
-        }
-    }
+    // function checkLoginToBill(status, user_id) {
+    //     if (status) {
+    //         let xhr = new XMLHttpRequest();
+    //         xhr.open("POST", "ajax/bill.php", true);
+    //         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //         xhr.onload = function() {
+    //             if (this.responseText == 1) {
+    //                 // alert('success', 'Cart Added!', 'cart-alert');
+    //                 console.log(this.responseText);
+    //                 get_product_cart(user_id);
+    //             } else {
+    //                 // alert('error', 'Add cart failed!', 'cart-alert');
+    //                 console.log(this.responseText);
+    //             }
+    //         }
+    //         xhr.send('add_bill' + '&user_id=' + user_id);
+    //     } else {
+    //         alert('error', 'Please login to book room!');
+    //     }
+    // }
 
+
+    let userhoadon_form = document.getElementById('hoadon');
+    userhoadon_form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let data = new FormData();
+        let paymentValue = userhoadon_form.elements['pttt'].value;
+        let paymentText = getVpttt(paymentValue);
+        data.append('pttt', paymentText);
+        data.append('delivery', userhoadon_form.elements['delivery'].value);;
+        data.append('add_bill', '');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "pages/functions/bill.php", true);
+
+        xhr.onload = function() {
+            var myModal = document.getElementById('checkoutModal');
+            var modal = bootstrap.Modal.getInstance(myModal);
+            modal.hide();
+            if (this.responseText == "GHR") {
+                alert('warning', "Giỏ hàng rỗng!");
+            } else if (this.responseText == 1) {
+                userhoadon_form.reset();
+                alert('success', "Đơn hàng đã được đặt!");
+                setTimeout(function() {
+                    location.reload();
+                }, 3000);
+            } else if (this.responseText == "Server Down!") {
+                alert('danger', "Server lỗi!");
+            }
+        }
+        xhr.send(data);
+
+    })
 
     function getVpttt(value) {
         switch (value) {
