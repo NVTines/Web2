@@ -58,7 +58,7 @@ class database
 
 
 
-
+    // hàm thực hiện sql
     function mysqli_query($data){
         $result = $this->conn->query($data);
         if ($result !== FALSE) {
