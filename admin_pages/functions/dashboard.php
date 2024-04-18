@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__."/../../database.php";
 session_start();
-
-
-
 $dtb = new database();
 if (isset($_POST['countAll'])) {
     $countKH = 0;
@@ -40,9 +37,10 @@ if (isset($_POST['countAll'])) {
     //lấy sản phẩm bán được
     $res4=$dtb->mysqli_query("SELECT SUM(`Quantity`) AS `quantity` FROM `billdetail`");
     if($res4){
-        if($row3=$res4->fetch_assoc()){
+        if($row3=$res4->fetch_assoc() && $res4->num_rows == 0)
+            $countSPBD=0;
+        else if($row3=$res4->fetch_assoc() && $res4->num_rows > 0)
             $countSPBD=$row3['quantity'];
-        }
     }
 
     //tỉ lệ 
@@ -59,7 +57,11 @@ if (isset($_POST['countAll'])) {
         }
     }
 
-    $percent=($hdtc/$hd)*100;
+    if($hd == 0 || $hdtc == 0)
+        $percent = 0;
+    else
+        $percent=($hdtc/$hd)*100;
+
     $response = array(
         'countKH' => $countKH,
         'countSP' => $countSP,
