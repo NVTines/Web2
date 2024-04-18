@@ -37,6 +37,9 @@
             case 'urbill';
                 require "pages/bill.php";
                 break;
+            case 'bill_detail';
+                require "pages/bill_detail.php";
+                break;
             case 'info':
                 if($loginCheck){
                     require "pages/info.php";
