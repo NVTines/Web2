@@ -12,12 +12,6 @@ echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;po
           >&#9776;QUẢN LÝ NGƯỜI DÙNG</span>
       </div>
 
-      <div class="col-div-6">
-        <div class="profile">
-          <img src="user.png" class="pro-img" />
-          <p class="profile">MBKT<span>DESIGNER</span></p>
-        </div>
-      </div>
       <div class="clearfix"></div>
     </div>
   </div>

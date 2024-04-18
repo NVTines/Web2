@@ -119,14 +119,28 @@ body {
 }
 
 .box p {
+    vertical-align: middle; 
     font-size: 35px;
     color: white;
     font-weight: bold;
     line-height: 30px;
-    padding-left: 10px;
-    margin-top: 20px;
+    /* padding-left: 10px;
+    margin-top: 20px; */
+    margin: 0;
+    text-align: center;
     display: inline-block;
     /*các items sẽ được xếp cùng nhau trên một dòng nhưng vẫn set width, height, margin, padding đủ 4 hướng*/
+}
+
+.box h4{
+ margin: 0;
+ color: #f1f1f1;
+}
+
+.box .flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .box p span {
@@ -136,10 +150,11 @@ body {
 }
 
 .box-icon {
+    padding-top: 25px;
     font-size: 40px !important;
     /*độ ưu tiên trong cùng file css chứ không cần quan tâm các định nghĩa được viết sau.*/
     float: right;
-    margin-top: 35px !important;
+    /* margin-top: 35px !important; */
     color: #818181;
     padding-right: 10px;
 }
@@ -223,7 +238,7 @@ th {
 
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
-    animation: fill ease-in-out 3s;
+    /* animation: fill ease-in-out 3s; */
     transform: rotate(126deg);
 }
 
@@ -236,6 +251,16 @@ th {
         transform: rotate(126deg);
     }
 }
+
+/* @keyframes fill {
+    0% {
+        transform: rotate(var(0deg));
+    }
+
+    100% {
+        transform: rotate(var(--end-rotate));
+    }
+} */
 
 .circle-wrap .inside-circle {
     width: 130px;
@@ -358,3 +383,120 @@ button {
   button:hover {
     background-color: #555; /* Dark gray */
   }
+
+#add-btn-supplier {
+    font-weight: bold;
+    margin: 20px;
+    float: right;
+    padding: 15px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+#add-btn-supplier:hover {
+    background-color: darkgreen;
+    scale: 1.1;
+}
+
+.manage-name-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    margin: 20px;
+    float: left;
+    font-weight: bold;
+}
+
+.manage-name-btn:hover {
+    scale: 1.025;
+}
+
+/* SUPPLIER */
+
+#supplier-create-form {
+    padding: 100px 0px;
+    margin: 20px;
+    background-color: #1b203d;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.sup-input {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sup-btn {
+    margin: 50px 0px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.sup-create-label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.sup-create-input {
+    width: 75%;
+    height: 30px;
+    font-weight: bold;
+    border: solid 1px black;
+}
+
+#sup-submit-btn {
+    border: none;
+    font-weight: bold;
+    font-size:16px;
+    padding: 15px 30px;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+}
+
+#sup-submit-btn:hover {
+    scale: 1.1;
+    background-color: darkgreen;
+}
+
+#sup-reset-btn {
+    padding: 15px 30px;
+    color: white;
+    background-color: darkcyan;
+    cursor: pointer;
+}
+
+#sup-reset-btn:hover {
+    scale: 1.1;
+    background-color: cadetblue;
+}
+
+#back-btn-supplier{
+    font-weight: bold;
+    margin: 20px;
+    float: right;
+    padding: 15px;
+    background-color:dodgerblue;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#back-btn-supplier:hover{
+    background-color:deepskyblue;
+    scale: 1.1;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width:1450px) {
+    #content{
+        width:1450px;
+    }
+}

@@ -1,145 +1,181 @@
-<form action="xuly.php" method="get" onsubmit="layttHD()" id="hoadon" style="position:fixed;background-color:whitesmoke;z-index: -1;opacity:0;height:100%;width:500px;border:solid black 2px">
-    <a href="#" onclick="outHD();"><input type="button" style="padding:0 3px;float: right;font-size:30px;background: #FFFFFF;border: #FFFFFF;cursor: pointer" class="material-icons" value="backspace"></a>
-    <h1 style="text-align: center;margin-bottom:50px"><i>Payment Form</i></h1>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/common.css">
+    <?php include "js/cart.php" ?>
+</head>
 
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>
-                <input id="nnhoten" style="width:300px" type="text" placeholder="" name="" />
-            </td>
-        </tr>
-        <tr>
-            <td>Phone Number</td>
-            <td>
-                <input id="nnsdt" style="width:300px" type="phone" placeholder="" />
-            </td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>
-                <input id="nnmail" style="width:300px" type="email" placeholder="" />
-            </td>
-        </tr>
-        <tr>
-            <td>Province-City</td>
-            <td>
-                <input id="nncity" style="width:300px" type="" placeholder="" />
-            </td>
-        </tr>
-        <tr>
-            <td>Address</td>
-            <td>
-                <input id="nndiachi" style="width:300px" type="address" placeholder="" />
-            </td>
-        </tr>
-        <tr>
-            <td>Gender</td>
-            <td>
-                <select id="nngioitinh">
-                    <option value='' selected>Select gender</option>
-                    <option value="0">Male</option>
-                    <option value="1">Female</option>
-                    <option value="2">Prefer Not to Say</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Date of Birth</td>
-            <td>
-                <input id="nnngaysinh" style="width:300px" type="date" />
-            </td>
-        </tr>
-        <tr>
-            <td>Payments</td>
-            <td>
-                <select id="pttt">
-                    <option selected value="">Select Option</option>
-                    <option value="1">VisaCard</option>
-                    <option value="2">Paypal</option>
-                    <option value="3">Internet Banking</option>
-                    <option value="4">Cash</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Note</td>
-            <td>
-                <textarea id="note" rows="5" col="17" placeholder=""></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                <a style="color: white;background: #ff523b;padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;" onclick="layttHD()">
-                    Submit
-                </a>
-            </td>
 
-            <td style="text-align: center">
-                <a style="
-            color: white;
-            background: #ff523b;
-            padding: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 20px;
-            border-radius: 20px;
-            " onclick="reset()">
-                    Reset
-                </a>
-            </td>
-        </tr>
-    </table>
-</form>
-<div class="small-container">
-    <table id="dssp">
-        <tr>
-            <th>Product</th>
-            <th>ID Product</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-        </tr>
-        <tr>
-            <td>
-                <div class="cart-info">
-                    <img style="width:100px;height:100px" src="" alt="" />
-                    <div style="font-size:23px">
-                        <p></p><small></small><br /><a href="#" style="font-size:19px">Remove</a>
+<div class="container-fluid" id="main-content" style="background-color:whitesmoke;">
+    <div class="row">
+        <div class="ms-auto p-4 overflow-hidden">
+
+            <?php
+            $login = 0;
+            if (isset($_SESSION['UserID'])) {
+                $login = 1;
+            }
+            ?>
+            <?php
+            if ($login == 1) 
+            {
+                    echo "<a href='index.php?page=urbill'onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a>";
+            }
+            ?>
+            <!-- <a href="bill.php" onclick='checkLoginToBill($login,$_SESSION[UserID])' class='btn btn-sm text-white custom-bg shadow-none'>Xem đơn hàng đã đặt</a> -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <!-- 
+                    <div class="text-end mb-4">
+                        <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#add-product">
+                            <i class="bi bi-plus-square"></i> Add
+                        </button>
+                    </div> -->
+
+                    <div class="table-responsive-md" style="height:300px; overflow-y:scroll; width: 65%;">
+                        <table class="table table-hover border text-cennter">
+                            <thead class="sticky-top">
+                                <tr class="bg-dark text-light">
+                                    <th scope="col">Image</th>
+                                    <th scope="col">ProductName</th>
+                                    <!-- <th scope="col">Image</th> -->
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-data">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card" style="width:30%;">
+                        <div class="card-header">
+                            Thanh Toán Đơn Hàng
+                        </div>
+                        <table class="table table-hover text-cennter">
+                            <tbody id="thanhtoan">
+
+                            </tbody>
+                        </table>
+
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#checkoutModal" class='btn btn-sm text-white custom-bg shadow-none' style="float:right;">Thanh Toán</button>
                     </div>
                 </div>
-            </td>
-            <td></td>
-            <td><input readOnly=true value="" /></td>
-            <td></td>
-        </tr>
-    </table>
-    <div class="total-price">
-        <table id="totalHoaDon">
-            <tr>
-                <td>Subtotal</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Tax</td>
-                <td>10%</td>
-            </tr>
-            <tr>
-                <td>Total</td>
-                <td></td>
-            </tr>
-        </table>
+            </div>
+        </div>
     </div>
-    <div class="check">
-        <table>
-            <tr>
-                <td><a href="#" onclick="reloadHD()" style="color: white;background: #ff523b;padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;">BACK</a></td>
-                <td style="text-align: center">
-                    <a href="#" onclick="hienHD()" style="color: white;background: #ff523b;padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;">
-                        PROCEED TO CHECKOUT
-                    </a>
-                </td>
-                <td><a href="#" onclick="bill()" style="color: white;background: #ff523b;padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;">VIEW &#10004;</a></td>
-            </tr>
-        </table>
+</div>
+
+<?php
+    $data="";
+    if($login==0)
+    {
+        $data.="<form action='' id='hoadon' style=''>
+        <h1 style='text-align: center;margin-bottom:10px'><i>Payment Form</i></h1>
+
+        <div class='mb-3'>
+            <label for='surname' class='form-label'>SurName</label>
+            <input name='surname' type='text' class='form-control' id='surname'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='name' class='form-label'>Name</label>
+            <input name='name' type='text' class='form-control' id='name'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='nnsdt' class='form-label'>Phone Number</label>
+            <input name='nnsdt' type='phone' class='form-control' id='nnsdt'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='nnmail' class='form-label'>Email</label>
+            <input name='nnmail' type='email' class='form-control' id='nnmail'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='nncity' class='form-label'>Province-City</label>
+            <input name='nncity' type='text' class='form-control' id='nncity'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='nndiachi' class='form-label'>Address</label>
+            <input name='nndiachi' type='address' class='form-control' id='nndiachi'>
+        </div>
+
+        <div class='mb-3'>
+            <label for='nngioitinh' class='form-label'>Gender</label>
+            <select id='nngioitinh' style='float:right;' name='nngioitinh'>
+                <option value='' selected>Select gender</option>
+                <option value='0'>Male</option>
+                <option value='1'>Female</option>
+                <option value='2'>Prefer Not to Say</option>
+            </select>
+        </div>
+
+
+        <div class='mb-3'>
+            <label for='nnngaysinh' class='form-label'>Date of Birth</label>
+            <input name='nnngaysinh' type='date' class='form-control' id='nnngaysinh'>
+        </div>
+
+
+        <div class='mb-3'>
+            <label for='pttt' class='form-label'>Payments</label>
+            <select id='pttt' style='float:right;' name='pttt'>
+                <option selected value=''>Select Option</option>
+                <option value='1'>VisaCard</option>
+                <option value='2'>Paypal</option>
+                <option value='3'>Internet Banking</option>
+                <option value='4'>Cash</option>
+            </select>
+        </div>
+
+        <div class='form-floating mb-3'>
+            <textarea class='form-control' placeholder='Leave a comment here' id='note' name='note'></textarea>
+            <label for='note'>Comments</label>
+        </div>
+
+
+        <button type='submit' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
+        <button onclick='reset()' class='btn btn-sm text-white shadow-none' style='float:left; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Reset</button>
+
+        </form>";
+    } else {
+        $data.="<form action='' id='hoadon' style=''>
+        <h1 style='text-align: center;margin-bottom:10px'><i>Payment Form</i></h1>
+        <div class='mb-3'>
+        <label for='pttt' class='form-label'>Payments</label>
+        <select id='pttt' style='float:right;'>
+            <option selected value=''>Select Option</option>
+            <option value='1'>VisaCard</option>
+            <option value='2'>Paypal</option>
+            <option value='3'>Internet Banking</option>
+            <option value='4'>Cash</option>
+        </select>
+    </div>
+
+    <div class='form-floating mb-3'>
+        <textarea class='form-control' placeholder='Leave a comment here' id='note'></textarea>
+        <label for='note'>Comments</label>
+    </div>
+
+
+    <button onclick='checkLoginToBill($login, $_SESSION[uId])' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
+    <button onclick='reset()' class='btn btn-sm text-white shadow-none' style='float:left; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Reset</button>
+
+    </form>";
+    }
+?>
+
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <?php echo $data ?>
+        </div>
     </div>
 </div>

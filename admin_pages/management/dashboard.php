@@ -1,5 +1,5 @@
 <?php
-echo 
+echo
 '<div id="shows">
   <div id="main">
     <div class="head">
@@ -10,38 +10,42 @@ echo
           >&#9776;Dashboard</span
         >
       </div>
-
-      <div class="col-div-6">
-          
-        <div class="profile">
-          <img src="user.png" class="pro-img" />
-          <p class="profile">MBKT<span>DESIGNER</span></p>
-        </div>
-      </div>
       <div class="clearfix"></div>
     </div>
     <div class="col-div-3">
       <div class="box">
+        <h4>Số lượng khách hàng</h4>
+        <div class="flex">
         <p id="customers"></p>
         <i class="fa fa-users box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
       <div class="box">
+        <h4>Số Sản Phẩm</h4>
+        <div class="flex">
         <p id="products"></p>
         <i class="fas fa-list box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
-      <div class="box">
+    <div class="box">
+        <h4>Đơn hàng thành công</h4>
+        <div class="flex">
         <p id="orders"></p>
         <i class="fa fa-shopping-bag box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="col-div-3">
-      <div class="box">
+    <div class="box">
+        <h4>Số lượng bán ra</h4>
+        <div class="flex">
         <p id="soldproducts"></p>
         <i class="fa fa-tasks box-icon"></i>
+        </div>
       </div>
     </div>
     <div class="clearfix"></div>
@@ -84,7 +88,7 @@ echo
     <div class="col-div-4">
       <div class="box-4">
         <div class="content-box">
-          <p>Total Sale<span>View All</span></p>
+          <p style="text-align:center;">Total Sale</p>
 
           <div class="circle-wrap">
           <div class="circle">
@@ -94,7 +98,7 @@ echo
             <div class="mask half">
               <div class="fill"></div>
             </div>
-            <div class="inside-circle">70%</div>
+            <div id="percent" class="inside-circle"></div>
           </div>
         </div>
       </div>
