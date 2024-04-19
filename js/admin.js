@@ -3,13 +3,13 @@ function countAll() {
   let xhr = new XMLHttpRequest();
   xhr.open("POST", "functions/dashboard.php", true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.onload = function() {
-      let response = JSON.parse(this.responseText);
-      document.getElementById('customers').innerHTML = response.countKH;
-      document.getElementById('products').innerHTML = response.countSP;
-      document.getElementById('orders').innerHTML = response.countDHDD;
-      document.getElementById('soldproducts').innerHTML = response.countSPBD;
-      document.getElementById('percent').innerHTML = response.percent;
+  xhr.onload = function () {
+    let response = JSON.parse(this.responseText);
+    document.getElementById('customers').innerHTML = response.countKH;
+    document.getElementById('products').innerHTML = response.countSP;
+    document.getElementById('orders').innerHTML = response.countDHDD;
+    document.getElementById('soldproducts').innerHTML = response.countSPBD;
+    document.getElementById('percent').innerHTML = response.percent;
   }
   xhr.send('countAll');
 }
@@ -28,7 +28,7 @@ function countAll() {
 //     var c = JSON.parse(localStorage.getItem("products"));
 //     document.getElementById("products").innerHTML = c.length + "<br/><span>Products</span>";
 //   }
-  var mid_3;
+var mid_3;
 
 function Quantity(temp, temp_1) {
   var s = 0;
@@ -76,7 +76,7 @@ function thongbaobox(productID) {
 
 function deleteAdminProduct(productID) {
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'delete_product.php', true);
+  xhr.open('POST', 'functions/deleteProduct.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
   xhr.onreadystatechange = function () {
@@ -88,9 +88,12 @@ function deleteAdminProduct(productID) {
           row.parentNode.removeChild(row);
         }
         // Show a success message or perform any other actions
+        alert("Xóa thành công");
+        show();
       } else {
         console.error('Error:', xhr.status);
         // Handle errors
+        alert("Xóa thất bại");
       }
     }
   };

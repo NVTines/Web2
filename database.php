@@ -23,6 +23,7 @@ class database
             return false;
         }
     }
+
     function modify_data($sql)
     {
         if ($this->conn->query($sql) === TRUE) {
@@ -31,19 +32,23 @@ class database
             return false;
         }
     }
+
     function get_data($sql)
     {
         return $this->conn->query($sql);
     }
+
     function close_dtb()
     {
         $this->conn->close();
         $this->pdo = null;
     }
+
     function get_pdo()
     {
         return $this->pdo;
     }
+
     function changeImgByPDO($filePath, $sql)
     {
         $blob = fopen($filePath, 'rb');
@@ -52,21 +57,17 @@ class database
         return $stmt->execute();
     }
 
-
-
-
-
-
-
     // hàm thực hiện sql
-    function mysqli_query($data){
+    function mysqli_query($data)
+    {
         $result = $this->conn->query($data);
         if ($result !== FALSE) {
             return $result;
         } else {
             return false;
         }
-    } 
+    }
+
     function filteration($data)
     {
         foreach ($data as $key => $value) {
@@ -135,6 +136,7 @@ class database
             die("Query cannot be executed - Insert");
         }
     }
+
     function delete($sql, $values, $datatypes)
     {
         $con = $this->conn;

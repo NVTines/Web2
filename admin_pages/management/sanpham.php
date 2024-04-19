@@ -60,7 +60,7 @@ function showProducts()
       $encoded_image = base64_encode($row['Img']);
       $img = "<img src='data:image/jpg;base64,{$encoded_image}' style='width:80px;height:80px'/>";
       echo '
-      <tr>
+      <tr id="row_' . $row['ID'] . '">
         <td>' . $row['ID'] . '</td>
         <td>' . $row['Name'] . '</td>
         <td>' . $row['Brand'] . '</td>
@@ -80,25 +80,4 @@ function showProducts()
       </div>
     </div>
   </div>';
-}
-
-function deleteProduct($id)
-{
-  $db = new database();
-  $query = "DELETE FROM product WHERE ProductID = $id";
-  $result = $db->get_data($query);
-  if ($result) {
-    echo "success";
-  } else {
-    echo "error";
-  }
-}
-
-// Check if the request contains the product ID
-if (isset($_POST['id'])) {
-  // Call the deleteProduct function with the provided ID
-  deleteProduct($_POST['id']);
-} else {
-  // Handle the case where the ID is not provided
-  echo "error: No product ID provided";
 }
