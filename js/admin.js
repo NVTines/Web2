@@ -69,36 +69,10 @@ function show() {
   document.getElementById('showlist').innerHTML = tr;
 }
 
+
 function thongbaobox(productID) {
   document.getElementById('boxtb').style.animation = "tb 1s forwards";
-  document.getElementById('boxtb').innerHTML = '<h1 style="margin-left:20px">XÁC NHẬN XÓA:</h1><a href="#" style="margin-left:40px;line-height:50px" onclick="deleteAdminProduct(\'' + productID + '\')"><h2 >YES</h2></a><a href="#" style="margin-left:60px;line-height:50px" onclick="invthongbaobox()"><h2>NO</h2></a>';
-}
-
-function deleteAdminProduct(productID) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'functions/deleteProduct.php', true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.status === 200) {
-        // Assuming the deletion was successful, remove the row from the table
-        var row = document.getElementById('row_' + productID);
-        if (row) {
-          row.parentNode.removeChild(row);
-        }
-        // Show a success message or perform any other actions
-        alert("Xóa thành công");
-        show();
-      } else {
-        console.error('Error:', xhr.status);
-        // Handle errors
-        alert("Xóa thất bại");
-      }
-    }
-  };
-  // Send the request with the product ID as a parameter
-  xhr.send('id=' + encodeURIComponent(productID));
+  document.getElementById('boxtb').innerHTML = '<div id="boxtb-title">XÁC NHẬN XÓA (ID - ' + productID + ')</div><div class="confirm-btn-boxtb"><a id="yes-btn" href="functions/deleteProduct.php?id=' + productID + '">YES</a><a href="#" id="no-btn" onclick="invthongbaobox()">NO</a></div>';
 }
 
 

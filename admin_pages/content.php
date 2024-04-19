@@ -7,7 +7,7 @@ if (isset($_GET['key'])) {
       require 'management/users.php';
       break;
     case 'sp':
-      require 'management/sanpham.php';
+      require 'management/products.php';
       break;
     case 'dh':
       require 'management/donhang.php';
