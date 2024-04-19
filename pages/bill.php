@@ -45,7 +45,7 @@ if (isset($_SESSION['UserID'])) {
                 echo <<<donhang
                         <div class="ms-auto p-4 overflow-hidden">
                             <div class="card">
-                                <h5 class="card-header text-end">Đơn Hàng $row2[status]</h5>
+                                <h5 class="card-header text-end">Tình Trạng Đơn Hàng: $row2[status]</h5>
                                 <div>
                                 $dataCart
                                 </div>
