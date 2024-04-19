@@ -257,6 +257,15 @@ if ($purchase_data['status'] == "Đã Đặt") {
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `CustomerID`=? and `BillID`=?", [$row1['CustomerID'], $data['bill_id']], 'ii');
             while ($row2 = mysqli_fetch_assoc($res2)) {
                 $dataCart = "";
+                $dataBill= "
+                <div class='card-body border border-black m-2 d-flex justify-content-between'>
+                    <div>
+                    <h5 class='card-title'>$row2[payment]</h5>
+                    <p class='card-text'>$row2[delivery]</p>
+                    <p class='card-text'>$row2[Total]</p>
+                    </div>
+                </div>
+                ";
                 $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
                 while ($row3 = mysqli_fetch_assoc($res3)) {
                     $res4 = $dtb->select("SELECT * FROM `product` WHERE `ProductID`=?", [$row3['ProductID']], 'i');
@@ -281,7 +290,9 @@ if ($purchase_data['status'] == "Đã Đặt") {
                             <div>
                             $dataCart
                             </div>
-                            
+                            <div>
+                            $dataBill
+                            </div>
                         </div>
                     </div>
                 donhang;
