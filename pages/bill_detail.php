@@ -2,7 +2,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/bill.css">    
+    <link rel="stylesheet" href="css/bill.css">
     <?php include "js/cart.php" ?>
 </head>
 
@@ -257,12 +257,18 @@ if ($purchase_data['status'] == "Đã Đặt") {
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `CustomerID`=? and `BillID`=?", [$row1['CustomerID'], $data['bill_id']], 'ii');
             while ($row2 = mysqli_fetch_assoc($res2)) {
                 $dataCart = "";
-                $dataBill= "
-                <div class='card-body border border-black m-2 d-flex justify-content-between'>
-                    <div>
-                    <h5 class='card-title'>$row2[payment]</h5>
-                    <p class='card-text'>$row2[delivery]</p>
-                    <p class='card-text'>$row2[Total]</p>
+                $dataBill = "
+                <div class='card-body m-2'>
+                    <div class='d-flex justify-content-between align-items-center'>
+                        <p>Tổng đơn giá:</p>
+                        <p class='card-text'>$row2[Total]$</p>
+                    </div>
+                    <div class='d-flex justify-content-between align-items-center'>
+                        <p>Phương thức thanh toán:</p>
+                        <p class='card-title'>$row2[payment]</p>
+                    </div><div class='d-flex justify-content-between align-items-center'>
+                        <p>Địa chỉ nhận hàng</p>
+                        <p class='card-text'>$row2[delivery]</p>
                     </div>
                 </div>
                 ";
