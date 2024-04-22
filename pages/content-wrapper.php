@@ -29,7 +29,10 @@
                 require "pages/news-content/news9.php";
                 break;
             case 'shopping':
-                require "pages/shopping.php";
+                if(isset($_GET['id'])){
+                    require "pages/productDetail.php";
+                }else
+                    require "pages/shopping.php";
                 break;
             case 'urcart':
                 require "pages/cart.php";
@@ -38,7 +41,7 @@
                 if($loginCheck){
                     require "pages/info.php";
                 }else{
-                    require "pages/error.php";
+                    require "pages/error/error.php";
                 }
                 break;
         }

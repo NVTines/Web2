@@ -15,6 +15,7 @@ function countAll() {
   xhr.send('countAll');
 }
 
+
 // San pham ========================================================================
   function show(){
     var arr = JSON.parse(localStorage.getItem('products'));

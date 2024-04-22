@@ -239,7 +239,6 @@ th {
 :root{
     --change:0deg;
 }
-
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill {
     animation: fill ease-in-out 3s;
@@ -420,6 +419,9 @@ th {
 }
 
 #sup-reset-btn {
+    border: none;
+    font-weight: bold;
+    font-size:16px;
     padding: 15px 30px;
     color: white;
     background-color: darkcyan;

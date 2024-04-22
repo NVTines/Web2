@@ -21,10 +21,6 @@
   ?>
   <script>
     window.onload = function() {
-      // CountCustomer();
-      // CountOrder();
-      // CountProduct();
-      // CountSold();
       countAll();
     }
   </script>
