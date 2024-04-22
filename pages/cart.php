@@ -88,6 +88,11 @@ if ($login = 1) {
         <label for='delivery'>Delivery</label>
     </div>
 
+    <div class='form-floating mb-3'>
+        <textarea class='form-control' placeholder='Leave a comment here' id='note'></textarea>
+        <label for='note'>Note</label>
+    </div>
+
 
     <button type='submit' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
 
