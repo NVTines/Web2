@@ -267,7 +267,7 @@ if ($purchase_data['status'] == "Đã Đặt") {
                         <p>Phương thức thanh toán:</p>
                         <p class='card-title'>$row2[payment]</p>
                     </div><div class='d-flex justify-content-between align-items-center'>
-                        <p>Địa chỉ nhận hàng</p>
+                        <p>Địa chỉ nhận hàng:</p>
                         <p class='card-text'>$row2[delivery]</p>
                     </div>
                 </div>
