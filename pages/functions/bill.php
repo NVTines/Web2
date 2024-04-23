@@ -17,26 +17,27 @@ if (isset($_POST['add_bill'])) {
 
                 $billDetails[] = array(
                     'ProductID' => $row3['ProductID'],
+                    'SizeID'=>$row3['SizeID'],
                     'Quantity' => $row3['Quantity'],
                     'UnitPrice' => $row3['UnitPrice']
                 );
             }
             $createDate = date('Y-m-d H:i:s');
             //insert bill
-            $is1 = "INSERT INTO `bill`(`CustomerID`,`CreateTime`, `Total`,`delivery`,`payment`, `status`) VALUES (?,?,?,?,?,?)";
-            $vl1 = [$row1['CustomerID'], $createDate, $total,$data['delivery'],$data['pttt'], "Đã Đặt"];
-            if ($dtb->insert($is1, $vl1, 'isdsss')) {
+            $is1 = "INSERT INTO `bill`(`CustomerID`,`CreateTime`, `Total`,`delivery`,`note`,`payment`, `status`) VALUES (?,?,?,?,?,?,?)";
+            $vl1 = [$row1['CustomerID'], $createDate, $total,$data['delivery'],$data['note'],$data['pttt'], "Đã Đặt"];
+            if ($dtb->insert($is1, $vl1, 'isdssss')) {
                 $bill_id = mysqli_insert_id($dtb->get_conn()); // sẽ chứa giá trị ID của phòng vừa được thêm vào
                 foreach ($billDetails as $billDetail) {
-                    $is2 = "INSERT INTO `billdetail`(`BillID`, `ProductID`, `Quantity`, `Unitprice`) VALUES (?,?,?,?)";
-                    $vl2 = [$bill_id, $billDetail['ProductID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
-                    $resIS = $dtb->insert($is2, $vl2, 'iiid');
+                    $is2 = "INSERT INTO `billdetail`(`BillID`, `ProductID`,`SizeID`, `Quantity`, `Unitprice`) VALUES (?,?,?,?,?)";
+                    $vl2 = [$bill_id, $billDetail['ProductID'],$billDetail['SizeID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
+                    $resIS = $dtb->insert($is2, $vl2, 'iiiid');
 
-                    $res4=$dtb->select("SELECT * FROM `product` WHERE ProductID=?",[$billDetail['ProductID']],'i');
+                    $res4=$dtb->select("SELECT * FROM `sizedetail` WHERE `SizeID`=? AND `ProductID`=?",[$billDetail['SizeID'],$billDetail['ProductID']],'ii');
                     if(mysqli_num_rows($res4)>0){
                         $row4=$res4->fetch_assoc();
                         $quantity=$row4['Quantity']-$billDetail['Quantity'];
-                        $resUP=$dtb->update("UPDATE `product` SET `Quantity`=? WHERE `ProductID`=?",[$quantity,$billDetail['ProductID']],'ii');
+                        $resUP=$dtb->update("UPDATE `sizedetail` SET `Quantity`=? WHERE `SizeID`=? AND `ProductID`=?",[$quantity,$billDetail['SizeID'],$billDetail['ProductID']],'iii');
                     }
                 }
             }
