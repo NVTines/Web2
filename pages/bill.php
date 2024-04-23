@@ -34,8 +34,8 @@ if (isset($_SESSION['UserID'])) {
                             // Tạo đường dẫn dữ liệu (data URL) cho thẻ <img>
                             $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
                             $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
-                                <div>
-                                <h5 class='card-title'>$row4[ProductName] x $row3[Quantity]</h5>
+                                <div class='d-flex justify-content-between' style='flex-direction:column;'>
+                                <h5 class='card-title fw-bold'>$row4[ProductName] x $row3[Quantity]</h5>
                                 <p class='card-text'>$row3[Unitprice]$</p>
                                 </div>
                                 <img src='$imgSrc' class='img-fluid' style='width:60px;'>
