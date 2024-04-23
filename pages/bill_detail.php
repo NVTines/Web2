@@ -285,7 +285,7 @@ if ($purchase_data['status'] == "Đã Đặt") {
                             $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
                             $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
                             <div>
-                            <h5 class='card-title'>$row4[ProductName] x $row3[Quantity]</h5>
+                            <h5 class='card-title fw-bold'>$row4[ProductName] x $row3[Quantity]</h5>
                             <p class='card-text'>Đơn giá: $row3[Unitprice]$</p>
                             <p class='card-text'>Màu sắc: $row4[Color]</p>
                             <p class='card-text'>Kích cỡ: $row5[value]</p>
