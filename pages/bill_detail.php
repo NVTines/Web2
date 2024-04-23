@@ -277,17 +277,22 @@ if ($purchase_data['status'] == "Đã Đặt") {
                     $res4 = $dtb->select("SELECT * FROM `product` WHERE `ProductID`=?", [$row3['ProductID']], 'i');
                     if (mysqli_num_rows($res4) > 0) {
                         $row4 = $res4->fetch_assoc();
-                        $imgBase64 = base64_encode($row4['IMG']);
-                        // Tạo đường dẫn dữ liệu (data URL) cho thẻ <img>
-                        $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
-                        $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
-                        <div>
-                        <h5 class='card-title'>$row4[ProductName] x $row3[Quantity]</h5>
-                        <p class='card-text'>Đơn giá: $row3[Unitprice]$</p>
-                        <p class='card-text'>Màu sắc: $row4[Color]</p>
-                        </div>
-                        <img src='$imgSrc' class='img-fluid' style='width:60px;'>
-                    </div>";
+                        $res5 = $dtb->select("SELECT * FROM `size` WHERE `SizeID`=?", [$row3['SizeID']], 'i');
+                        if (mysqli_num_rows($res5) > 0) {
+                            $row5 = $res5->fetch_assoc();
+                            $imgBase64 = base64_encode($row4['IMG']);
+                            // Tạo đường dẫn dữ liệu (data URL) cho thẻ <img>
+                            $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
+                            $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
+                            <div>
+                            <h5 class='card-title'>$row4[ProductName] x $row3[Quantity]</h5>
+                            <p class='card-text'>Đơn giá: $row3[Unitprice]$</p>
+                            <p class='card-text'>Màu sắc: $row4[Color]</p>
+                            <p class='card-text'>Kích cỡ: $row5[value]</p>
+                            </div>
+                            <img src='$imgSrc' class='img-fluid' style='width:90px;'>
+                        </div>";
+                        }
                     }
                 }
 
