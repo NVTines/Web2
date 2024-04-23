@@ -82,33 +82,40 @@
     let userhoadon_form = document.getElementById('hoadon');
     userhoadon_form.addEventListener('submit', (e) => {
         e.preventDefault();
-        let data = new FormData();
-        let paymentValue = userhoadon_form.elements['pttt'].value;
-        let paymentText = getVpttt(paymentValue);
-        data.append('pttt', paymentText);
-        data.append('delivery', userhoadon_form.elements['delivery'].value);;
-        data.append('add_bill', '');
+        if(userhoadon_form.elements['pttt'].value==0)
+        {
+            alert('warning', "Chưa chọn phương thức thanh toán");
 
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "pages/functions/bill.php", true);
-
-        xhr.onload = function() {
-            var myModal = document.getElementById('checkoutModal');
-            var modal = bootstrap.Modal.getInstance(myModal);
-            modal.hide();
-            if (this.responseText == "GHR") {
-                alert('warning', "Giỏ hàng rỗng!");
-            } else if (this.responseText == 1) {
-                userhoadon_form.reset();
-                alert('success', "Đơn hàng đã được đặt!");
-                setTimeout(function() {
-                    location.reload();
-                }, 3000);
-            } else if (this.responseText == "Server Down!") {
-                alert('danger', "Server lỗi!");
+        } else {
+            let data = new FormData();
+            let paymentValue = userhoadon_form.elements['pttt'].value;
+            let paymentText = getVpttt(paymentValue);
+            data.append('pttt', paymentText);
+            data.append('delivery', userhoadon_form.elements['delivery'].value);;
+            data.append('note', userhoadon_form.elements['note'].value);;
+            data.append('add_bill', '');
+    
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "pages/functions/bill.php", true);
+    
+            xhr.onload = function() {
+                var myModal = document.getElementById('checkoutModal');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+                if (this.responseText == "GHR") {
+                    alert('warning', "Giỏ hàng rỗng!");
+                } else if (this.responseText == 1) {
+                    userhoadon_form.reset();
+                    alert('success', "Đơn hàng đã được đặt!");
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000);
+                } else if (this.responseText == "Server Down!") {
+                    alert('danger', "Server lỗi!");
+                }
             }
+            xhr.send(data);
         }
-        xhr.send(data);
 
     })
 
