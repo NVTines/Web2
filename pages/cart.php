@@ -75,7 +75,7 @@ if ($login = 1) {
         <div class='mb-3'>
         <label for='pttt' class='form-label'>Payments</label>
         <select id='pttt' style='float:right;'>
-            <option selected value=''>Select Option</option>
+            <option selected value='0'>Select Option</option>
             <option value='1'>VisaCard</option>
             <option value='2'>Paypal</option>
             <option value='3'>Internet Banking</option>
@@ -84,7 +84,7 @@ if ($login = 1) {
     </div>
 
     <div class='form-floating mb-3'>
-        <textarea class='form-control' placeholder='Leave a comment here' id='delivery'></textarea>
+        <textarea class='form-control' placeholder='Leave a comment here' id='delivery' required></textarea>
         <label for='delivery'>Delivery</label>
     </div>
 
