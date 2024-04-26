@@ -39,7 +39,29 @@ if (isset($_GET['id'])) {
       }
     </script>
     <style>
-      
+      .info-pdetail-wrapper {
+        float: left;
+        margin: 30px;
+        border-right: #d1d1d1 1px solid;
+        padding: 25px;
+      }
+      @media only screen and (max-width:1800px){
+        .info-pdetail-wrapper{
+          border-right: none;
+        }
+      }
+      @media only screen and (max-width:1001px){
+        .img-p-detail{
+          width:100%;
+        }
+        .info-pdetail-wrapper{
+          width:50%;
+          border-right: #d1d1d1 1px solid;
+        }
+        .info-of-p{
+          width:30%;
+        }
+      }
     </style>
     
     <div class="p-detail-wrapper">
@@ -56,13 +78,13 @@ if (isset($_GET['id'])) {
         $imageData = base64_encode($image);
         $src = 'data:image/jpeg;base64,' . $imageData;
         ?>
-        <img class="img-fluid w-100 pb-2" src="<?php echo $src ?>" />
+        <img class="img-fluid pb-2" src="<?php echo $src ?>" style="border-radius:15%;width:580px" />
       </div>
-      <div style="float:left;margin:30px;">
+      <div class="info-pdetail-wrapper">
         <h5 style="color : orange"><?php echo $row['ProducerName'] ?></h5>
         <h1 class="py-4" style="color:cornflowerblue"><?php echo $row['ProductName'] ?></h1>
-        <h3 style="margin:30px;">Giá: <span style="color:orange;"><?php echo $row['ProductPrice'] ?> VNĐ</span></h3>
-        <form method="POST" action="pages/functions/addToCart.php" style="margin:30px;margin-top:70px;">
+        <h3 style="margin:30px;border-bottom: #d1d1d1 1px solid;padding-bottom:20px;">Giá: <span style="color:orange;"><?php echo $row['ProductPrice'] ?> VNĐ</span></h3>
+        <form method="POST" action="pages/functions/addToCart.php" style="margin:30px;margin-top:50px;">
           <h3>Size: </h3>
           <div>
             <?php
@@ -91,9 +113,9 @@ if (isset($_GET['id'])) {
           </div>
         </form>
       </div>
-      <div style="float:left;margin:30px;padding:20px;">
-        <h2 class="my-5">Thông tin sản phẩm</h1>
-          <span><?php echo $row['Description'] ?></span>
+      <div class="info-of-p" style="float:left;margin:30px;padding:20px;padding-top:0px;">
+        <h2 class="my-5" style="border-bottom: #d1d1d1 1px solid;padding:20px;">Thông tin sản phẩm</h1>
+        <?php echo $row['Description'] ?>
       </div>
       <div style="clear: both"></div>
     </div>

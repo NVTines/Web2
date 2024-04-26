@@ -11,6 +11,7 @@ function countAll() {
       document.getElementById('soldproducts').innerHTML = response.countSPBD;
       document.getElementById('percent').innerHTML = response.percent;
       document.documentElement.style.setProperty("--change", parseFloat(response.percent)*1.8+"deg");
+      
   }
   xhr.send('countAll');
 }

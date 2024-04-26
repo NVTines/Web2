@@ -41,7 +41,7 @@
                                                         <h4>Search</h4>
                                                     </div>
                                                 </div>
-                                                <div class="pt-0 card-body">
+                                                <div class="pt-0 card-body" style="padding:0px 0px">
                                                     <div class="d-flex w-5 align-items-center position-relative my-1">
                                                         <input id="searchKeyword" type="text" class="form-control form-control-solid ps-14" placeholder="Search Product">
                                                     </div>

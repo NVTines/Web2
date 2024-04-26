@@ -51,38 +51,8 @@ echo
     <div class="clearfix"></div>
     <br />
     <div class="col-div-8">
-      <div class="box-8">
-        <div class="content-box">
-          <p>Managers<span>View All</span></p>
-          <br />
-          <table>
-            <tr>
-              <th>Name</th>
-              <th>Contact</th>
-              <th>Country</th>
-            </tr>
-            <tr>
-                <td>Ngô Văn Tín</td>
-                <td>ngovantin113@gmail.com</td>
-                <td>VIETNAM</td>
-            </tr>
-            <tr>
-                <td>Huỳnh Gia Bảo</td>
-                <td>huynhgiabao113@gmail.com</td>
-                <td>VIETNAM</td>
-            </tr>
-            <tr>
-                <td>Nguyễn Tuấn Kiệt</td>
-                <td>nguyentuankiet1309@gmail.com</td>
-                <td>VIETNAM</td>
-            </tr>
-            <tr>
-                <td>Quang Minh</td>
-                <td>quangminh@gmail.com</td>
-                <td>VIETNAM</td>
-            </tr>
-          </table>
-        </div>
+      <div class="box-8" style="padding:15px;">
+        <canvas id="myChart"></canvas>
       </div>
     </div>
     <div class="col-div-4">
@@ -106,3 +76,57 @@ echo
     <div class="clearfix"></div>
   </div>
 </div>';
+?>
+<script>
+  var dataset_bill = new Array();
+  var dataset_import = new Array();
+  <?php
+    $dtb = new database();
+    for ($m = 1; $m <= 12; $m++){
+      $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
+      $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
+      if($result = $dtb->get_data($query_bill)){
+        while($row = $result->fetch_assoc()){ ?>
+          dataset_bill.push('<?php echo $row["Total"]; ?>')
+  <?php
+        }
+      }
+      if($result = $dtb->get_data($query_import)){
+        while($row = $result->fetch_assoc()){ ?>
+          dataset_import.push('<?php echo $row["Total"]; ?>')
+  <?php
+        }
+      }
+    }
+    $dtb->close_dtb();
+  ?>
+  
+  var xValues = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
+  const options = {
+    type: 'line',
+    data: {
+      labels: xValues,
+      datasets: [{
+          label: 'Giá trị xuất',
+          data: dataset_bill,
+          borderColor: 'green'
+        },
+        {
+          label: 'Giá trị nhập',
+          data: dataset_import,
+          borderColor: 'red'
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'THỐNG KẾ NHẬP/XUẤT CÁC THÁNG TRONG NĂM 2024'
+      }
+    }
+  }
+
+  new Chart("myChart", options);
+  Chart.defaults.global.defaultFontColor = "white";
+
+</script>

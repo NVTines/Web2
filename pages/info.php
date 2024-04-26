@@ -96,7 +96,7 @@
 </script>
 <div style="display:flex;justify-content:center;">
     <div style="width:100%;padding:50px;">
-        <div style="width:100%;border: 1px solid #d1d1d1;">
+        <div style="width:100%;border: 1px solid #d1d1d1;background-color:white">
             <div id="title-info" class="title-info">
                 <h1>Your Information</h1>
             </div>
