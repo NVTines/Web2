@@ -51,11 +51,11 @@ while ($brandRow = $brands->fetch_assoc()) {
                         <input readonly type="text" name="name" id="product-id" class="sup-create-input" placeholder="...." value="' . $productsRow['ProductID'] . '"/>
                     </div>
                     <div class="sup-input">
-                        <label class="sup-create-label">Name:</label>
+                        <label class="sup-create-label">Tên:</label>
                         <input required type="text" name="address" id="product-name" class="sup-create-input" placeholder="...." value="' . $productsRow['ProductName'] . '"/>
                     </div>
                     <div class="sup-input">
-                        <label class="sup-create-label" for="brands">Brands:</label>
+                        <label class="sup-create-label" for="brands">Hãng:</label>
                         <select class="sup-create-input" name="brands" id="brands">
                             ' . $brandOptions . '
                         </select>                   
@@ -66,7 +66,8 @@ while ($brandRow = $brands->fetch_assoc()) {
                             <option value="acti">ĐANG BÁN</option>
                             <option value="hidd">NGƯNG BÁN</option>
                         </select>
-                    </div>';
+                    </div>'
+                    ;
                 ?>
                 <div class="sup-btn">
                     <input type="submit" id="sup-submit-btn" value="Xác nhận">
