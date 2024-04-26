@@ -369,7 +369,7 @@ th {
 
 /* SUPPLIER */
 
-#supplier-create-form {
+.info-manage-form {
     padding: 100px 0px;
     margin: 20px;
     background-color: #1b203d;
@@ -378,25 +378,25 @@ th {
     text-align: center;
 }
 
-.sup-input {
+.info-manage-wrapper {
     margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
 }
 
-.sup-btn {
+.info-btn-wrapper {
     margin: 50px 0px;
     display: flex;
     justify-content: space-around;
     font-weight: bold;
 }
 
-.sup-create-label {
+.info-manage-label {
     font-size: 20px;
     font-weight: bold;
 }
 
-.sup-create-input {
+.info-manage-input {
     width: 75%;
     height: 30px;
     font-weight: bold;
@@ -433,7 +433,7 @@ th {
     background-color: cadetblue;
 }
 
-#back-btn-supplier{
+.back-btn{
     font-weight: bold;
     margin: 20px;
     float: right;
@@ -444,10 +444,47 @@ th {
     border-radius: 10px;
     text-decoration: none;
 }
-#back-btn-supplier:hover{
+.back-btn:hover{
     background-color:deepskyblue;
     scale: 1.1;
 }
+
+.choose-img-btn {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #d1d1d1;
+    border-radius: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.choose-img-btn:hover {
+    color: white;
+    background-color: gray;
+}
+
+.avt-info {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.left-form-info {
+    width: 60%;
+    box-sizing: border-box;
+}
+  
+.right-form-info {
+    font-size: 50px;
+    width: 40%;
+    float: right;
+    padding-left: 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 
 /* RESPONSIVE */
 
