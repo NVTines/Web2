@@ -75,15 +75,18 @@
                                                 <div class="pt-0 card-body">
                                                     <?php
                                                     $query = "SELECT DISTINCT(ProducerName) FROM producer JOIN product ON producer.ProducerID = product.ProducerID ";
-                                                    while ($row = $dtb->get_data($query)->fetch_assoc()) {
-                                                        echo '
-                                                        <div class="mb-2 form-check form-check-custom form-check-solid me-10">
-                                                            <input class="form-check-input" data-filter="brand" type="checkbox" value="' . $row["ProducerName"] . '" id="brand" />
-                                                            <label class="form-check-label" for="brand' . $row["ProducerName"] . '">
-                                                                ' . $row["ProducerName"] . '
-                                                            </label>
-                                                        </div>';
+                                                    if($results = $dtb->get_data($query)){
+                                                        while ($row = $results->fetch_assoc()) {
+                                                            echo '
+                                                            <div class="mb-2 form-check form-check-custom form-check-solid me-10">
+                                                                <input class="form-check-input" data-filter="brand" type="checkbox" value="' . $row["ProducerName"] . '" id="brand" />
+                                                                <label class="form-check-label" for="brand' . $row["ProducerName"] . '">
+                                                                    ' . $row["ProducerName"] . '
+                                                                </label>
+                                                            </div>';
+                                                        }
                                                     }
+                                                    
                                                     ?>
 
                                                 </div>
@@ -98,14 +101,16 @@
                                                 </div>
                                                 <div class="pt-0 card-body">
                                                     <?php
-                                                    $query = "SELECT DISTINCT(Size) FROM product ORDER BY Size ASC ";
-                                                    while ($row = $dtb->get_data($query)->fetch_assoc()) {
-                                                        echo '<div class="mb-2 form-check form-check-custom form-check-solid me-10">
-                                                    <input class="form-check-input" type="checkbox"  data-filter="size"  value="' . $row["Size"] . '" id="size" />
-                                                    <label class="form-check-label" for="size' . $row["Size"] . '">
-                                                        ' . $row["Size"] . '
-                                                    </label>
-                                                </div>';
+                                                    $query = "SELECT value FROM size ORDER BY value ASC ";
+                                                    if($results = $dtb->get_data($query)){
+                                                        while ($row = $results->fetch_assoc()) {
+                                                            echo '<div class="mb-2 form-check form-check-custom form-check-solid me-10">
+                                                        <input class="form-check-input" type="checkbox"  data-filter="size"  value="' . $row["value"] . '" id="size" />
+                                                        <label class="form-check-label" for="size' . $row["value"] . '">
+                                                            ' . $row["value"] . '
+                                                        </label>
+                                                    </div>';
+                                                        }
                                                     }
                                                     ?>
                                                 </div>
@@ -121,13 +126,15 @@
                                                 <div class="pt-0 card-body">
                                                     <?php
                                                     $query = "SELECT DISTINCT(TypeName) FROM category JOIN product ON category.TypeID = product.TypeID ";
-                                                    while ($row = $dtb->get_data($query)->fetch_assoc()) {
-                                                        echo '<div class="mb-2 form-check form-check-custom form-check-solid me-10">
-                                                    <input class="form-check-input" type="checkbox"  data-filter="category" value="' . $row["TypeName"] . '" id="category" />
-                                                    <label class="form-check-label" for="category' . $row["TypeName"] . '">
-                                                        ' . $row["TypeName"] . '
-                                                    </label>
-                                                </div>';
+                                                    if($results = $dtb->get_data($query)){
+                                                        while ($row = $results->fetch_assoc()) {
+                                                            echo '<div class="mb-2 form-check form-check-custom form-check-solid me-10">
+                                                        <input class="form-check-input" type="checkbox"  data-filter="category" value="' . $row["TypeName"] . '" id="category" />
+                                                        <label class="form-check-label" for="category' . $row["TypeName"] . '">
+                                                            ' . $row["TypeName"] . '
+                                                        </label>
+                                                    </div>';
+                                                        }
                                                     }
                                                     ?>
                                                 </div>
@@ -139,7 +146,7 @@
                                     <div id="productsContainer" class="row g-1">
 
                                     </div>
-                                    <div id="pagination">
+                                    <div id="pagination" style="margin-top:25px;">
 
 
                                     </div>

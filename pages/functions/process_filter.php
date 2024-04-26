@@ -2,17 +2,17 @@
 include __DIR__."/../../database.php";
 
 if (isset($_POST['action'])) {
-
-    $sql = "SELECT  p.ProductID,
+    $dtb = new database();
+    $sql = "SELECT  DISTINCT(p.ProductID),
                     p.ProducerID,
                     p.TypeID,
                     p.ProductName,
                     p.ProductPrice,
-                    p.Size,
                     p.IMG,
+                    p.status,
                     producer.ProducerName
-                    FROM  product p, producer, category 
-                    WHERE p.ProducerID = producer.ProducerID AND p.TypeID = category.TypeID AND p.ProductName != ''";
+                    FROM  product p, producer, category, size s, sizedetail sd
+                    WHERE p.status='acti' AND p.ProducerID = producer.ProducerID AND p.TypeID = category.TypeID AND sd.ProductID = p.ProductID AND sd.SizeID = s.SizeID";
     $page = isset($_POST["page"]) ? $_POST["page"] : 1;
 
     if (isset($_POST["minimumPrice"], $_POST["maximumPrice"])) {
@@ -36,14 +36,14 @@ if (isset($_POST['action'])) {
     if (isset($_POST["size"])) {
         $size = $_POST["size"];
         $size = implode(",", $size);
-        $sql .=  " AND p.Size IN(" . $size . ") ";
+        $sql .=  " AND sd.Quantity > 0 AND s.value IN(" . $size . ")";
     }
 
     if (isset($_POST["searchKeyword"])) {
         $searchKeyword = $_POST["searchKeyword"];
         $sql .= " AND (
         producer.ProducerName LIKE '%$searchKeyword%' OR
-        p.Size LIKE '%$searchKeyword%' OR
+        s.value LIKE '%$searchKeyword%' OR
         p.ProductName LIKE '%$searchKeyword%' OR
         category.TypeName LIKE '%$searchKeyword%' OR
         p.ProductPrice LIKE '%$searchKeyword%')";
@@ -53,11 +53,11 @@ if (isset($_POST['action'])) {
     $recordsPerPage = 16;
     $recordsFetched = ($page - 1) * $recordsPerPage;
     // echo "<h1>$sql</h1>";
-    $totalRecords = mysqli_num_rows(mysqli_query($conn, $sql));
+    $totalRecords = $dtb->get_data($sql)->num_rows;
     $totalPages = ceil($totalRecords / $recordsPerPage);
 
-    $completeSql = "$sql ORDER BY ProductID DESC LIMIT $recordsFetched,$recordsPerPage ";
-    $query = mysqli_query($conn, $completeSql);
+    $completeSql = "$sql ORDER BY ProductID DESC LIMIT $recordsFetched,$recordsPerPage";
+    $query = $dtb->get_data($completeSql);
     $products = '';
 
     $paginationData = '';
@@ -79,12 +79,14 @@ if (isset($_POST['action'])) {
                 </div>';
 
     while ($row = mysqli_fetch_array($query)) {
-        $product_image = $row["IMG"];
-        $image_src = 'assets/images/' . $product_image;
+        $product_image = base64_encode($row["IMG"]);
+        $image_src = 'data:image/jpeg;base64,' . $product_image;
         $products .= '<div class="product-card col-md-6 col-lg-4 col-xxl-3">
                                     <div class="card h-100">
-                                        <div class="h-250px text-center card-heading">
-                                                <img class="mh-250px img-fluid" src="' . $image_src . '" alt="image">
+                                        <div class="h-250px text-center card-heading" >
+                                            <a class="p-detail" href="index.php?page=shopping&id='.$row["ProductID"].'">
+                                                <img class="mh-250px img-fluid" src="' . $image_src . '" style="object-fit:cover;height:100%;" alt="image">
+                                            </a>
                                         </div>
                                         <div class="separator separator-dashed"></div>
                                         <div class="card-body p-4">
@@ -93,11 +95,6 @@ if (isset($_POST['action'])) {
                                         <div class="fs-4 text-gray-700 d-flex">
                                             <span class="fw-bold">Price:</span>
                                             <div class="ms-2 fw-bolder">' . number_format($row["ProductPrice"], 2) . ' VNĐ</div>
-                                        </div>
-
-                                        <div class="fs-4 text-gray-700 d-flex">
-                                            <span class="fw-bold">Size:</span>
-                                            <div class="ms-2 fw-bolder">' . $row["Size"] . '</div>
                                         </div>
 
                                         <div class="fs-4 text-gray-700 d-flex">
@@ -122,5 +119,6 @@ if (isset($_POST['action'])) {
     $output = new stdClass;
     $output->products = $products;
     $output->pagination = $pagination;
+    $dtb->close_dtb();
     echo json_encode($output);
 }

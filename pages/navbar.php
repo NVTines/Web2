@@ -1,3 +1,15 @@
+<style>
+    #lblCartCount {
+        border-radius:50%;
+        font-size: 12px;
+        font-weight:bold;
+        background-color:crimson;
+        color: #fff;
+        padding: 4px 8px;
+        vertical-align: top;
+        margin-left: -10px; 
+    }
+</style>
 <div class="nav" style="padding: 3px 10vw;display: flex;justify-content: space-between;">
     <img src="" class="brand-logo" alt="" />
     <div class="nav-items">
@@ -7,7 +19,16 @@
             <a href="index.php?page=shopping"><button class="search-btn" style="width:100px">search</button></a>
         </div>
 
-        <a href="index.php?page=urcart"><img src="img/cart.png" alt="" /></a>
+        <a href="index.php?page=urcart">
+            <img src="img/cart.png" alt="" />
+            <span class='badge badge-warning' id='lblCartCount'>
+                <?php 
+                $cartCount=0;
+                isset($_SESSION['cart'])?$cartCount=count($_SESSION['cart']):$cartCount=0;
+                echo $cartCount; 
+                ?>
+            </span>
+        </a>
         <?php
         if (!isset($_SESSION['RoleID'])) {
             echo '<a id="login"><img src="img/user.png" alt="" onclick="dangnhap()"/></a>';

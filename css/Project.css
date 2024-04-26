@@ -599,6 +599,7 @@ input.form-col {
 }
 
 .error-banner {
+  background-color: white;
   border: #d1d1d1 solid 1px;
   border-radius: 50px;
   padding: 50px;
@@ -658,4 +659,53 @@ input.form-col {
   font-size: 15px;
   padding: 10px;
   border: solid black 1px;
+}
+
+.p-detail img:hover{
+  scale:1.05;
+}
+
+.buy-btn {
+  opacity: 1;
+  transition: 0.4 all;
+  height: 45px;
+  border: none;
+  font-weight: bold;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.buy-btn:hover {
+  scale: 1.1;
+}
+
+.p-detail-wrapper {
+  border: solid 100px whitesmoke;
+  background-color: white;
+}
+
+.img-p-detail {
+  float: left;
+  margin: 30px;
+  width: 40%;
+}
+.label-for-size {
+  cursor:pointer;
+  line-height:30px;
+  text-align:center;
+  background-color:orange;
+  font-weight:bold;
+  color:white;
+  width: 35px;
+  height: 35px;
+  margin:5px;
+}
+input[type="radio"] {
+  display:none;   
+}
+input[type="radio"]:checked + label {
+  border: solid 2px red;
+  background-color:lightcoral;
 }

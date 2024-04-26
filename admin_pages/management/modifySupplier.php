@@ -104,7 +104,7 @@
                 ?>
                 <div class="sup-btn">
                     <input type="submit" id="sup-submit-btn" value="Xác nhận"> 
-                    <a onclick="resetSupForm()" id="sup-reset-btn">Refresh</a> 
+                    <input id="sup-reset-btn" type="reset" value="Refresh">
                 </div>        
             </div>  
             

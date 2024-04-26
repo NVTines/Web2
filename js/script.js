@@ -48,7 +48,7 @@ $(document).ready(() => {
     var searchKeyword = $("#searchKeyword").val();
 
     $.ajax({
-      url: "../pages/functions/process_filter.php",
+      url: "pages/functions/process_filter.php",
       method: "POST",
       data: {
         action: action,
@@ -72,7 +72,6 @@ $(document).ready(() => {
       },
       success: (res) => {
         try {
-          // console.log(res);
           res = JSON.parse(res);
           const products = res.products;
           const pagination = res.pagination;
