@@ -578,7 +578,7 @@ input.form-col {
   padding: 50px;
 }
 
-#choose-img-btn {
+.choose-img-btn {
   padding: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -588,7 +588,7 @@ input.form-col {
   cursor: pointer;
 }
 
-#choose-img-btn:hover {
+.choose-img-btn:hover {
   color: white;
   background-color: gray;
 }
