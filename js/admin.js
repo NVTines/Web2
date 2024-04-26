@@ -166,6 +166,7 @@ function hideAddSP() {
     hideAddSP();
   }
 }
+
 function hideFixSP(obj) {
   document.getElementById('clearfix_2').style.display = "block";
   document.getElementById('flat').style.zIndex = "10";
@@ -179,6 +180,7 @@ function hideFixSP(obj) {
     }
   }
 }
+
 function reset_1() {
   document.getElementById('product').value = "";
   document.getElementById('name').value = "";
