@@ -41,7 +41,7 @@ while ($brandRow = $brands->fetch_assoc()) {
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
-        <form class="info-manage-form" method="POST">
+        <form action="../admin_pages/functions/saveProduct.php" class="info-manage-form" method="POST">
             <div>
                 <h1>THÔNG TIN SẢN PHẨM</h1>
             </div>
@@ -86,7 +86,6 @@ while ($brandRow = $brands->fetch_assoc()) {
                     <input id="sup-reset-btn" type="reset" value="Refresh">
                 </div>
             </div>
-
         </form>
     </div>
 </div>
