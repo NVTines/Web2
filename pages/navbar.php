@@ -14,10 +14,7 @@
     <img src="" class="brand-logo" alt="" />
     <div class="nav-items">
         <img onclick="goToMain()" src="img/image-removebg-preview.png" style="position: absolute;height:100px;left: 2%;cursor:pointer" />
-        <div class="search">
-            <a href="index.php?page=shopping" style="width:600px;margin-right:-150px"><input type="text" id="search-box" placeholder="search brand , products" /></a>
-            <a href="index.php?page=shopping"><button class="search-btn" style="width:100px">search</button></a>
-        </div>
+      
 
         <a href="index.php?page=urcart">
             <img src="img/cart.png" alt="" />

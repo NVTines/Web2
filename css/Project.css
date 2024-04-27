@@ -328,6 +328,7 @@ a {
 @media only screen and (max-width:739px) {}
 
 
+
 /* login */
 
 #login {
@@ -661,8 +662,8 @@ input.form-col {
   border: solid black 1px;
 }
 
-.p-detail img:hover{
-  scale:1.05;
+.p-detail img:hover {
+  scale: 1.05;
 }
 
 .buy-btn {
@@ -691,21 +692,24 @@ input.form-col {
   margin: 30px;
   width: 40%;
 }
+
 .label-for-size {
-  cursor:pointer;
-  line-height:30px;
-  text-align:center;
-  background-color:orange;
-  font-weight:bold;
-  color:white;
+  cursor: pointer;
+  line-height: 30px;
+  text-align: center;
+  background-color: orange;
+  font-weight: bold;
+  color: white;
   width: 35px;
   height: 35px;
-  margin:5px;
+  margin: 5px;
 }
+
 input[type="radio"] {
-  display:none;   
+  display: none;
 }
-input[type="radio"]:checked + label {
+
+input[type="radio"]:checked+label {
   border: solid 2px red;
-  background-color:lightcoral;
+  background-color: lightcoral;
 }

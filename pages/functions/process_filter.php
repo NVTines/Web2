@@ -90,16 +90,16 @@ if (isset($_POST['action'])) {
                                         </div>
                                         <div class="separator separator-dashed"></div>
                                         <div class="card-body p-4">
-                                            <a class="fs-5 wrap-text-1 fw-bold" >' . $row["ProductName"] . '</a>
+                                            <a class="wrap-text-1 fw-bold" href="index.php?page=shopping&id='.$row["ProductID"].'" style="cursor:pointer;font-size:20px"><b>' . $row["ProductName"] . '</b></a>
 
-                                        <div class="fs-4 text-gray-700 d-flex">
-                                            <span class="fw-bold">Price:</span>
-                                            <div class="ms-2 fw-bolder">' . number_format($row["ProductPrice"], 2) . ' VNĐ</div>
+                                        <div class="text-gray-700 d-flex">
+                                            <span class="fw-bold" style="font-size:16px;"><b>Price:</b></span>
+                                            <div class="ms-2 fw-bolder" style="color:orange;font-size:18px;">' . number_format($row["ProductPrice"], 2) . ' VNĐ</div>
                                         </div>
 
-                                        <div class="fs-4 text-gray-700 d-flex">
-                                            <span class="fw-bold">Brand : </span>
-                                            <div class="ms-2 fw-bolder">' . $row["ProducerName"] . '</div>
+                                        <div class="text-gray-700 d-flex">
+                                            <span class="fw-bold" style="font-size:16px;"><b>Brand:</b></span>
+                                            <div class="ms-2 fw-bolder" style="color:orange;font-size:18px;">' . $row["ProducerName"] . '</div>
                                         </div>
                                         </div>
                                     </div>
