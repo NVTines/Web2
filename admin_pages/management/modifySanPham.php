@@ -1,6 +1,3 @@
-<style>
-
-</style>
 <div class="col-div-8" style="margin:20px 0px;">
     <div class="box-8">
         <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ SẢN PHẨM</div>
@@ -10,10 +7,6 @@
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
         <form class="info-manage-form" method="POST">
-            <?php 
-                $id=isset($_GET['supid'])?$_GET['supid']:"";
-                echo '<input id="supp-id" style="display:none;" value="'.$id.'"/>';
-            ?>
             <div><h1>THÔNG TIN SẢN PHẨM</h1></div>
             <div style="margin-left:20%;margin-right:20%;margin-top:50px;">
                 <div class="right-form-info">
