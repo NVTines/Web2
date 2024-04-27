@@ -86,7 +86,10 @@
         {
             alert('warning', "Chưa chọn phương thức thanh toán");
 
-        } else {
+        } else if(userhoadon_form.elements['delivery'].value=='')
+        {
+            alert('warning', "Mời nhập địa chỉ giao hàng");
+        } else  {
             let data = new FormData();
             let paymentValue = userhoadon_form.elements['pttt'].value;
             let paymentText = getVpttt(paymentValue);
