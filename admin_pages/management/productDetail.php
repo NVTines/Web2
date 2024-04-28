@@ -41,7 +41,7 @@ while ($brandRow = $brands->fetch_assoc()) {
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
-        <form action="../admin_pages/functions/saveProduct.php" class="info-manage-form" method="POST">
+        <form action="" class="info-manage-form" method="POST">
             <div>
                 <h1>THÔNG TIN SẢN PHẨM</h1>
             </div>

@@ -11,5 +11,5 @@ if (isset($_POST["id"])) {
     echo $sql;
     $dtb->modify_data($sql);
     $dtb->close_dtb();
-    header("Location:../admin.php?key=sp");
+    echo "Reached here";
 }

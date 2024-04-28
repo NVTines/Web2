@@ -6,7 +6,7 @@ echo
   <div id="shows">';
 
 if (isset($_GET["id"])) {
-  require "management/product_detail.php";
+  require "management/productDetail.php";
 } else {
   echo
   '<div id="boxtb" style="background-color:white;height:-100px;width:350px;position:fixed;z-index:10;right:0">
