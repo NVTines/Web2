@@ -41,7 +41,7 @@ echo
                 <th class="text-left">Size</th>
                 <th class="text-left">Giá nhập</th>
                 <th class="text-left">Số lượng</th>
-                <th class="text-left">Thành tiền</th>
+                <th style="text-align:right; padding-right:70px">Thành tiền</th>
             </tr>
             </thead>
             <tbody class="table-hover">
@@ -55,7 +55,7 @@ if ($results = $db->get_data($sql)) {
             <td>' . $rows["Size"] . '</td>
             <td>' . "$" . $rows["Unitprice"] . '</td>
             <td>' . $rows["Quantity"] . '</td>
-            <td>' . "$" . $rows["Amount"] . '</td>
+            <td style="text-align:right; padding-right:70px">' . "$" . $rows["Amount"] . '</td>
         </tr>';
     }
 }
@@ -65,6 +65,6 @@ echo '</tbody>';
 echo '</table>';
 echo
 '
-<h2 style="color:white;text-align:right; margin-right:70px">Tổng tiền: $' . $row["Total"] . '</h2>
+<h3 style="color:white;text-align:right; margin-right:65px">Tổng tiền: $' . $row["Total"] . '</h3>
 ';
 echo '</div>';

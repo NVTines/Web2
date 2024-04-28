@@ -15,7 +15,7 @@ echo
 if (isset($_GET["id"])) {
     require "management/importDetail.php";
 } else if (isset($_GET["func"])) {
-    require "management/newImport.php";
+    require "management/importForm.php";
 } else {
     echo
     '
