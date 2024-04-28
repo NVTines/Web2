@@ -1,15 +1,12 @@
 <?php
-require_once __DIR__ . "/../../database.php";
-$dtb = new database();
-if (isset($_POST["id"])) {
-    $id = $_POST["id"];
-    $productName = $_POST["product-name"];
-    $productBrand = $_POST["brands"];
-    $productStatus = $_POST["status"];
-
-    $sql = "UPDATE product SET ProductName='$productName', ProducerID='$productBrand', status='$productStatus' WHERE ProductID='$id'";
-    echo $sql;
-    $dtb->modify_data($sql);
-    $dtb->close_dtb();
-    echo "Reached here";
-}
+include_once "../../database.php";
+$db = new database();
+$id = $_GET["id"];
+$productName = $_POST["product-name"];
+$brand = $_POST["brands"];
+$price = $_POST["price"];
+$status = $_POST["status"];
+$sql = "UPDATE product SET ProductName = '$productName', ProducerID = '$brand', ProductPrice = '$price', status = '$status' WHERE ProductID = '$id'";
+// echo $sql;
+$db->modify_data($sql);
+header("Location: ../admin.php?key=sp");

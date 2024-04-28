@@ -25,7 +25,6 @@ $brandSql = "SELECT * from producer";
 $products = $db->get_data($productSql);
 $brands = $db->get_data($brandSql);
 
-
 $productsRow = $products->fetch_assoc();
 $encoded_image = base64_encode($productsRow['Img']);
 $brandOptions = "";
@@ -41,7 +40,7 @@ while ($brandRow = $brands->fetch_assoc()) {
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
-        <form action="" class="info-manage-form" method="POST">
+        <form action="./functions/saveProduct.php?id=<?php echo $id ?>" class="info-manage-form" method="POST">
             <div>
                 <h1>THÔNG TIN SẢN PHẨM</h1>
             </div>
@@ -62,13 +61,17 @@ while ($brandRow = $brands->fetch_assoc()) {
 
                         <div class="info-manage-wrapper">
                             <label class="info-manage-label">Tên:</label>
-                            <input required type="text" name="address" id="product-name" class="info-manage-input" placeholder="...." value="' . $productsRow['ProductName'] . '"/>
+                            <input required type="text" name="product-name" id="product-name" class="info-manage-input" placeholder="...." value="' . $productsRow['ProductName'] . '"/>
                         </div>
                         <div class="info-manage-wrapper">
                             <label class="info-manage-label" for="brands">Hãng:</label>
                             <select class="info-manage-input" name="brands" id="brands">
                                 ' . $brandOptions . '
                             </select>                   
+                        </div>
+                        <div class="info-manage-wrapper">
+                            <label class="info-manage-label">Giá:</label>
+                            <input type="number" name="price" class="info-manage-input" placeholder="...." value="' . $productsRow['Price'] . '"/>
                         </div>
                         <div class="info-manage-wrapper">
                             <label class="info-manage-label" for="status">Status:</label>
