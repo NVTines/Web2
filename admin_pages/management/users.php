@@ -1,5 +1,11 @@
 <?php
-echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
+$db = new Database();
+if (isset($_GET["id"])) {
+  require "management/userDetail.php";
+} else if (isset($_GET["func"])) {
+  require "management/importForm.php";
+} else {
+  echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
 </div>
 <div id="shows">
   <div id="main">
@@ -27,22 +33,44 @@ echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;po
             <th>Phone</th>
             <th>Email</th>
             <th>Address</th>
-            <th>Delete</th>
-          </tr>
+            <th></th>
+          </tr>';
+  $sql = "
+SELECT
+  customer.CustomerID,
+  account.UserName,
+  CONCAT(customer.CustomerSurname, '', customer.CustomerName) AS Fullname,
+  customer.Phone,
+  account.Email,
+  customer.Address
+FROM customer
+JOIN account ON customer.UserID = account.UserID;";
+  if ($results = $db->get_data($sql)) {
+    while ($rows = $results->fetch_assoc()) {
+      echo '
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>' . $rows["CustomerID"] . '</td>
+            <td>' . $rows["UserName"] . '</td>
+            <td>********</td>
+            <td>' . $rows["Fullname"] . '</td>
+            <td>' . $rows["Phone"] . '</td>
+            <td>' . $rows["Email"] . '</td>
+            <td>' . $rows["Address"] . '</td>
             <td>
-              <button class="delete" onclick="thongbaobox(username)">&times;</button>
+              <a href="admin.php?key=users&id=' . $rows["CustomerID"] . '">
+                <button class="info_btn" id="info_btn">
+                  <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                </button>
+              </a>
             </td>
-          </tr>
+          </tr>';
+    }
+  }
+  echo '
         </table>
       </div>
     </div>
   </div>
-</div>';
+</div>
+';
+}
