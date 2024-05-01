@@ -15,14 +15,14 @@ if ($results = $db->get_data($sql)) {
         echo
         '<tr>
             <td>
-                <input type="checkbox" name="product[]" value="' . $rows["ProductID"] . " " . $rows["SizeID"] . " " . round($rows["ProductPrice"] / (1 + 10 / 100), 2) . '">
+                <input type="checkbox" class="larger-checkbox" name="product[]" value="' . $rows["ProductID"] . " " . $rows["SizeID"] . " " . round($rows["ProductPrice"] / (1 + 10 / 100)) . '">
             </td>
             <td>' . $rows["ProductID"] . '</td>
             <td>' . $rows["ProductName"] . '</td>
             <td>' . $rows["value"] . '</td>
-            <td>' . "$" . round($rows["ProductPrice"] / (1 + 10 / 100), 2) . '</td>
+            <td>' . "$" . round($rows["ProductPrice"] / (1 + 10 / 100)) . '</td>
             <td>
-                <input type="number" name="quantity[' . $rows["ProductID"] . '_' . $rows["SizeID"] . ']" value="1" min="1">
+                <input type="number" name="quantity[' . $rows["ProductID"] . '_' . $rows["SizeID"] . ']" value="1" min="1" max="50">
             </td>
         </tr>';
     }

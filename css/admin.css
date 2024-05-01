@@ -525,6 +525,10 @@ button {
     text-align: center;
 }
 
+input.larger-checkbox {
+    width: 20px;
+    height: 20px;
+  }
 
 /* RESPONSIVE */
 
