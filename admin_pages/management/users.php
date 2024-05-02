@@ -1,26 +1,23 @@
 <?php
 $db = new Database();
+echo
+'
+  <div id="boxtb"></div>
+  <div id="shows">
+';
 if (isset($_GET["id"])) {
   require "management/userDetail.php";
 } else if (isset($_GET["func"])) {
-  require "management/importForm.php";
+  require "management/userForm.php";
 } else {
-  echo '<div id="boxtb" style="background-color:white;height:-100px;width:500px;position:fixed;z-index:10;right:20%;display:flex">
-</div>
-<div id="shows">
-  <div id="main">
-    <div class="head">
-      <div class="col-div-6">
-
-        <span onclick="invinbox()"
-          style="font-size: 30px; cursor: pointer; color: white"
-          class="nav2"
-          >&#9776;QUẢN LÝ NGƯỜI DÙNG</span>
-      </div>
-
-      <div class="clearfix"></div>
+  echo
+  '
+  <div class="col-div-8" style="margin:20px 0px;">
+    <div class="box-8">
+        <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ NGƯỜI DÙNG</div>
+        <a href="admin.php?key=users&func=add" id="add-btn-supplier">THÊM NHÂN VIÊN</a>
     </div>
-  </div>
+</div>
   <div class="col-div-8">
     <div class="box-8">
       <div class="content-box">
@@ -29,35 +26,58 @@ if (isset($_GET["id"])) {
             <th>ID</th>
             <th>Username</th>
             <th>Password</th>
-            <th>Name</th>
-            <th>Phone</th>
+            <th>Tên</th>
+            <th>Điện thoại</th>
             <th>Email</th>
-            <th>Address</th>
+            <th>Địa chỉ</th>
+            <th>Vai trò</th>
             <th></th>
-          </tr>';
+          </tr>
+  ';
   $sql = "
-SELECT
-  customer.CustomerID,
+  SELECT
+  account.UserID,
   account.UserName,
-  CONCAT(customer.CustomerSurname, '', customer.CustomerName) AS Fullname,
-  customer.Phone,
+  CASE
+      WHEN customer.CustomerID IS NOT NULL THEN 'Customer'
+      WHEN staff.StaffID IS NOT NULL THEN 'Staff'
+      ELSE 'Admin'
+  END AS Role,
+  CONCAT(COALESCE(customer.CustomerSurname, staff.LastName), ' ', COALESCE(customer.CustomerName, staff.FirstName)) AS Fullname,
+  COALESCE(customer.Phone, staff.Phone) AS Phone,
   account.Email,
-  customer.Address
-FROM customer
-JOIN account ON customer.UserID = account.UserID;";
+  COALESCE(customer.Address, staff.Address) AS Address
+  FROM
+    account
+  LEFT JOIN
+    customer ON account.UserID = customer.UserID
+  LEFT JOIN
+    staff ON account.UserID = staff.UserID;
+";
   if ($results = $db->get_data($sql)) {
     while ($rows = $results->fetch_assoc()) {
+      if (str_contains($rows["UserName"], "admin")) {
+        continue;
+      }
       echo '
           <tr>
-            <td>' . $rows["CustomerID"] . '</td>
+            <td>' . $rows["UserID"] . '</td>
             <td>' . $rows["UserName"] . '</td>
             <td>********</td>
             <td>' . $rows["Fullname"] . '</td>
             <td>' . $rows["Phone"] . '</td>
             <td>' . $rows["Email"] . '</td>
-            <td>' . $rows["Address"] . '</td>
-            <td>
-              <a href="admin.php?key=users&id=' . $rows["CustomerID"] . '">
+            <td>' . $rows["Address"] . '</td>';
+      if ($rows["Role"] == "Admin") {
+        echo '<td>Admin</td>';
+      } elseif ($rows["Role"] == "Staff") {
+        echo '<td>Nhân viên</td>';
+      } else {
+        echo '<td>Khách hàng</td>';
+      }
+      echo
+      '<td>
+              <a href="admin.php?key=users&role=' . $rows["Role"] . '&id=' . $rows["UserID"] . '">
                 <button class="info_btn" id="info_btn">
                   <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
                 </button>
