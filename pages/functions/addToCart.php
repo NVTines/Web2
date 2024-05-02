@@ -24,7 +24,16 @@ if (isset($_POST['add_to_cart'])) {
             $vs1 = [$product_id,$row3['SizeID'], $row0['CartID']];
             $res1 = $dtb->select($select1, $vs1, 'iii');
             if (mysqli_num_rows($res1) > 0) {
-                echo 'added';
+                $row1=$res1->fetch_assoc();
+                $n_quantity=$product_quantity+ $row1['Quantity'];
+                $update1="UPDATE `cartdetails` SET `Quantity`=? WHERE `ProductID`=? AND `SizeID`=? AND `CartID`=?";
+                $valueu1=[$n_quantity,$product_id,$row3['SizeID'], $row0['CartID']];
+                $res5=$dtb->update($update1,$valueu1,'iiii');
+                if($res5){
+                    echo 'u_success';
+                } else {
+                    echo 0;
+                }
             } else {
                     $row1 = $res1->fetch_assoc();
                     $select2 = "SELECT * FROM `product` WHERE `ProductID`=?";
@@ -105,14 +114,14 @@ if (isset($_POST['get_product_cart'])) {
                             <td>$row3[ProductName]</td>
                             <td>$row4[value]</td>
                             <td>
-                                <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity])' class='cart-qty-plus' type='button'>+</button>
-                                <input disabled type='number' name='quantity' id='quantity$row2[ProductID]' style='width:60px;' min='0' max='$row4[Quantity]' value='$row2[Quantity]'/>
-                                <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID])' class='cart-qty-minus' type='button'>-</button>
+                                <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity],$row4[SizeID])' class='cart-qty-plus' type='button'>+</button>
+                                <input disabled type='number' name='quantity' id='quantity$row2[ProductID]$row2[SizeID]' style='width:60px;' min='0' max='$row4[Quantity]' value='$row2[Quantity]'/>
+                                <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID],$row4[SizeID])' class='cart-qty-minus' type='button'>-</button>
                             </td>
                             <td>$row3[Color]</td>
                             <td>$row2[UnitPrice]$</td>
                             <td>       
-                            <button type='button' onclick='remove_product($row2[ProductID],$row1[CartID])' class='btn btn-danger shadow-none btn-sm'>
+                            <button type='button' onclick='remove_product($row2[ProductID],$row1[CartID],$row4[SizeID])' class='btn btn-danger shadow-none btn-sm'>
                                 <i class='bi bi-trash'></i>
                             </button>
                             </td>
@@ -140,7 +149,7 @@ if (isset($_POST['get_product_cart'])) {
 
 if(isset($_POST['remove_product'])){
     $data = $dtb->filteration($_POST);
-    $sl1=$dtb->delete("DELETE FROM `cartdetails` WHERE `CartID`=? AND `ProductID`=?",[$data['cart_id'],$data['product_id']],'ii');
+    $sl1=$dtb->delete("DELETE FROM `cartdetails` WHERE `CartID`=? AND `ProductID`=? AND `SizeID`=?",[$data['cart_id'],$data['product_id'],$data['size_id']],'iii');
     if($sl1){
         echo 1;
     } else {
@@ -151,7 +160,7 @@ if(isset($_POST['remove_product'])){
 
 if(isset($_POST['update_quantity'])){
     $data=$dtb->filteration($_POST);
-    $res=$dtb->update("UPDATE `cartdetails` SET `Quantity`=? WHERE `CartID`=? AND `ProductID`=?",[$data['quantity'],$_SESSION['cart_idUser'],$data['product_id']],'iii');
+    $res=$dtb->update("UPDATE `cartdetails` SET `Quantity`=? WHERE `CartID`=? AND `ProductID`=? AND  `SizeID`=?",[$data['quantity'],$_SESSION['cart_idUser'],$data['product_id'],$data['size_id']],'iiii');
     if($res){
         echo 1;
     } else {
