@@ -114,7 +114,7 @@
         get_product_cart(<?php echo isset($_SESSION['cart_idUser']) ? $_SESSION['cart_idUser'] : -1 ?>);
     }
 
-    function remove_product(product_id, cartID) {
+    function remove_product(product_id, cartID, sizeID) {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "pages/functions/addToCart.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -126,11 +126,11 @@
                 alert('danger', "Server lỗi!");
             }
         }
-        xhr.send('remove_product' + '&product_id=' + product_id + '&cart_id=' + cartID);
+        xhr.send('remove_product' + '&product_id=' + product_id + '&cart_id=' + cartID + '&size_id='+sizeID);
     }
 
-    function setQuantityPlus(cartID, product_id,max_quantity) {
-        let quantity = document.getElementById('quantity' + product_id).value;
+    function setQuantityPlus(cartID, product_id,max_quantity, size_id) {
+        let quantity = document.getElementById('quantity' + product_id +size_id).value;
         quantity = parseInt(quantity);
         if(max_quantity < quantity +1){
             alert('danger', "Không đủ số lượng hàng");
@@ -148,12 +148,12 @@
                     alert('danger', "Server lỗi!");
                 }
             }
-            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity);
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity +'&size_id=' + size_id);
         }
     }
 
-    function setQuantityMinus(cartID, product_id) {
-        let quantity = document.getElementById('quantity' + product_id).value;
+    function setQuantityMinus(cartID, product_id, size_id) {
+        let quantity = document.getElementById('quantity' + product_id+size_id).value;
         quantity = parseInt(quantity);
 
         if (quantity > 0) {
@@ -169,7 +169,7 @@
                     alert('danger', "Server lỗi!");
                 }
             }
-            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity);
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity + '&size_id=' + size_id);
         }
     }
 </script>
