@@ -22,7 +22,7 @@ if ($results = $db->get_data($sql)) {
             <td>' . $rows["value"] . '</td>
             <td>' . "$" . round($rows["ProductPrice"] / (1 + 10 / 100)) . '</td>
             <td>
-                <input type="number" name="quantity[' . $rows["ProductID"] . '_' . $rows["SizeID"] . ']" value="1" min="1" max="50">
+                <input class="larger-input" type="number" name="quantity[' . $rows["ProductID"] . '_' . $rows["SizeID"] . ']" value="1" min="1" max="50">
             </td>
         </tr>';
     }
