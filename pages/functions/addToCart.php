@@ -15,30 +15,31 @@ if (isset($_POST['add_to_cart'])) {
     if (mysqli_num_rows($res0) > 0) {
         $row0 = $res0->fetch_assoc();
         $_SESSION['cart_idUser'] = $row0['CartID'];
-        $select1 = "SELECT * FROM `cartdetails` WHERE `ProductID`=? AND `CartID`=?"; //kiểm tra sp có tồn tại trong giỏ của uId chưa
-        $vs1 = [$product_id, $row0['CartID']];
-        $res1 = $dtb->select($select1, $vs1, 'ii');
-        if (mysqli_num_rows($res1) > 0) {
-            echo 'added';
-        } else {
-            $row1 = $res1->fetch_assoc();
-            $res3 = $dtb->mysqli_query("SELECT f.SizeID,f.value FROM `size` f 
+
+        $res3 = $dtb->mysqli_query("SELECT f.SizeID,f.value FROM `size` f 
             INNER JOIN `sizedetail` rfac ON f.SizeID=rfac.SizeID WHERE rfac.ProductID=$product_id AND f.value=$product_size"); //lấy sizeID
-            if (mysqli_num_rows($res3) > 0) {
-                $row3 = mysqli_fetch_assoc($res3);
-                $select2 = "SELECT * FROM `product` WHERE `ProductID`=?";
-                $vs2 = [$product_id];
-                $res2 = $dtb->select($select2, $vs2, 'i');
-                if (mysqli_num_rows($res2) > 0) {
-                    $row2 = $res2->fetch_assoc();
-                    $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
-                    $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
-                    if ($dtb->insert($query2, $values2, 'iiiid')) {
-                        echo 1;
-                    } else {
-                        echo 'ins_failed';
+        if (mysqli_num_rows($res3) > 0) {
+            $row3 = mysqli_fetch_assoc($res3);
+            $select1 = "SELECT * FROM `cartdetails` WHERE `ProductID`=? AND `SizeID`=? AND `CartID`=?"; //kiểm tra sp vs size có tồn tại trong giỏ của uId chưa
+            $vs1 = [$product_id,$row3['SizeID'], $row0['CartID']];
+            $res1 = $dtb->select($select1, $vs1, 'iii');
+            if (mysqli_num_rows($res1) > 0) {
+                echo 'added';
+            } else {
+                    $row1 = $res1->fetch_assoc();
+                    $select2 = "SELECT * FROM `product` WHERE `ProductID`=?";
+                    $vs2 = [$product_id];
+                    $res2 = $dtb->select($select2, $vs2, 'i');
+                    if (mysqli_num_rows($res2) > 0) {
+                        $row2 = $res2->fetch_assoc();
+                        $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
+                        $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
+                        if ($dtb->insert($query2, $values2, 'iiiid')) {
+                            echo 1;
+                        } else {
+                            echo 'ins_failed';
+                        }
                     }
-                }
             }
         }
     } else {
