@@ -1,5 +1,19 @@
 <?php
 $db = new Database();
+$role = null;
+if (isset($_SESSION['RoleID'])) {
+  $role = $_SESSION['RoleID'];
+} else {
+  $role = 3;
+  // $role = 1;
+}
+$query =
+  "
+  SELECT function.FunctionName
+  FROM role
+  JOIN roledetail ON role.RoleID = roledetail.RoleID
+  JOIN function ON roledetail.FunctionID = function.FunctionID
+  WHERE role.RoleID = '" . $role . "'";
 echo
 '
   <div id="boxtb"></div>
@@ -15,24 +29,33 @@ if (isset($_GET["id"])) {
   <div class="col-div-8" style="margin:20px 0px;">
     <div class="box-8">
         <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ NGƯỜI DÙNG</div>
-        <a href="admin.php?key=users&func=add" id="add-btn-supplier">THÊM NHÂN VIÊN</a>
+        ';
+  if ($results = $db->get_data($query)) {
+    while ($rows = $results->fetch_assoc()) {
+      if ($rows["FunctionName"] == "Staff Management") {
+        echo '<a href="admin.php?key=users&func=add" id="add-btn-supplier">THÊM NHÂN VIÊN</a>';
+        break;
+      }
+    }
+  }
+  echo '
     </div>
-</div>
-  <div class="col-div-8">
-    <div class="box-8">
-      <div class="content-box">
-        <table id="showlist">
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Tên</th>
-            <th>Điện thoại</th>
-            <th>Email</th>
-            <th>Địa chỉ</th>
-            <th>Vai trò</th>
-            <th></th>
-          </tr>
+      </div>
+        <div class="col-div-8">
+          <div class="box-8">
+            <div class="content-box">
+              <table id="showlist">
+                <tr>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Password</th>
+                  <th>Tên</th>
+                  <th>Điện thoại</th>
+                  <th>Email</th>
+                  <th>Địa chỉ</th>
+                  <th>Vai trò</th>
+                  <th></th>
+                </tr>
   ';
   $sql = "
   SELECT
