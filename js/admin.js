@@ -9,9 +9,14 @@ function countAll() {
       document.getElementById('products').innerHTML = response.countSP;
       document.getElementById('orders').innerHTML = response.countDHDD;
       document.getElementById('soldproducts').innerHTML = response.countSPBD;
+<<<<<<< HEAD
       document.getElementById('percent').innerHTML = response.percent;
       document.documentElement.style.setProperty("--change", parseFloat(response.percent)*1.8+"deg");
       
+=======
+      document.getElementById('percent').innerHTML = parseInt(response.percent);
+      document.documentElement.style.setProperty("--change", parseFloat(response.percent)*1.8+"deg");
+>>>>>>> origin/tuan
   }
   xhr.send('countAll');
 }
