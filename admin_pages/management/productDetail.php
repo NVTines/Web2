@@ -1,3 +1,15 @@
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function() {
+            var dataURL = reader.result;
+            var img = document.getElementById('productImage');
+            img.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
 <?php
 $id = $_GET["id"];
 
@@ -40,15 +52,15 @@ while ($brandRow = $brands->fetch_assoc()) {
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
-        <form action="./functions/saveProduct.php?id=<?php echo $id ?>" class="info-manage-form" method="POST">
+        <form enctype="multipart/form-data" action="./functions/saveProduct.php?id=<?php echo $id ?>" class="info-manage-form" method="POST">
             <div>
                 <h1>THÔNG TIN SẢN PHẨM</h1>
             </div>
             <div style="margin-left:20%;margin-right:20%;margin-top:50px;">
                 <div class="right-form-info">
-                    <img alt="" class="avt-info" src="data:image/jpg;base64,<?php echo $encoded_image ?>" /><br>
+                    <img id="productImage" alt="" class="avt-info" src="data:image/jpg;base64,<?php echo $encoded_image ?>" /><br>
                     <label for="uploadProductImage" class="choose-img-btn">Choose picture</label>
-                    <input id="uploadProductImage" accept="image/*" style="display:none" onchange="previewImage(event)" type="file" name="fileToUpload" class="fileToUpload" id="" />
+                    <input id="uploadProductImage" accept="image/*" style="display:none" onchange="previewImage(event)" type="file" name="fileToUpload" class="fileToUpload" id="">
                 </div>
                 <div class="left-form-info">
                     <?php
