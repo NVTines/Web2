@@ -1,3 +1,12 @@
+<script>
+  function toAddNewProduct() {
+    window.location.href = "admin.php?key=sp&func=add";
+  }
+
+  function toImportProducts() {
+    window.location.href = "admin.php?key=nh&func=add";
+  }
+</script>
 <?php
 $db = new database();
 echo
@@ -20,11 +29,11 @@ if (isset($_GET["id"])) {
             </span>
           </div>
           <div class="col-div-6">
-          <button title="Nhập sản phẩm" class="add-product-button">
-          <ion-icon name="download-outline"></ion-icon>
+          <button title="Nhập sản phẩm" class="add-product-button" onclick="toImportProducts()">
+            <ion-icon name="download-outline"></ion-icon>
           </button> 
-          <button title="Thêm sản phẩm mới" class="add-product-button">
-          <ion-icon name="add-circle-outline"></ion-icon>
+          <button title="Thêm sản phẩm mới" class="add-product-button" onclick="toAddNewProduct()">
+              <ion-icon name="add-circle-outline"></ion-icon>
           </button>
           </div>
           <div class="clearfix"></div>
@@ -36,11 +45,11 @@ if (isset($_GET["id"])) {
             <table id="showlist">
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Image</th>
-                <th>Price</th>
-                <th>Status</th>
+                <th>Tên</th>
+                <th>Hãng</th>
+                <th>Ảnh</th>
+                <th>Giá</th>
+                <th>Trạng thái</th>
                 <th></th>
               </tr>';
   $query = "
