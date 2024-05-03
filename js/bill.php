@@ -56,4 +56,48 @@
         }
         xhr.send('remove_bill' + '&bill_id=' + bill_id + '&bill_status=' + bill_status);
     }
+
+    function get_bills() {
+
+    }
+
+    function getStatus(value) {
+        switch (value) {
+            case '0':
+                return 'Tất Cả';
+            case '1':
+                return 'Đã Đặt';
+            case '2':
+                return 'Đã Xác Nhận';
+            case '3':
+                return 'Đã Lấy Hầng';
+            case '4':
+                return 'Đang Giao Hàng';
+            case '5':
+                return 'Đã Nhận Hàng';
+            case '6':
+                return 'Đã Hủy';
+            default:
+                return '';
+        }
+    }
+
+    function check_status() {
+        let value = document.getElementById('statusSelect').value;
+        let valueStatus = getStatus(value);
+        $.ajax({
+            url: "pages/functions/bill.php",
+            type: "POST",
+            data: {
+                check_status: true,
+                valueStatus: valueStatus
+            },
+            success: function(response) {
+                $('#showBill').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        })
+    }
 </script>
