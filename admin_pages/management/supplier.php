@@ -1,14 +1,17 @@
 <script>
   function thongbaobox(id){
-    document.getElementById('boxtb').style.animation="tb 1s forwards";
-    document.getElementById('boxtb').innerHTML=
-    '<div id="boxtb-title">XÁC NHẬN XÓA (ID - '+id+')</div><div class="confirm-btn-boxtb"><a id="yes-btn" href="functions/deleteSup.php?id='+id+'">YES</a><a href="#" id="no-btn" onclick="invthongbaobox()">NO</a></div>';
+    document.getElementById('boxtb_supplier').style.animation="tb 1s forwards";
+    document.getElementById('boxtb_supplier').innerHTML=
+    '<div class="boxtb-title">XÁC NHẬN XÓA (ID - '+id+')</div><div class="confirm-btn-boxtb"><a id="yes-btn" href="functions/deleteSup.php?id='+id+'">YES</a><a href="#" id="no-btn" onclick="invthongbaobox()">NO</a></div>';
+  }
+  function invthongbaobox() {
+    document.getElementById('boxtb_supplier').style.animation = "tb_2 1s forwards";
   }
 </script>
 <?php
   $db = new database();
   echo 
-  '<div id="boxtb">
+  '<div class="boxtb" id="boxtb_supplier">
   </div>
   <div id="shows">';
   if(isset($_GET["id"])){
@@ -90,5 +93,3 @@
       </div>';
   }
   echo '</div>';
-  
-            
