@@ -1,10 +1,11 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../database.php";
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 $dtb = new database();
 if (isset($_POST['add_bill'])) {
     $data = $dtb->filteration($_POST);
-    $res1 = $dtb->select("SELECT * FROM `customer` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
+    $res1 = $dtb->select("SELECT * FROM `account` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
     if (mysqli_num_rows($res1) > 0) {
         $row1 = $res1->fetch_assoc();
         $res2 = $dtb->select("SELECT * FROM `cart` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
@@ -17,27 +18,27 @@ if (isset($_POST['add_bill'])) {
 
                 $billDetails[] = array(
                     'ProductID' => $row3['ProductID'],
-                    'SizeID'=>$row3['SizeID'],
+                    'SizeID' => $row3['SizeID'],
                     'Quantity' => $row3['Quantity'],
                     'UnitPrice' => $row3['UnitPrice']
                 );
             }
             $createDate = date('Y-m-d H:i:s');
             //insert bill
-            $is1 = "INSERT INTO `bill`(`CustomerID`,`CreateTime`, `Total`,`delivery`,`note`,`payment`, `status`) VALUES (?,?,?,?,?,?,?)";
-            $vl1 = [$row1['CustomerID'], $createDate, $total,$data['delivery'],$data['note'],$data['pttt'], "Đã Đặt"];
+            $is1 = "INSERT INTO `bill`(`AccountID`,`CreateTime`, `Total`,`delivery`,`note`,`payment`, `status`) VALUES (?,?,?,?,?,?,?)";
+            $vl1 = [$_SESSION['UserID'], $createDate, $total, $data['delivery'], $data['note'], $data['pttt'], "Đã Đặt"];
             if ($dtb->insert($is1, $vl1, 'isdssss')) {
                 $bill_id = mysqli_insert_id($dtb->get_conn()); // sẽ chứa giá trị ID của phòng vừa được thêm vào
                 foreach ($billDetails as $billDetail) {
                     $is2 = "INSERT INTO `billdetail`(`BillID`, `ProductID`,`SizeID`, `Quantity`, `Unitprice`) VALUES (?,?,?,?,?)";
-                    $vl2 = [$bill_id, $billDetail['ProductID'],$billDetail['SizeID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
+                    $vl2 = [$bill_id, $billDetail['ProductID'], $billDetail['SizeID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
                     $resIS = $dtb->insert($is2, $vl2, 'iiiid');
 
-                    $res4=$dtb->select("SELECT * FROM `sizedetail` WHERE `SizeID`=? AND `ProductID`=?",[$billDetail['SizeID'],$billDetail['ProductID']],'ii');
-                    if(mysqli_num_rows($res4)>0){
-                        $row4=$res4->fetch_assoc();
-                        $quantity=$row4['Quantity']-$billDetail['Quantity'];
-                        $resUP=$dtb->update("UPDATE `sizedetail` SET `Quantity`=? WHERE `SizeID`=? AND `ProductID`=?",[$quantity,$billDetail['SizeID'],$billDetail['ProductID']],'iii');
+                    $res4 = $dtb->select("SELECT * FROM `sizedetail` WHERE `SizeID`=? AND `ProductID`=?", [$billDetail['SizeID'], $billDetail['ProductID']], 'ii');
+                    if (mysqli_num_rows($res4) > 0) {
+                        $row4 = $res4->fetch_assoc();
+                        $quantity = $row4['Quantity'] - $billDetail['Quantity'];
+                        $resUP = $dtb->update("UPDATE `sizedetail` SET `Quantity`=? WHERE `SizeID`=? AND `ProductID`=?", [$quantity, $billDetail['SizeID'], $billDetail['ProductID']], 'iii');
                     }
                 }
             }
@@ -58,4 +59,13 @@ if (isset($_POST['add_bill'])) {
 }
 
 
-?>
+if (isset($_POST['remove_bill'])) {
+    $data = $dtb->filteration($_POST);
+    $updateDate = date('Y-m-d H:i:s');
+    $res = $dtb->update("UPDATE `bill` SET `status`=?, `UpdateTime`=? WHERE `BillID`=?", ["Đã Hủy", $updateDate, $data['bill_id']], 'ssi');
+    if ($res) {
+        echo 1;
+    } else {
+        echo 0;
+    }
+}
