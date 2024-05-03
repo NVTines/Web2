@@ -24,7 +24,16 @@ if (isset($_POST['add_to_cart'])) {
             $vs1 = [$product_id,$row3['SizeID'], $row0['CartID']];
             $res1 = $dtb->select($select1, $vs1, 'iii');
             if (mysqli_num_rows($res1) > 0) {
-                echo 'added';
+                $row1=$res1->fetch_assoc();
+                $n_quantity=$product_quantity+ $row1['Quantity'];
+                $update1="UPDATE `cartdetails` SET `Quantity`=? WHERE `ProductID`=? AND `SizeID`=? AND `CartID`=?";
+                $valueu1=[$n_quantity,$product_id,$row3['SizeID'], $row0['CartID']];
+                $res5=$dtb->update($update1,$valueu1,'iiii');
+                if($res5){
+                    echo 'u_success';
+                } else {
+                    echo 0;
+                }
             } else {
                     $row1 = $res1->fetch_assoc();
                     $select2 = "SELECT * FROM `product` WHERE `ProductID`=?";
