@@ -114,9 +114,9 @@ if (isset($_POST['get_product_cart'])) {
                             <td>$row3[ProductName]</td>
                             <td>$row4[value]</td>
                             <td>
-                                <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity],$row2[SizeID])' class='cart-qty-plus' type='button'>+</button>
+                                <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity],$row2[SizeID])' class='cart-qty-plus btn btn-secondary' type='button'>+</button>
                                 <input disabled type='number' name='quantity' id='quantity$row2[ProductID]$row2[SizeID]' style='width:60px;' min='0' max='$row4[Quantity]' value='$row2[Quantity]'/>
-                                <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID], $row2[SizeID])' class='cart-qty-minus' type='button'>-</button>
+                                <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID], $row2[SizeID])' class='cart-qty-minus btn btn-secondary' type='button'>-</button>
                             </td>
                             <td>$row3[Color]</td>
                             <td>$row2[UnitPrice]$</td>
