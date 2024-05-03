@@ -1,6 +1,10 @@
 <script>
-  function redirectToAdmin() {
-    window.location.href = "#";
+  function toAddNewProduct() {
+    window.location.href = "admin.php?key=sp&func=add";
+  }
+
+  function toImportProducts() {
+    window.location.href = "admin.php?key=nh&func=add";
   }
   function thongbaobox(id){
     document.getElementById('boxtb_product').style.animation="tb 1s forwards";
@@ -15,8 +19,8 @@
 $db = new database();
 echo
 '<div class="boxtb" id="boxtb_product">
-  </div>
-  <div id="shows">';
+</div>
+<div id="shows">';
 
 if (isset($_GET["id"])) {
   require "management/productDetail.php";
@@ -33,10 +37,10 @@ if (isset($_GET["id"])) {
             </span>
           </div>
           <div class="col-div-6">
-          <button title="Nhập sản phẩm" class="add-product-button">
+          <button title="Nhập sản phẩm" class="add-product-button" onclick="toImportProducts()">
             <ion-icon name="download-outline"></ion-icon>
           </button> 
-          <button title="Thêm sản phẩm mới" class="add-product-button" onclick="redirectToAdmin()"> <!--onclick added here-->
+          <button title="Thêm sản phẩm mới" class="add-product-button" onclick="toAddNewProduct()">
               <ion-icon name="add-circle-outline"></ion-icon>
           </button>
           </div>
@@ -96,7 +100,7 @@ if (isset($_GET["id"])) {
                     <button class="info_btn" id="info_btn">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
-</a>
+                </a>
                 <a onclick="thongbaobox(' . $row['ID'] . ');">
                     <button class="quit_btn" id="quit_btn">
                         <i class="fa-solid fa-trash"></i>

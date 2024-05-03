@@ -19,6 +19,7 @@
   <?php 
   require_once "../database.php"; 
   session_start();
+  if(isset($_SESSION["RoleID"]) && (string)$_SESSION["RoleID"]!=1){
   ?>
   <script>
     window.onload = function() {
@@ -31,6 +32,14 @@
   <div id="content">
     <?php require 'content.php';?>
   </div>
+  <?php
+  }else{
+    echo "<div style='text-align:center;color:white;margin-top:150px;'>
+            <h1>You don't have permission to access</h1>
+            <a href='../' style='padding:15px;font-size:20px;font-weight:bold;border:none;background-color:#272c4a;color:white;text-decoration:none;border-radius:15px;'>Back To Home</a>
+          </div>";
+  }
+  ?>
 </body>
 
 </html>

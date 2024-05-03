@@ -235,7 +235,7 @@ th {
     }
 }
 
-#boxtb {
+.boxtb {
     background-color: white;
     position: fixed;
     z-index: 10;
@@ -243,12 +243,12 @@ th {
     width: 10%;
 }
 
-#boxtb a {
+.boxtb a {
     text-decoration: none;
     margin: 30px;
 }
 
-#boxtb-title {
+.boxtb-title {
     font-weight: bold;
     text-align: center;
     background-color: black;

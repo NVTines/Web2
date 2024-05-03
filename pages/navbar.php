@@ -1,28 +1,43 @@
 <style>
     #lblCartCount {
-        border-radius:50%;
+        border-radius: 50%;
         font-size: 12px;
-        font-weight:bold;
-        background-color:crimson;
+        font-weight: bold;
+        background-color: crimson;
         color: #fff;
         padding: 4px 8px;
         vertical-align: top;
-        margin-left: -10px; 
+        margin-left: -10px;
     }
 </style>
+
+<?php
+require_once __DIR__ . "/../database.php";
+$dtb = new database();
+
+?>
 <div class="nav" style="padding: 3px 10vw;display: flex;justify-content: space-between;">
     <img src="" class="brand-logo" alt="" />
     <div class="nav-items">
         <img onclick="goToMain()" src="img/image-removebg-preview.png" style="position: absolute;height:100px;left: 2%;cursor:pointer" />
-      
+
 
         <a href="index.php?page=urcart">
             <img src="img/cart.png" alt="" />
             <span class='badge badge-warning' id='lblCartCount'>
-                <?php 
-                $cartCount=0;
-                isset($_SESSION['cart'])?$cartCount=count($_SESSION['cart']):$cartCount=0;
-                echo $cartCount; 
+                <?php
+                $cartCount = 0;
+                if (isset($_SESSION['cart_idUser']) && isset($_SESSION['UserID'])) {
+                    if ($_SESSION['cart_idUser'] != -1) {
+
+                        $res1 = mysqli_query($dtb->get_conn(), "SELECT count(*) as pq FROM `cartdetails` WHERE `CartID`=$_SESSION[cart_idUser]");
+                        if (mysqli_num_rows($res1) > 0) {
+                            $row1 = mysqli_fetch_assoc($res1);
+                            $cartCount = $row1['pq'];
+                        }
+                    }
+                }
+                echo $cartCount;
                 ?>
             </span>
         </a>

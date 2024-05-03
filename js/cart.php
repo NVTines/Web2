@@ -1,5 +1,7 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    function alert(type, msg, position = 'body') {
+    function alertCustom(type, msg, position = 'body') {
+        console.log(msg)
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
         let element = document.createElement('div');
         element.innerHTML = `
@@ -21,202 +23,64 @@
         document.getElementsByClassName('alert')[0].remove();
     }
 
-    let uId = "";
-
-    function setActive() {
-        let navbar = document.getElementById('dashboard-menu');
-        let a_tags = navbar.getElementsByTagName('a');
-
-        for (i = 0; i < a_tags.length; i++) {
-            let file = a_tags[i].href.split('/').pop(); // example.php
-            let file_name = file.split('.')[0];
-
-            if (document.location.href.indexOf(file_name) >= 0) {
-                a_tags[i].classList.add('active');
-            }
-        }
-    }
-
-    function setActive() {
-        let navbar = document.getElementById('navbar');
-        let a_tags = navbar.getElementsByTagName('a');
-
-        for (i = 0; i < a_tags.length; i++) {
-            let file = a_tags[i].href.split('/').pop(); // example.php
-            let file_name = file.split('.')[0];
-
-            if (document.location.href.indexOf(file_name) >= 0) {
-                a_tags[i].classList.add('active');
-            }
-        }
-    }
-
-    let register_form = document.getElementById('register-form');
-    register_form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let data = new FormData();
-        data.append('surname', register_form.elements['surname'].value);
-        data.append('name', register_form.elements['name'].value);
-        data.append('gender', register_form.elements['gender'].value);
-        data.append('email', register_form.elements['email'].value);
-        data.append('phonenum', register_form.elements['phonenum'].value);
-        data.append('profile', register_form.elements['profile'].value);
-        data.append('address', register_form.elements['address'].value);
-        data.append('username', register_form.elements['username'].value);
-        data.append('pass', register_form.elements['pass'].value);
-        data.append('cpass', register_form.elements['cpass'].value);
-        data.append('profile', register_form.elements['profile'].files[0]);
-        data.append('register', '');
-
-        var myModal = document.getElementById('registerModal');
-        var modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/login_register.php", true);
-
-        xhr.onload = function() {
-            if (this.responseText == "pass_mismatch") {
-                alert('error', "Password Mismatch");
-            } else if (this.responseText == "email_already") {
-                alert('error', "Email is already registered!");
-            } else if (this.responseText == "phone_already") {
-                alert('error', "Phone number is already registered!");
-            } else if (this.responseText == "inv_img") {
-                alert('error', "Only JPG,WEPB & PNG images are allowed!");
-            } else if (this.responseText == "upd_failed") {
-                alert('error', "Image upload failed!");
-            } else if (this.responseText == "ins_failed") {
-                alert('error', "Registration failed! Server down!");
-            } else if (this.responseText == 11) {
-                alert('success', "Registration successful. Confirmation link sent to email!")
-                register_form.reset();
-            }
-        }
-        xhr.send(data);
-
-    })
-
-
-    let login_form = document.getElementById('login-form');
-    login_form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let data = new FormData();
-        data.append('email_mob', login_form.elements['email_mob'].value);
-        data.append('pass', login_form.elements['pass'].value);
-        data.append('login', '');
-
-        var myModal = document.getElementById('loginModal');
-        var modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/login_register.php", true);
-
-        xhr.onload = function() {
-            if (this.responseText == "inv_email_mob") {
-                alert('error', "Invalid Email or Mobile Number!");
-            } else if (this.responseText == "inactive") {
-                alert('error', "Account Suspended! Please contact Admin.");
-            } else if (this.responseText == "invalid_pass") {
-                alert('error', "Incorrect Password!");
-            } else if (this.responseText == 11) {
-                window.location = window.location.pathname;
-            }
-        }
-        xhr.send(data);
-
-    })
-
-
     function checkLoginToCart(product_id, user_id) {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/cart.php", true);
+        xhr.open("POST", "pages/functions/addToCart.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (this.responseText == 1) {
-                // alert('success', 'Cart Added!', 'cart-alert');
+                // alertCustom('success', 'Cart Added!', 'cart-alert');
                 console.log(this.responseText);
                 //get_product_cart(user_id);
             } else {
-                // alert('error', 'Add cart failed!', 'cart-alert');
+                // alertCustom('error', 'Add cart failed!', 'cart-alert');
                 console.log(this.responseText);
             }
         }
         xhr.send('add_cart&product_id=' + product_id + '&user_id=' + user_id);
     }
 
-    function checkNoLoginToCart(product_id) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/cart.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (this.responseText == 1) {
-                // alert('success', 'Cart Added!', 'cart-alert');
-                console.log(this.responseText);
-                //get_product_cart(user_id);
-            } else {
-                // alert('error', 'Add cart failed!', 'cart-alert');
-                console.log(this.responseText);
-            }
-        }
-        xhr.send('add_cart_nouser&product_id=' + product_id);
-    }
 
-    // function checkCart(product_id) {
+    let userhoadon_form = document.getElementById('hoadon');
+    userhoadon_form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (userhoadon_form.elements['pttt'].value == 0) {
+            alertCustom('warning', "Chưa chọn phương thức thanh toán");
 
-    //         let xhr = new XMLHttpRequest();
-    //         xhr.open("POST", "ajax/cart.php", true);
-    //         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //         xhr.onload = function() {
-    //             if (this.responseText == 1) {
-    //                 // alert('success', 'Cart Added!', 'cart-alert');
-    //                 console.log(this.responseText);
-    //                 //get_product_cart(user_id);
-    //             } else {
-    //                 // alert('error', 'Add cart failed!', 'cart-alert');
-    //                 console.log(this.responseText);
-    //             }
-    //         }
-    //         xhr.send('add_cart&product_id=' + product_id + '&user_id=' + -1);
-    // }
+        } else if (userhoadon_form.elements['delivery'].value == '') {
+            alertCustom('warning', "Mời nhập địa chỉ giao hàng");
+        } else {
+            let data = new FormData();
+            let paymentValue = userhoadon_form.elements['pttt'].value;
+            let paymentText = getVpttt(paymentValue);
+            data.append('pttt', paymentText);
+            data.append('delivery', userhoadon_form.elements['delivery'].value);;
+            data.append('note', userhoadon_form.elements['note'].value);;
+            data.append('add_bill', '');
 
-    function checkLoginToBill(status, user_id) {
-        if (status) {
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "ajax/bill.php", true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.open("POST", "pages/functions/bill.php", true);
+
             xhr.onload = function() {
-                if (this.responseText == 1) {
-                    // alert('success', 'Cart Added!', 'cart-alert');
-                    console.log(this.responseText);
-                    get_product_cart(user_id);
-                } else {
-                    // alert('error', 'Add cart failed!', 'cart-alert');
-                    console.log(this.responseText);
+                var myModal = document.getElementById('checkoutModal');
+                var modal = bootstrap.Modal.getInstance(myModal);
+                modal.hide();
+                if (this.responseText == "GHR") {
+                    alertCustom('warning', "Giỏ hàng rỗng!");
+                } else if (this.responseText == 1) {
+                    userhoadon_form.reset();
+                    alertCustom('success', "Đơn hàng đã được đặt!");
+                    setTimeout(function() {
+                        location.reload();
+                    }, 3000);
+                } else if (this.responseText == "Server Down!") {
+                    alertCustom('danger', "Server lỗi!");
                 }
             }
-            xhr.send('add_bill' + '&user_id=' + user_id);
-        } else {
-            alert('error', 'Please login to book room!');
+            xhr.send(data);
         }
-    }
 
-
-
-    function getVnngioitinh(value) {
-        switch (value) {
-            case '0':
-                return 'Male';
-            case '1':
-                return 'Female';
-            case '2':
-                return 'Prefer Not to Say';
-            default:
-                return '';
-        }
-    }
-
+    })
 
     function getVpttt(value) {
         switch (value) {
@@ -234,67 +98,79 @@
     }
 
 
-    let Nouserhoadon_form = document.getElementById('hoadon');
-    Nouserhoadon_form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let data = new FormData();
-
-        let genderValue=Nouserhoadon_form.elements['nngioitinh'].value;
-        let genderText = getVnngioitinh(genderValue);
-        let paymentValue=Nouserhoadon_form.elements['pttt'].value;
-        let paymentText = getVpttt(paymentValue);
-
-
-        data.append('surname', Nouserhoadon_form.elements['surname'].value);
-        data.append('name', Nouserhoadon_form.elements['name'].value);
-        data.append('nnsdt', Nouserhoadon_form.elements['nnsdt'].value);
-        data.append('nnmail', Nouserhoadon_form.elements['nnmail'].value);
-        data.append('nncity', Nouserhoadon_form.elements['nncity'].value);
-        data.append('nndiachi', Nouserhoadon_form.elements['nndiachi'].value);
-        data.append('nngioitinh', genderText);
-        data.append('nnngaysinh', Nouserhoadon_form.elements['nnngaysinh'].value);
-        data.append('pttt', paymentText);
-        data.append('note', Nouserhoadon_form.elements['note'].value);;
-        data.append('add_billnouser', '');
-
-        var myModal = document.getElementById('checkoutModal');
-        var modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/bill.php", true);
-
-        xhr.onload = function() {
-            if (this.responseText == "error") {
-
-            } else if (this.responseText == 1) {
-                get_product_cart(<?php $_SESSION['cart_idNoUser'] ?>)
-                alert('success', "Registration successful. Confirmation link sent to email!")
-                Nouserhoadon_form.reset();
-            }
-        }
-        xhr.send(data);
-
-    })
-
-
-
     function get_product_cart(cart_id) {
 
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/cart.php", true);
+        xhr.open("POST", "pages/functions/addToCart.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
         xhr.onload = function() {
-            let response = JSON.parse(this.responseText);
-            document.getElementById('cart-data').innerHTML = response.data;
-            document.getElementById('thanhtoan').innerHTML = response.thanhtoan;
+        let response = JSON.parse(this.responseText);
+        document.getElementById('cart-data').innerHTML = response.cartData;
+        document.getElementById('thanhtoan').innerHTML = response.thanhtoan;
         }
         xhr.send('get_product_cart' + '&cart_id=' + cart_id);
     }
 
-    setActive();
     window.onload = function() {
-        get_product_cart(<?php echo isset($_SESSION['cart_idUser']) ? $_SESSION['cart_idUser'] : $_SESSION['cart_idNoUser'] ?>);
+        get_product_cart(<?php echo isset($_SESSION['cart_idUser']) ? $_SESSION['cart_idUser'] : -1 ?>);
+    }
+
+    function remove_product(product_id, cartID, sizeID) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "pages/functions/addToCart.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+            if (this.responseText == 1) {
+                alertCustom('success', 'Xóa Thành Công!');
+                get_product_cart(cartID);
+            } else {
+                alertCustom('danger', 'Server lỗi!');
+            }
+        }
+        xhr.send('remove_product' + '&product_id=' + product_id + '&cart_id=' + cartID + '&size_id='+sizeID);
+    }
+
+    function setQuantityPlus(cartID, product_id,max_quantity,sizeID) {
+        let quantity = document.getElementById('quantity' + product_id + sizeID).value;
+        quantity = parseInt(quantity);
+        if(max_quantity < quantity +1){
+            alertCustom('danger', 'Không đủ số lượng hàng');
+        }
+        else {
+            quantity = quantity + 1;
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "pages/functions/addToCart.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (this.responseText == 1) {
+                    alertCustom('success', 'Câp nhật thành công!');
+                    get_product_cart(cartID);
+                } else {
+                    alertCustom('danger', 'Server lỗi!');
+                }
+            }
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity +'&size_id='+sizeID);
+        }
+    }
+
+    function setQuantityMinus(cartID, product_id, sizeID) {
+        let quantity = document.getElementById('quantity' + product_id +sizeID).value;
+        quantity = parseInt(quantity);
+
+        if (quantity > 0) {
+            quantity = quantity - 1;
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "pages/functions/addToCart.php", true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (this.responseText == 1) {
+                    alertCustom('success', 'Câp nhật thành công!');
+                    get_product_cart(cartID);
+                } else {
+                    alertCustom('danger', 'Server lỗi!');
+                }
+            }
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity +'&size_id='+sizeID);
+        }
     }
 </script>
