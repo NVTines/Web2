@@ -34,6 +34,7 @@ function getCustomerInfo()
             $_SESSION['Phone'] = $row['Phone'];
             $_SESSION['Address'] = $row['Address'];
             $_SESSION['IMG'] = base64_encode($row['IMG']);
+            $_SESSION['StaffID'] = (((string)$_SESSION['RoleID']) !== "1") ? $row['StaffID'] : "";
             $_SESSION['Surname'] = (((string)$_SESSION['RoleID']) === "1") ? $row['CustomerSurname'] : $row['LastName'];
             $_SESSION['FirstName'] = (((string)$_SESSION['RoleID']) === "1") ? $row['CustomerName'] : $row['FirstName'];
         }
@@ -58,11 +59,12 @@ if (isset($_POST['tendn']) && isset($_POST['mk'])) {
 
         $dtb = new database();
         $select2 = $dtb->select("SELECT * FROM `cart` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
-        $s2_fetch = mysqli_fetch_assoc($select2);
-        if ($s2_fetch['CartID'] == null) {
+        if($select2->num_rows>0){
+            while($row=$select2->fetch_assoc()){
+                $_SESSION['cart_idUser'] = $row['CartID'];
+            }
+        }else{
             $_SESSION['cart_idUser'] = -1;
-        } else {
-            $_SESSION['cart_idUser'] = $s2_fetch['CartID'];
         }
         getCustomerInfo();
     }
