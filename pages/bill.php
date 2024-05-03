@@ -2,7 +2,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css">
-    <?php include "js/cart.php" ?>
+    <?php include "js/bill.php" ?>
 </head>
 
 <?php
@@ -16,15 +16,15 @@ if (isset($_SESSION['UserID'])) {
 <div class="container-fluid" id="main-content">
 
     <div class="row">
-        <!-- <select name="statusBill" class="form-select form-select-sm" aria-label="Small select example" style="width:20%; margin:20px auto;">
-            <option selected>Tất cả</option>
+        <select name="statusBill" onchange="check_status()" id="statusSelect" class="form-select form-select-sm" aria-label="Small select example" style="width:20%; margin:20px auto;">
+            <option value="0" selected>Tất cả</option>
             <option value="1">Đã Đặt</option>
             <option value="2">Đã Xác Nhận</option>
             <option value="3">Đã Lấy Hàng</option>
             <option value="4">Đang Giao Hàng</option>
             <option value="5">Đã Nhận Hàng</option>
             <option value="6">Đã Hủy</option>
-        </select> -->
+        </select>
         <?php
         $dtb = new database();
         $res1 = $dtb->select("SELECT * FROM `account` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
@@ -32,6 +32,9 @@ if (isset($_SESSION['UserID'])) {
             $row1 = $res1->fetch_assoc();
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=?", [$row1['UserID']], 'i');
             if (mysqli_num_rows($res2) > 0) {
+        ?>
+                <div id="showBill">
+            <?php
                 while ($row2 = mysqli_fetch_assoc($res2)) {
                     $dataCart = "";
                     $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
@@ -40,7 +43,6 @@ if (isset($_SESSION['UserID'])) {
                         if (mysqli_num_rows($res4) > 0) {
                             $row4 = $res4->fetch_assoc();
                             $imgBase64 = base64_encode($row4['IMG']);
-                            // Tạo đường dẫn dữ liệu (data URL) cho thẻ <img>
                             $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
                             $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
                                 <div class='d-flex justify-content-between' style='flex-direction:column;'>
@@ -69,7 +71,8 @@ if (isset($_SESSION['UserID'])) {
             }
         }
 
-        ?>
+            ?>
+                </div>
 
 
 
