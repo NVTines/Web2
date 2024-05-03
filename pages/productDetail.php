@@ -153,22 +153,6 @@ if (isset($_GET['id'])) {
         document.getElementsByClassName('alert')[0].remove();
       }
 
-      function checkLoginToCart(product_id, user_id) {
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "pages/functions/addToCart.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-          if (this.responseText == 1) {
-            // alertCustom('success', 'Cart Added!', 'cart-alert');
-            console.log(this.responseText);
-            //get_product_cart(user_id);
-          } else {
-            // alertCustom('error', 'Add cart failed!', 'cart-alert');
-            console.log(this.responseText);
-          }
-        }
-        xhr.send('add_cart&product_id=' + product_id + '&user_id=' + user_id);
-      }
       let ad_pr = document.getElementById('add-cart');
       ad_pr.addEventListener('submit', (e) => {
           e.preventDefault();
