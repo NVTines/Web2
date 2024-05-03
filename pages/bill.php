@@ -16,13 +16,22 @@ if (isset($_SESSION['UserID'])) {
 <div class="container-fluid" id="main-content">
 
     <div class="row">
+        <!-- <select name="statusBill" class="form-select form-select-sm" aria-label="Small select example" style="width:20%; margin:20px auto;">
+            <option selected>Tất cả</option>
+            <option value="1">Đã Đặt</option>
+            <option value="2">Đã Xác Nhận</option>
+            <option value="3">Đã Lấy Hàng</option>
+            <option value="4">Đang Giao Hàng</option>
+            <option value="5">Đã Nhận Hàng</option>
+            <option value="6">Đã Hủy</option>
+        </select> -->
         <?php
         $dtb = new database();
-        $res1 = $dtb->select("SELECT * FROM `customer` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
+        $res1 = $dtb->select("SELECT * FROM `account` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
         if (mysqli_num_rows($res1) > 0) {
             $row1 = $res1->fetch_assoc();
-            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `CustomerID`=?", [$row1['CustomerID']], 'i');
-            if(mysqli_num_rows($res2)>0){
+            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=?", [$row1['UserID']], 'i');
+            if (mysqli_num_rows($res2) > 0) {
                 while ($row2 = mysqli_fetch_assoc($res2)) {
                     $dataCart = "";
                     $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
@@ -42,7 +51,7 @@ if (isset($_SESSION['UserID'])) {
                             </div>";
                         }
                     }
-    
+
                     echo <<<donhang
                             <div class="ms-auto p-4 overflow-hidden">
                                 <div class="card">
@@ -58,7 +67,6 @@ if (isset($_SESSION['UserID'])) {
             } else {
                 echo "<div class='mt-5 mb-5'><p class='text-center text-danger'>Bạn chưa có đơn hàng nào trong dữ liệu</p></div>";
             }
-            
         }
 
         ?>
