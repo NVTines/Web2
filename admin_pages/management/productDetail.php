@@ -9,6 +9,24 @@
         };
         reader.readAsDataURL(input.files[0]);
     }
+    // Display the corresponding quantity of the selected size using ajax
+    $(document).ready(function() {
+        $('#size').change(function() {
+            var id = $('#product-id').val();
+            var size = $('#size').val();
+            $.ajax({
+                type: 'POST',
+                url: './functions/getQuantityBySize.php',
+                data: {
+                    size: size,
+                    id: id
+                },
+                success: function(data) {
+                    $('#quantity-view').text(data);
+                }
+            });
+        });
+    });
 </script>
 <?php
 $id = $_GET["id"];
@@ -33,9 +51,17 @@ SELECT
   ORDER BY product.status ASC;
 ";
 $brandSql = "SELECT * from producer";
+$sizeSql =
+    "
+SELECT size.value, sizedetail.Quantity
+FROM sizedetail
+JOIN size ON sizedetail.SizeID = size.SizeID
+WHERE ProductID = $id;
+";
 
 $products = $db->get_data($productSql);
 $brands = $db->get_data($brandSql);
+$sizes = $db->get_data($sizeSql);
 
 $productsRow = $products->fetch_assoc();
 $encoded_image = base64_encode($productsRow['Img']);
@@ -92,6 +118,21 @@ while ($brandRow = $brands->fetch_assoc()) {
                                 <option value="hidd">NGƯNG BÁN</option>
                             </select>
                         </div>
+                        <div class="info-manage-wrapper">
+                            <label class="info-manage-label" for="status">Size:</label>
+                            <select class="info-manage-input" id="size" name="size">';
+                    while ($sizeRow = $sizes->fetch_assoc()) {
+                        echo '<option value="' . $sizeRow['value'] . '">' . $sizeRow['value'] . '</option>';
+                    }
+                    echo '
+                            </select>
+                            
+                        </div>
+                        <div class="info-wrapper">
+                            <h3>Số lượng: </h3>
+                            <h3 id="quantity-view"></h3>
+                        </div>
+                        <h3 id="quantity-view"></h3>
                     ';
                     ?>
                 </div>
