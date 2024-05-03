@@ -21,7 +21,7 @@ if (isset($_GET["id"])) {
     '
     <div class="col-div-8" style="margin:20px 0px;">
         <div class="box-8">
-          <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ NHẬP HÀNG</div>
+          <div class="manage-name-btn" onclick="invinbox()">&#9776; QUẢN LÝ NHẬP HÀNG</div>
           <a href="admin.php?key=nh&func=add" id="add-btn-supplier">NHẬP HÀNG</a>
         </div>
       </div>

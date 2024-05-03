@@ -433,7 +433,7 @@ button:hover {
     display: flex;
 }
 
-.info-wrapper h3{
+.info-wrapper h3 {
     line-height: 0px;
 }
 
@@ -552,6 +552,15 @@ input.larger-input {
     font-size: 20px;
     height: 20px;
 }
+
+
+.sort-options {
+    display: inline-block;
+    /* Display the containers inline */
+    margin-right: 10px;
+    /* Add some space between containers */
+}
+
 
 /* RESPONSIVE */
 

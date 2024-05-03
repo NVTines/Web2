@@ -1,3 +1,6 @@
+<script>
+  
+</script>
 <?php
 $db = new Database();
 $role = null;
@@ -28,7 +31,7 @@ if (isset($_GET["id"])) {
   '
   <div class="col-div-8" style="margin:20px 0px;">
     <div class="box-8">
-        <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ NGƯỜI DÙNG</div>
+        <div class="manage-name-btn" onclick="invinbox()">&#9776; QUẢN LÝ NGƯỜI DÙNG</div>
         ';
   if ($results = $db->get_data($query)) {
     while ($rows = $results->fetch_assoc()) {
