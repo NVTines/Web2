@@ -52,8 +52,8 @@ if (isset($_GET["id"])) {
                   <th>Tên</th>
                   <th>Điện thoại</th>
                   <th>Email</th>
-                  <th>Địa chỉ</th>
-                  <th>Vai trò</th>
+                  <th>Loại tài khoản</th>
+                  <th>Trạng thái</th>
                   <th></th>
                 </tr>
   ';
@@ -69,7 +69,7 @@ if (isset($_GET["id"])) {
   CONCAT(COALESCE(customer.CustomerSurname, staff.LastName), ' ', COALESCE(customer.CustomerName, staff.FirstName)) AS Fullname,
   COALESCE(customer.Phone, staff.Phone) AS Phone,
   account.Email,
-  COALESCE(customer.Address, staff.Address) AS Address
+  account.Enable AS Enable
   FROM
     account
   LEFT JOIN
@@ -89,8 +89,8 @@ if (isset($_GET["id"])) {
             <td>********</td>
             <td>' . $rows["Fullname"] . '</td>
             <td>' . $rows["Phone"] . '</td>
-            <td>' . $rows["Email"] . '</td>
-            <td>' . $rows["Address"] . '</td>';
+            <td>' . $rows["Email"] . '</td>';
+
       if ($rows["Role"] == "Admin") {
         echo '<td>Admin</td>';
       } elseif ($rows["Role"] == "Staff") {
@@ -98,8 +98,18 @@ if (isset($_GET["id"])) {
       } else {
         echo '<td>Khách hàng</td>';
       }
-      echo
-      '<td>
+
+      if ($rows["Enable"] == 1) {
+        echo '<td style="color:green;font-weight:bold;">HOẠT ĐỘNG</td>';
+      } else {
+        echo '<td style="color:red;font-weight:bold;">KHÓA</td>';
+      }
+
+      if ($result = $db->get_data($query)) {
+        while ($row = $result->fetch_assoc()) {
+          if ($row["FunctionName"] == "Staff Management") {
+            echo
+            '<td>
               <a href="admin.php?key=users&role=' . $rows["Role"] . '&id=' . $rows["UserID"] . '">
                 <button class="info_btn" id="info_btn">
                   <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
@@ -107,6 +117,10 @@ if (isset($_GET["id"])) {
               </a>
             </td>
           </tr>';
+            break;
+          }
+        }
+      }
     }
   }
   echo '
