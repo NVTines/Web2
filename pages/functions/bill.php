@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/../../database.php";
+require_once __DIR__ . '/../../database.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $dtb = new database();
 if (isset($_POST['add_bill'])) {
@@ -67,5 +67,54 @@ if (isset($_POST['remove_bill'])) {
         echo 1;
     } else {
         echo 0;
+    }
+}
+
+
+if (isset($_POST['check_status'])) {
+    $data = $dtb->filteration($_POST);
+    $res1 = $dtb->select("SELECT * FROM `account` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
+    if (mysqli_num_rows($res1) > 0) {
+        $row1 = $res1->fetch_assoc();
+        if ($data['valueStatus'] == "Tất Cả") {
+            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=?", [$row1['UserID']], 'i');
+        } else {
+            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=? AND `status`=?", [$row1['UserID'], $data['valueStatus']], 'is');
+        }
+        if (mysqli_num_rows($res2) > 0) {
+            while ($row2 = mysqli_fetch_assoc($res2)) {
+                $dataCart = "";
+                $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
+                while ($row3 = mysqli_fetch_assoc($res3)) {
+                    $res4 = $dtb->select("SELECT * FROM `product` WHERE `ProductID`=?", [$row3['ProductID']], 'i');
+                    if (mysqli_num_rows($res4) > 0) {
+                        $row4 = $res4->fetch_assoc();
+                        $imgBase64 = base64_encode($row4['IMG']);
+                        $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
+                        $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
+                                <div class='d-flex justify-content-between' style='flex-direction:column;'>
+                                <h5 class='card-title fw-bold'>$row4[ProductName] x $row3[Quantity]</h5>
+                                <p class='card-text'>$row3[Unitprice]$</p>
+                                </div>
+                                <img src='$imgSrc' class='img-fluid' style='width:60px;'>
+                            </div>";
+                    }
+                }
+
+                echo "
+                            <div class='ms-auto p-4 overflow-hidden'>
+                                <div class='card'>
+                                    <h5 class='card-header text-end'>Tình Trạng Đơn Hàng: $row2[status]</h5>
+                                    <div>
+                                    $dataCart
+                                    </div>
+                                    <a href='index.php?page=bill_detail&bill_id=$row2[BillID]' class='btn edit text-center text-success'>Xem Chi Tiết</a> 
+                                </div>
+                            </div>
+            ";
+            }
+        } else {
+            echo "<div class='mt-5 mb-5'><p class='text-center text-danger'>Bạn chưa có đơn hàng nào trùng với kết quả tìm kiếm</p></div>";
+        }
     }
 }
