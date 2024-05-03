@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/bill.css">
-    <?php include "js/cart.php" ?>
+    <?php include "js/bill.php" ?>
 </head>
 
 <?php
@@ -238,6 +238,8 @@ if ($purchase_data['status'] == "Đã Đặt") {
             <div class='stepper__line-background' style='background: rgb(0,0,0);'></div>
             <div class='stepper__line-foreground' style='width: calc(100% - 140px); background: rgb(0,0,0);'></div>
         </div>";
+} else if ($purchase_data['status'] == "Đã Hủy"){
+    $data.="<p class='font-monospace p-4' style='font-weight:bold; color:red;'>Đơn Hàng Đã bị Hủy vào ngày <span class='font-monospace'>$purchase_data[UpdateTime]</span></p>";
 }
 ?>
 <div class="RgsTlq">
@@ -251,12 +253,16 @@ if ($purchase_data['status'] == "Đã Đặt") {
     <div class="row">
         <?php
         $data = $dtb->filteration($_GET);
-        $res1 = $dtb->select("SELECT * FROM `customer` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
+        $res1 = $dtb->select("SELECT * FROM `account` WHERE `UserID`=?", [$_SESSION['UserID']], 'i');
         if (mysqli_num_rows($res1) > 0) {
             $row1 = $res1->fetch_assoc();
-            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `CustomerID`=? and `BillID`=?", [$row1['CustomerID'], $data['bill_id']], 'ii');
+            $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=? and `BillID`=?", [$row1['UserID'], $data['bill_id']], 'ii');
             while ($row2 = mysqli_fetch_assoc($res2)) {
                 $dataCart = "";
+                $btn_delete="";
+                if($row2['status']=="Đã Đặt"){
+                    $btn_delete.="<button type='button' onclick='remove_bill(\"$data[bill_id]\",\"$row2[status]\")' class='btn btn-danger shadow-none btn-sm'>Hủy Đơn Hàng</button>";
+                }
                 $dataBill = "
                 <div class='card-body m-2'>
                     <div class='d-flex justify-content-between align-items-center'>
@@ -270,6 +276,7 @@ if ($purchase_data['status'] == "Đã Đặt") {
                         <p>Địa chỉ nhận hàng:</p>
                         <p class='card-text'>$row2[delivery]</p>
                     </div>
+                    $btn_delete
                 </div>
                 ";
                 $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
