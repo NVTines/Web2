@@ -185,8 +185,8 @@ if (isset($_GET['id'])) {
           xhr.open("POST", "pages/functions/addToCart.php", true);
 
           xhr.onload = function() {
-            if (this.responseText == "added") {
-              alertCustom('warning', "Sản phẩm đã được thêm!");
+            if (this.responseText == "u_success") {
+              alertCustom('success', "Sản phẩm đã được thêm!");
             } else if (this.responseText == 1) {
               location.reload();
             } else if (this.responseText == "Server Down!") {
