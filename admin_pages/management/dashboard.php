@@ -75,33 +75,50 @@ echo
     </div>
     <div class="clearfix"></div>
   </div>
+
+                    <div class="" style="width:100%; height:500px; overflow-y:scroll;">
+                        <table class="" style="text-align:center;">
+                            <thead class="sticky-top" style="background-color:blue;">
+                                <tr class="bg-dark text-light">
+                                    <th scope="col">Mã Sản Phẩm</th>
+                                    <th scope="col">Tên Sản Phẩm</th>
+                                    <th scope="col">Ngày Đặt Hàng</th>
+                                    <th scope="col">Số lượng bán ra</th>
+                                </tr>
+                            </thead>
+                            <tbody id="static-product">
+
+                            </tbody>
+                        </table>
+                    </div>
+
 </div>';
 ?>
 <script>
   var dataset_bill = new Array();
   var dataset_import = new Array();
   <?php
-    $dtb = new database();
-    for ($m = 1; $m <= 12; $m++){
-      $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
-      $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
-      if($result = $dtb->get_data($query_bill)){
-        while($row = $result->fetch_assoc()){ ?>
-          dataset_bill.push('<?php echo $row["Total"]; ?>')
-  <?php
-        }
-      }
-      if($result = $dtb->get_data($query_import)){
-        while($row = $result->fetch_assoc()){ ?>
-          dataset_import.push('<?php echo $row["Total"]; ?>')
-  <?php
-        }
+  $dtb = new database();
+  for ($m = 1; $m <= 12; $m++) {
+    $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
+    $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
+    if ($result = $dtb->get_data($query_bill)) {
+      while ($row = $result->fetch_assoc()) { ?>
+        dataset_bill.push('<?php echo $row["Total"]; ?>')
+      <?php
       }
     }
-    $dtb->close_dtb();
+    if ($result = $dtb->get_data($query_import)) {
+      while ($row = $result->fetch_assoc()) { ?>
+        dataset_import.push('<?php echo $row["Total"]; ?>')
+  <?php
+      }
+    }
+  }
+  $dtb->close_dtb();
   ?>
-  
-  var xValues = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
+
+  var xValues = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
   const options = {
     type: 'line',
     data: {
@@ -128,5 +145,4 @@ echo
 
   new Chart("myChart", options);
   Chart.defaults.global.defaultFontColor = "white";
-
 </script>
