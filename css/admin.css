@@ -2,7 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1b203d;
-    overflow: hidden;
+    overflow: auto;
     /*Khi chiều cao của box không đủ chứa text, thì text bị tràn sẽ được dấu đi*/
     font-family: system-ui;
 }
@@ -201,6 +201,13 @@ table {
     border-collapse: collapse;
     /*Khoảng trống giữa các đường viền (border) của table bị loại bỏ, chỉ còn đường viền duy nhất.*/
     width: 100%;
+}
+
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
 }
 
 td,
@@ -433,7 +440,7 @@ button:hover {
     display: flex;
 }
 
-.info-wrapper h3{
+.info-wrapper h3 {
     line-height: 0px;
 }
 
