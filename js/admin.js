@@ -15,6 +15,16 @@ function countAll() {
   xhr.send('countAll');
 }
 
+function static_product(){
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", "functions/dashboard.php", true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+      let response = JSON.parse(this.responseText);
+      document.getElementById('static-product').innerHTML = response;
+  }
+  xhr.send('static_product');
+}
 
 // San pham ========================================================================
   function show(){
