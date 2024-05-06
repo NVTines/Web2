@@ -75,14 +75,40 @@ if (isset($_POST['static_product'])) {
     $data = "";
     $resDay = $dtb->mysqli_query("SELECT DISTINCT DATE(`CreateTime`) AS `DateOnly` FROM `bill` ORDER BY `DateOnly` DESC");
     while ($row = $resDay->fetch_assoc()) {
-        $resProduct = $dtb->mysqli_query("SELECT SUM(billdetail.Quantity) AS tong, billdetail.ProductID FROM `bill` INNER JOIN `billdetail` ON bill.BillID = billdetail.BillID WHERE DATE(bill.CreateTime) = '" . $row['DateOnly'] . "' GROUP BY billdetail.ProductID");
+        $resProduct = $dtb->mysqli_query("SELECT SUM(billdetail.Quantity) AS tong, billdetail.ProductID FROM `bill` INNER JOIN `billdetail` ON bill.BillID = billdetail.BillID WHERE DATE(bill.CreateTime) = '" . $row['DateOnly'] . "' GROUP BY billdetail.ProductID ORDER BY tong DESC");
         
         while($row1=$resProduct->fetch_assoc()){
             $resDetail=$dtb->mysqli_query("SELECT * FROM `product` WHERE `ProductID`=$row1[ProductID]");
             if(mysqli_num_rows($resDetail)>0){
                 $row2=$resDetail->fetch_assoc();
                 $data.="
-                    <tr> 
+                    <tr class='align-middle'> 
+                    <td>$row1[ProductID]</td>
+                    <td>$row2[ProductName]</td>
+                    <td>$row[DateOnly]</td>
+                    <td>$row1[tong]</td>
+                    </tr>
+                ";
+            }
+        }
+    }
+    echo json_encode($data);
+}
+
+
+if (isset($_POST['fill_date'])) {
+    $frm=$dtb->filteration($_POST);
+    $data = "";
+    $resDay = $dtb->mysqli_query("SELECT DISTINCT DATE(`CreateTime`) AS `DateOnly` FROM `bill` WHERE DATE(`CreateTime`) BETWEEN '$frm[DateBD]' AND '$frm[DateKT]' ORDER BY `DateOnly` DESC");
+    while ($row = $resDay->fetch_assoc()) {
+        $resProduct = $dtb->mysqli_query("SELECT SUM(billdetail.Quantity) AS tong, billdetail.ProductID FROM `bill` INNER JOIN `billdetail` ON bill.BillID = billdetail.BillID WHERE DATE(bill.CreateTime) = '" . $row['DateOnly'] . "' GROUP BY billdetail.ProductID ORDER BY tong DESC");
+        
+        while($row1=$resProduct->fetch_assoc()){
+            $resDetail=$dtb->mysqli_query("SELECT * FROM `product` WHERE `ProductID`=$row1[ProductID]");
+            if(mysqli_num_rows($resDetail)>0){
+                $row2=$resDetail->fetch_assoc();
+                $data.="
+                    <tr class='align-middle'> 
                     <td>$row1[ProductID]</td>
                     <td>$row2[ProductName]</td>
                     <td>$row[DateOnly]</td>
