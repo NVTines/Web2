@@ -75,7 +75,7 @@ echo
     </div>
     <div class="clearfix"></div>
   </div>
-
+  <div>
                     <div class="" style="width:100%; height:500px; overflow-y:scroll;">
                         <table class="" style="text-align:center;">
                             <thead class="sticky-top" style="background-color:blue;">
@@ -91,6 +91,13 @@ echo
                             </tbody>
                         </table>
                     </div>
+    <div style="margin-top:30px;">
+    <input type="date" id="DateBD" name="DateBD" style="width:15%; padding: 8px 12px; margin-right:15px;">
+    <input type="date" id="DateKT" name="DateKT" style="width:15%; padding: 8px 12px; margin-right:15px;">
+    <button onclick="filterDate()" class="" style="width:15%; margin-right:15px;">Xác Nhận</button>
+    <button onclick="static_product()" class="" style="width:15%;">Refresh</button>
+    </div>
+  </div>
 
 </div>';
 ?>
@@ -145,4 +152,6 @@ echo
 
   new Chart("myChart", options);
   Chart.defaults.global.defaultFontColor = "white";
+
+
 </script>
