@@ -26,6 +26,23 @@ function static_product(){
   xhr.send('static_product');
 }
 
+
+function filterDate() {
+  let DateBD = document.getElementById('DateBD').value;
+  let DateKT = document.getElementById('DateKT').value;
+  if (DateBD == '' || DateKT == '') {
+    alert("Thiếu Thông Tin, mời nhập lại!")
+  } else {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "functions/dashboard.php", true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      let response = JSON.parse(this.responseText);
+      document.getElementById('static-product').innerHTML = response;
+    }
+    xhr.send('fill_date'+'&DateBD=' + DateBD +'&DateKT=' + DateKT);
+  }
+}
 // San pham ========================================================================
   function show(){
     var arr = JSON.parse(localStorage.getItem('products'));
