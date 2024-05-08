@@ -1,5 +1,44 @@
 <script>
-  
+  document.addEventListener("DOMContentLoaded", function() {
+    var searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("keydown", function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("search-button").click();
+      }
+    });
+  });
+
+  function searchData() {
+    var searchInput = document.getElementById("search-input").value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("showlist").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "functions/searchUser.php?searchInput=" + searchInput, true);
+    xhttp.send();
+  }
+
+
+  // Function to sort data by ajax
+  function sortData() {
+    var sortHeader = document.getElementById("sort-header").value;
+    var sortDirection = document.querySelector('input[name="sort-direction"]:checked').value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("showlist").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "functions/sortUsers.php?sortHeader=" + sortHeader + "&sortDirection=" + sortDirection, true);
+    xhttp.send();
+  }
+
+  function refreshData() {
+    window.location.href = "admin.php?key=users";
+  }
 </script>
 <?php
 $db = new Database();
@@ -47,7 +86,43 @@ if (isset($_GET["id"])) {
         <div class="col-div-8">
           <div class="box-8">
             <div class="content-box">
-              <table id="showlist">
+              <table>
+                <tr>
+                  <td colspan="4">
+                    <div class="search-section">
+                        <input type="text" id="search-input" placeholder="ID, Username, Tên, Email...">
+                        <button id="search-button" onclick="searchData()">
+                          <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                  </td>        
+                  <td colspan="5">
+                    <div class="sort-section">
+                      <div class="sort-options">
+                          <label for="sort-header">Sắp xếp theo:</label>
+                          <select id="sort-header" name="sort-header">
+                              <option value="ID">ID</option>
+                              <option value="Name">Tên</option>
+                              <option value="Role">Loại tài khoản</option>
+                              <option value="Status">Trạng thái</option>
+                          </select>
+                      </div>
+              
+                      <div class="sort-options">
+                          <label for="sort-direction">Chiều sắp xếp:</label>
+                          <input type="radio" id="sort-asc" name="sort-direction" value="asc" checked>
+                          <label for="sort-asc">Tăng dần</label>
+                          <input type="radio" id="sort-desc" name="sort-direction" value="desc">
+                          <label for="sort-desc">Giảm dần</label>
+                      </div>
+              
+                      <div class="sort-options">
+                          <button id="sort-button" onclick="sortData()">Sắp xếp</button>
+                          <button id="refresh-button" onclick="refreshData()">Refresh</button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
                 <tr>
                   <th>ID</th>
                   <th>Username</th>
@@ -60,6 +135,7 @@ if (isset($_GET["id"])) {
                   <th></th>
                 </tr>
   ';
+  echo "<tbody id='showlist'>";
   $sql = "
   SELECT
   account.UserID,
@@ -127,6 +203,7 @@ if (isset($_GET["id"])) {
     }
   }
   echo '
+          </tbody>
         </table>
       </div>
     </div>
