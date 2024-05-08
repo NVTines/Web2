@@ -585,6 +585,15 @@ input.larger-input {
     /* Add some spacing between input and button */
 }
 
+/* Adjust the width and spacing for the date inputs */
+.search-section input[type="date"] {
+    width: 200px;
+    /* Set the desired width */
+    margin-right: 10px;
+    /* Add spacing between inputs */
+}
+
+
 /* RESPONSIVE */
 
 @media only screen and (max-width:1450px) {

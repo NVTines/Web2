@@ -6,7 +6,7 @@
   function toImportProducts() {
     window.location.href = "admin.php?key=nh&func=add";
   }
-  
+
   document.addEventListener("DOMContentLoaded", function() {
     var searchInput = document.getElementById("search-input");
     searchInput.addEventListener("keydown", function(event) {
@@ -83,14 +83,14 @@ if (isset($_GET["id"])) {
           <div class="content-box">
             <table>
               <tr>
-              <td colspan="4">
-                <div class="search-section">
-                    <input type="text" id="search-input" placeholder="Nhập tên sản phẩm...">
-                    <button id="search-button" onclick="searchData()">
-                      <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-              </td>        
+                <td colspan="4">
+                  <div class="search-section">
+                      <input type="text" id="search-input" placeholder="Nhập tên sản phẩm...">
+                      <button id="search-button" onclick="searchData()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                  </div>
+                </td>        
                 <td colspan="3">
                   <div class="sort-section">
                     <div class="sort-options">
