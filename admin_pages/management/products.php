@@ -6,8 +6,31 @@
   function toImportProducts() {
     window.location.href = "admin.php?key=nh&func=add";
   }
-  // Function to sort data by ajax
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var searchInput = document.getElementById("search-input");
+    searchInput.addEventListener("keydown", function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("search-button").click();
+      }
+    });
+  });
 
+  function searchData() {
+    var searchInput = document.getElementById("search-input").value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("showlist").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "functions/searchProducts.php?searchInput=" + searchInput, true);
+    xhttp.send();
+  }
+
+
+  // Function to sort data by ajax
   function sortData() {
     var sortHeader = document.getElementById("sort-header").value;
     var sortDirection = document.querySelector('input[name="sort-direction"]:checked').value;
@@ -19,6 +42,10 @@
     };
     xhttp.open("GET", "functions/sortProducts.php?sortHeader=" + sortHeader + "&sortDirection=" + sortDirection, true);
     xhttp.send();
+  }
+
+  function refreshData() {
+    window.location.href = "admin.php?key=sp";
   }
 </script>
 <?php
@@ -55,44 +82,52 @@ if (isset($_GET["id"])) {
         <div class="box-8">
           <div class="content-box">
             <table>
-            <tr>
-              <td colspan="7">
-                <div class="sort-section">
-                  <div class="sort-options">
-                      <label for="sort-header">Sắp xếp theo:</label>
-                      <select id="sort-header" name="sort-header">
-                          <option value="ID">ID</option>
-                          <option value="Name">Tên</option>
-                          <option value="Brand">Hãng</option>
-                          <option value="Price">Giá</option>
-                          <option value="Status">Trạng thái</option>
-                      </select>
-                  </div>
-          
-                  <div class="sort-options">
-                      <label for="sort-direction">Chiều sắp xếp:</label>
-                      <input type="radio" id="sort-asc" name="sort-direction" value="asc" checked>
-                      <label for="sort-asc">Tăng dần</label>
-                      <input type="radio" id="sort-desc" name="sort-direction" value="desc">
-                      <label for="sort-desc">Giảm dần</label>
-                  </div>
-          
-                  <div class="sort-options">
-                      <button id="sort-button" onclick="sortData()">Sắp xếp</button>
-                      <button id="refresh-button" onclick="refreshData()">Refresh</button>
-                  </div>
-                </div>
-              </td>
-            </tr>
               <tr>
-                <th>ID</th>
-                <th>Tên</th>
-                <th>Hãng</th>
-                <th>Ảnh</th>
-                <th>Giá</th>
-                <th>Trạng thái</th>
-                <th></th>
-              </tr>';
+              <td colspan="4">
+                <div class="search-section">
+                    <input type="text" id="search-input" placeholder="Nhập tên sản phẩm...">
+                    <button id="search-button" onclick="searchData()">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+              </td>        
+                <td colspan="3">
+                  <div class="sort-section">
+                    <div class="sort-options">
+                        <label for="sort-header">Sắp xếp theo:</label>
+                        <select id="sort-header" name="sort-header">
+                            <option value="ID">ID</option>
+                            <option value="Name">Tên</option>
+                            <option value="Brand">Hãng</option>
+                            <option value="Price">Giá</option>
+                            <option value="Status">Trạng thái</option>
+                        </select>
+                    </div>
+            
+                    <div class="sort-options">
+                        <label for="sort-direction">Chiều sắp xếp:</label>
+                        <input type="radio" id="sort-asc" name="sort-direction" value="asc" checked>
+                        <label for="sort-asc">Tăng dần</label>
+                        <input type="radio" id="sort-desc" name="sort-direction" value="desc">
+                        <label for="sort-desc">Giảm dần</label>
+                    </div>
+            
+                    <div class="sort-options">
+                        <button id="sort-button" onclick="sortData()">Sắp xếp</button>
+                        <button id="refresh-button" onclick="refreshData()">Refresh</button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+                <tr>
+                  <th>ID</th>
+                  <th>Tên</th>
+                  <th>Hãng</th>
+                  <th>Ảnh</th>
+                  <th>Giá</th>
+                  <th>Trạng thái</th>
+                  <th></th>
+                </tr>';
   echo "<tbody id='showlist'>";
   $query = "
   SELECT 
