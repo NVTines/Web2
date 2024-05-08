@@ -562,6 +562,29 @@ input.larger-input {
 }
 
 
+.search-section {
+    display: flex;
+    /* Use flexbox for better alignment */
+    align-items: center;
+    /* Center items vertically */
+}
+
+#search-input {
+    font-size: 16px;
+    /* Set font size as needed */
+    width: 100%;
+    /* Make the input field fill up the entire width */
+    padding: 8px;
+    /* Add padding to improve appearance */
+}
+
+#search-button {
+    font-size: 16px;
+    /* Set font size as needed */
+    margin-left: 8px;
+    /* Add some spacing between input and button */
+}
+
 /* RESPONSIVE */
 
 @media only screen and (max-width:1450px) {
