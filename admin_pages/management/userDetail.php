@@ -68,7 +68,7 @@ if ($results = $db->get_data($sql)) {
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center;">
-        <form action="./functions/updateUser.php" class="info-manage-form" method="POST">
+        <form action="./functions/updateUser.php?id=<?php echo $id; ?>&type=<?php echo $role; ?>" class="info-manage-form" method="POST">
             <div style="margin-left:20%;margin-right:20%;margin-top:50px;">
                 <div class="right-form-info">
                     <img alt="/img/default-avatar.png" class="avt-info" src="/img/default-avatar.png" /><br>

@@ -45,8 +45,6 @@ foreach ($products as $product) {
     $db->modify_data($updateQuantitySql);
 
     // Update price of the product
-    // Increase 10% of the original price
-    $price = round($product[2] + $product[2] * 0.1);
     if (hasNewPrice($productID, $price)) {
         $updatePriceSql = "UPDATE product SET ProductPrice = $price WHERE ProductID = $productID";
         $db->modify_data($updatePriceSql);

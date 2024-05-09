@@ -93,7 +93,7 @@
 </script>
 <div class="col-div-8" style="margin:20px 0px;">
     <div class="box-8">
-        <div class="manage-name-btn" onclick="invinbox()">&#9776;NHẬP HÀNG</div>
+        <div class="manage-name-btn" onclick="invinbox()">&#9776; NHẬP HÀNG</div>
         <a href="admin.php?key=nh" class="back-btn">QUAY LẠI</a>
     </div>
 </div>
