@@ -1,10 +1,12 @@
 <script>
   function thongbaobox(id){
+    showForm();
     document.getElementById('boxtb_supplier').style.animation="tb 1s forwards";
     document.getElementById('boxtb_supplier').innerHTML=
-    '<div class="boxtb-title">XÁC NHẬN XÓA (ID - '+id+')</div><div class="confirm-btn-boxtb"><a id="yes-btn" href="functions/deleteSup.php?id='+id+'">YES</a><a href="#" id="no-btn" onclick="invthongbaobox()">NO</a></div>';
+    '<div class="boxtb-title">Chắc chắn muốn xóa?('+id+')</div><div class="confirm-btn-boxtb"><a class="yes-btn" onclick="deleteOneSup('+id+')">YES</a><a class="no-btn" onclick="invthongbaobox()">NO</a></div>';
   }
   function invthongbaobox() {
+    hideForm();
     document.getElementById('boxtb_supplier').style.animation = "tb_2 1s forwards";
   }
 </script>
@@ -30,7 +32,7 @@
       <div class="col-div-8">
         <div class="box-8">
           <div class="content-box">
-            <table id="showlist">
+            <table id="supTable">
               <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -40,12 +42,11 @@
                 <th>Status</th>
                 <th></th>
               </tr>';
-            $sql = "SELECT * FROM supplier order by status ASC";
+            $sql = "SELECT * FROM supplier WHERE status=1";
             if($results = $db->get_data($sql)){
               while($rows = $results->fetch_assoc()){
                 echo 
-                '<tr><td>'.$rows["SupplierID"].'</td>';
-                if($rows['status']=="1"){
+                '<tr id="sup'.$rows["SupplierID"].'"><td>'.$rows["SupplierID"].'</td>';
                   echo 
                   '<td><a href="admin.php?key=ncc&func=upd&supid='.$rows["SupplierID"].'&supname='.$rows["SupplierName"].'&supaddress='.$rows["Address"].'&supphone='.$rows["Phone"].'&supfax='.$rows["FaxNumber"].'" style="color:#85BCFF;">'.$rows["SupplierName"].'</a></td>
                   <td>'.$rows["Address"].'</td>
@@ -66,24 +67,6 @@
                         </button>
                     </a>
                   </td></tr>';   
-                }else{
-                  echo 
-                  '<td>'.$rows["SupplierName"].'</td>
-                  <td>'.$rows["Address"].'</td>
-                  <td>'.$rows["Phone"].'</td>
-                  <td>'.$rows["FaxNumber"].'</td>';
-                  echo 
-                  '<td style="color:red;font-weight:bold;">NGƯNG HOẠT ĐỘNG</td>';
-                  echo 
-                  '<td>
-                    <a href="admin.php?key=ncc&id='.$rows["SupplierID"].'">
-                      <button class="info_btn" id="info_btn">
-                        <i class="fa-solid fa-circle-info"></i>
-                      </button>
-                    </a>
-                  </td></tr>';   
-                }
-                         
               }    
             }
             echo  

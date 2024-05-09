@@ -7,11 +7,13 @@
     window.location.href = "admin.php?key=nh&func=add";
   }
   function thongbaobox(id){
+    showForm();
     document.getElementById('boxtb_product').style.animation="tb 1s forwards";
     document.getElementById('boxtb_product').innerHTML=
-    '<div class="boxtb-title">XÁC NHẬN XÓA (ID - '+id+')</div><div class="confirm-btn-boxtb"><a id="yes-btn" href="functions/deleteSup.php?id='+id+'">YES</a><a href="#" id="no-btn" onclick="invthongbaobox()">NO</a></div>';
+    '<div class="boxtb-title">Chắc chắn muốn xóa?('+id+')</div><div class="confirm-btn-boxtb"><a class="yes-btn" onclick="deleteOneProduct('+id+')">YES</a><a class="no-btn" onclick="invthongbaobox()">NO</a></div>';
   }
   function invthongbaobox() {
+    hideForm();
     document.getElementById('boxtb_product').style.animation = "tb_2 1s forwards";
   }
 </script>
@@ -29,22 +31,16 @@ if (isset($_GET["id"])) {
   '<div id="boxtb" style="background-color:white;height:-100px;width:350px;position:fixed;z-index:10;right:0">
     </div>
     <div id="shows">
-      <div id="main">
-        <div class="head">
-          <div class="col-div-6">
-            <span class="nav2" onclick="invinbox()" style="font-size: 30px; cursor: pointer; color: white">
-              &#9776;   QUẢN LÝ SẢN PHẨM
-            </span>
-          </div>
-          <div class="col-div-6">
+      
+      <div class="col-div-8" style="margin:20px 0px;">
+        <div class="box-8">
+          <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ SẢN PHẨM</div>
           <button title="Nhập sản phẩm" class="add-product-button" onclick="toImportProducts()">
             <ion-icon name="download-outline"></ion-icon>
           </button> 
           <button title="Thêm sản phẩm mới" class="add-product-button" onclick="toAddNewProduct()">
               <ion-icon name="add-circle-outline"></ion-icon>
           </button>
-          </div>
-          <div class="clearfix"></div>
         </div>
       </div>
       <div class="col-div-8">
@@ -97,12 +93,12 @@ if (isset($_GET["id"])) {
         '
           <td>
                 <a href="admin.php?key=sp&id=' . $row['ID'] . '">
-                    <button class="info_btn" id="info_btn">
+                    <button class="info_btn">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
                 </a>
                 <a onclick="thongbaobox(' . $row['ID'] . ');">
-                    <button class="quit_btn" id="quit_btn">
+                    <button class="quit_btn">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </a>

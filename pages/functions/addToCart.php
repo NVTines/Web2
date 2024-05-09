@@ -33,7 +33,7 @@ if (isset($_POST['add_to_cart'])) {
                     if (mysqli_num_rows($res2) > 0) {
                         $row2 = $res2->fetch_assoc();
                         $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
-                        $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
+                        $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']*110/100];
                         if ($dtb->insert($query2, $values2, 'iiiid')) {
                             echo 1;
                         } else {
@@ -64,7 +64,7 @@ if (isset($_POST['add_to_cart'])) {
                     if (mysqli_num_rows($res2) > 0) {
                         $row2 = $res2->fetch_assoc();
                         $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
-                        $values2 = [$row1['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
+                        $values2 = [$row1['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']*110/100];
                         if ($dtb->insert($query2, $values2, 'iiiid')) {
                             echo 1;
                         } else {

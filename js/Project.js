@@ -66,27 +66,7 @@ function CheckHD() {//Kiểm tra hóa đơn đã điền đủ thông tin
 function invthongbaobox() {
     document.getElementById('boxtb').style.animation = "tb_2 1s forwards";
 }
-var count = 0;
-function invinbox() {
-    if (count == 0) {
 
-        document.getElementById('nav').style.animation = "navside_2 2s forwards";
-        document.getElementById('shows').style.animation = "full 2s forwards";
-        count++;
-        return 0;
-    }
-    if (count == 1) {
-
-        document.getElementById('nav').style.animation = "navside 2s forwards";
-        document.getElementById('shows').style.animation = "full_2 2s forwards";
-        count++;
-        return 0;
-    }
-    if (count == 2) {
-        count = 0;
-        invinbox();
-    }
-}
 var myIndex = 0;
 function slider() {
     var i;

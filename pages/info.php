@@ -28,7 +28,7 @@
                                 confirmButtonText: 'OK'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = "index.php?page=info";
+                                    window.location.reload();
                                 }
                             });
                             break;
@@ -40,7 +40,7 @@
                                 confirmButtonText: 'OK'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = "index.php?page=info";
+                                    window.location.reload();
                                 }
                             });
                             break;
@@ -84,7 +84,7 @@
                             confirmButtonText: 'OK'
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href = "index.php?page=info";
+                                    window.location.reload();
                                 }
                             });
                             break;

@@ -1,10 +1,15 @@
 <?php
     require_once __DIR__."/../../database.php";
     $dtb = new database();
-    if(isset($_GET["id"])){
-        $id = $_GET["id"];
+    if(isset($_POST["id"])){
+        $id = $_POST["id"];
         $sql = "UPDATE product SET status='hidd' WHERE ProductID='$id'"; 
-        $dtb->modify_data($sql);
+        if($dtb->modify_data($sql)){
+            $response['status'] = "success";
+        }else{
+            $response['status'] = "error";
+        }
         $dtb->close_dtb();
-        header("Location:../admin.php?key=sp");
+        header('Content-Type: application/json');
+        echo json_encode($response);  
     }

@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
       <div class="info-pdetail-wrapper">
         <h5 style="color : orange"><?php echo $row['ProducerName'] ?></h5>
         <h1 class="py-4" style="color:cornflowerblue"><?php echo $row['ProductName'] ?></h1>
-        <h3 style="margin:30px;border-bottom: #d1d1d1 1px solid;padding-bottom:20px;">Giá: <span style="color:orange;"><?php echo $row['ProductPrice'] ?> VNĐ</span></h3>
+        <h3 style="margin:30px;border-bottom: #d1d1d1 1px solid;padding-bottom:20px;">Giá: <span style="color:orange;"><?php echo $row['ProductPrice']*110/100 ?> VNĐ</span></h3>
         <form action='' id='add-cart' style="margin:30px;margin-top:50px;">
           <h3>Size: </h3>
           <div>
@@ -109,10 +109,10 @@ if (isset($_GET['id'])) {
           <div style="margin-top:80px;">
             <input type="hidden" name="ProductID" value=<?php echo $row['ProductID'] ?> />
             <input type="hidden" name="ProductName" value='<?php echo $row['ProductName'] ?>' />
-            <input type="hidden" name="ProductPrice" value='<?php echo $row['ProductPrice'] . " VNĐ " ?>' />
+            <input type="hidden" name="ProductPrice" value='<?php echo ($row['ProductPrice']*110/100) . " VNĐ " ?>' />
             <input type="hidden" name="ProductImage" value='<?php echo $src ?>' />
             <input type="hidden" name="ProducerName" value='<?php echo $row['ProducerName'] ?>' />
-            <input onblur="checkEmptyProductOrder()" type="number" min="1" max="100" value="1" name="Quantity" id="p-quantity" />
+            <input onblur="checkEmptyProductOrder()" type="number" min="1" max="10" value="1" name="Quantity" id="p-quantity" />
             <?php
             if (isset($_SESSION['UserID'])) {
               echo '<button type="submit" class="buy-btn">Thêm vào giỏ hàng</button>';

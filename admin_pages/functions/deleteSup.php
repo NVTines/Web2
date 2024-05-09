@@ -1,10 +1,16 @@
 <?php
     require_once __DIR__."/../../database.php";
     $dtb = new database();
-    if(isset($_GET["id"])){
-        $id = $_GET["id"];
+    $response = array();
+    if(isset($_POST["data"])){
+        $id = $_POST["data"];
         $sql = "UPDATE supplier SET status=2 WHERE SupplierID='$id'"; 
-        $dtb->modify_data($sql);
+        if($dtb->modify_data($sql)){
+            $response['status'] = "success";       
+        }else{
+            $response['status'] = "error";
+        }
         $dtb->close_dtb();
-        header("Location:../admin.php?key=ncc");
+        header('Content-Type: application/json');
+        echo json_encode($response);    
     }

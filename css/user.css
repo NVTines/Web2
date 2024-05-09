@@ -181,13 +181,13 @@ th {
     }
 
     to {
-        top: 0%
+        top: 10%
     }
 }
 
 @keyframes tb_2 {
     from {
-        top: 0%
+        top: 10%
     }
 
     to {
@@ -236,14 +236,17 @@ th {
 }
 
 .boxtb {
-    background-color: white;
+    border:solid 5px #0f1325;
+    border-radius:10px;
     position: fixed;
     z-index: 10;
-    right: 45%;
-    width: 10%;
+    left: 50%;
+    width: 250px;
+    top: -20%;
 }
 
 .boxtb a {
+    cursor:pointer;
     text-decoration: none;
     margin: 30px;
 }
@@ -251,8 +254,8 @@ th {
 .boxtb-title {
     font-weight: bold;
     text-align: center;
-    background-color: black;
-    color: white;
+    background-color: #1b203d;
+    color: whitesmoke;
     font-size:17px;
     padding:20px;
 }
@@ -261,21 +264,21 @@ th {
     padding:10px;
     text-align: center;
     font-weight: bold;
-    background-color:whitesmoke;
+    background-color:#272c4a;
 }
 
-#yes-btn {
-    color: deepskyblue;
+.yes-btn {
+    color: rgb(0, 143, 7);
 }
 
-#yes-btn:hover {
-    color: skyblue;
+.yes-btn:hover {
+    color: rgb(1, 201, 34);
 }
 
-#no-btn {
-    color: crimson;
+.no-btn {
+    color: rgb(179, 0, 36);
 }
 
-#no-btn:hover {
+.no-btn:hover {
     color: red;
 }

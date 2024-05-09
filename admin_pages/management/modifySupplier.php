@@ -72,7 +72,7 @@
 </div>
 <div class="col-div-8">
     <div class="box-8" style="display:flex;justify-content:center; width:50%;">
-        <form class="info-manage-form" method="POST">
+        <form class="info-manage-form" id="supplier-create-form" method="POST">
             <?php 
                 $id=isset($_GET['supid'])?$_GET['supid']:"";
                 echo '<input id="supp-id" style="display:none;" value="'.$id.'"/>';

@@ -94,7 +94,7 @@ if (isset($_POST['action'])) {
 
                                         <div class="text-gray-700 d-flex">
                                             <span class="fw-bold" style="font-size:16px;"><b>Price:</b></span>
-                                            <div class="ms-2 fw-bolder" style="color:orange;font-size:18px;">' . number_format($row["ProductPrice"], 2) . ' VNĐ</div>
+                                            <div class="ms-2 fw-bolder" style="color:orange;font-size:18px;">' . number_format($row["ProductPrice"]*110/100, 2) . ' VNĐ</div>
                                         </div>
 
                                         <div class="text-gray-700 d-flex">
