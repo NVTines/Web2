@@ -3,11 +3,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/bill.css">
-<<<<<<< HEAD
-    <?php include "js/cart.php" ?>
-=======
     <?php include "js/bill.php" ?>
->>>>>>> tuan
 </head>
 
 <?php
@@ -263,13 +259,10 @@ if ($purchase_data['status'] == "Đã Đặt") {
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=? and `BillID`=?", [$row1['UserID'], $data['bill_id']], 'ii');
             while ($row2 = mysqli_fetch_assoc($res2)) {
                 $dataCart = "";
-<<<<<<< HEAD
-=======
                 $btn_delete="";
                 if($row2['status']=="Đã Đặt"){
                     $btn_delete.="<button type='button' onclick='remove_bill(\"$data[bill_id]\",\"$row2[status]\")' class='btn btn-danger shadow-none btn-sm'>Hủy Đơn Hàng</button>";
                 }
->>>>>>> tuan
                 $dataBill = "
                 <div class='card-body m-2'>
                     <div class='d-flex justify-content-between align-items-center'>
@@ -283,10 +276,7 @@ if ($purchase_data['status'] == "Đã Đặt") {
                         <p>Địa chỉ nhận hàng:</p>
                         <p class='card-text'>$row2[delivery]</p>
                     </div>
-<<<<<<< HEAD
-=======
                     $btn_delete
->>>>>>> tuan
                 </div>
                 ";
                 $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');

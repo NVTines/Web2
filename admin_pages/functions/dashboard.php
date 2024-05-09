@@ -38,11 +38,8 @@ if (isset($_POST['countAll'])) {
     if ($res4) {
         if ($row3 = $res4->fetch_assoc())
             $countSPBD = $row3['quantity'];
-<<<<<<< HEAD
-        else 
-=======
         else
->>>>>>> tuan
+
             $countSPBD = 0;
     }
 
@@ -74,8 +71,6 @@ if (isset($_POST['countAll'])) {
     );
     echo json_encode($response);
 }
-<<<<<<< HEAD
-=======
 
 if (isset($_POST['static_product'])) {
     $data = "";
@@ -126,4 +121,3 @@ if (isset($_POST['fill_date'])) {
     }
     echo json_encode($data);
 }
->>>>>>> tuan

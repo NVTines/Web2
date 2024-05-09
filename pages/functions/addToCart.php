@@ -24,9 +24,6 @@ if (isset($_POST['add_to_cart'])) {
             $vs1 = [$product_id,$row3['SizeID'], $row0['CartID']];
             $res1 = $dtb->select($select1, $vs1, 'iii');
             if (mysqli_num_rows($res1) > 0) {
-<<<<<<< HEAD
-                echo 'added';
-=======
                 $row1=$res1->fetch_assoc();
                 $n_quantity=$product_quantity+ $row1['Quantity'];
                 $update1="UPDATE `cartdetails` SET `Quantity`=? WHERE `ProductID`=? AND `SizeID`=? AND `CartID`=?";
@@ -37,7 +34,6 @@ if (isset($_POST['add_to_cart'])) {
                 } else {
                     echo 0;
                 }
->>>>>>> tuan
             } else {
                     $row1 = $res1->fetch_assoc();
                     $select2 = "SELECT * FROM `product` WHERE `ProductID`=?";
@@ -46,11 +42,7 @@ if (isset($_POST['add_to_cart'])) {
                     if (mysqli_num_rows($res2) > 0) {
                         $row2 = $res2->fetch_assoc();
                         $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
-<<<<<<< HEAD
                         $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']*110/100];
-=======
-                        $values2 = [$row0['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
->>>>>>> tuan
                         if ($dtb->insert($query2, $values2, 'iiiid')) {
                             echo 1;
                         } else {
@@ -81,11 +73,7 @@ if (isset($_POST['add_to_cart'])) {
                     if (mysqli_num_rows($res2) > 0) {
                         $row2 = $res2->fetch_assoc();
                         $query2 = "INSERT INTO `cartdetails`(`CartID`, `ProductID`,`SizeID`, `Quantity`, `UnitPrice`) VALUES (?,?,?,?,?)";
-<<<<<<< HEAD
                         $values2 = [$row1['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']*110/100];
-=======
-                        $values2 = [$row1['CartID'], $product_id, $row3['SizeID'], $product_quantity, $row2['ProductPrice']];
->>>>>>> tuan
                         if ($dtb->insert($query2, $values2, 'iiiid')) {
                             echo 1;
                         } else {
@@ -126,15 +114,9 @@ if (isset($_POST['get_product_cart'])) {
                             <td>$row3[ProductName]</td>
                             <td>$row4[value]</td>
                             <td>
-<<<<<<< HEAD
-                                <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity],$row2[SizeID])' class='cart-qty-plus' type='button'>+</button>
-                                <input disabled type='number' name='quantity' id='quantity$row2[ProductID]$row2[SizeID]' style='width:60px;' min='0' max='$row4[Quantity]' value='$row2[Quantity]'/>
-                                <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID], $row2[SizeID])' class='cart-qty-minus' type='button'>-</button>
-=======
                                 <button onclick='setQuantityPlus($_SESSION[cart_idUser],$row2[ProductID],$row4[Quantity],$row2[SizeID])' class='cart-qty-plus btn btn-secondary' type='button'>+</button>
                                 <input disabled type='number' name='quantity' id='quantity$row2[ProductID]$row2[SizeID]' style='width:60px;' min='0' max='$row4[Quantity]' value='$row2[Quantity]'/>
                                 <button onclick='setQuantityMinus($_SESSION[cart_idUser],$row2[ProductID], $row2[SizeID])' class='cart-qty-minus btn btn-secondary' type='button'>-</button>
->>>>>>> tuan
                             </td>
                             <td>$row3[Color]</td>
                             <td>$row2[UnitPrice]$</td>
@@ -197,8 +179,4 @@ function calculateTotalCart()
         $total += $price * $quantity;
     }
     $_SESSION['total'] = $total;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> tuan

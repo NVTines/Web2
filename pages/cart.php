@@ -72,17 +72,10 @@
 $data = "";
 if ($login = 1) {
     $data .= "<form action='' id='hoadon' style=''>
-<<<<<<< HEAD
-        <h1 style='text-align: center;margin-bottom:10px'><i>Payment Form</i></h1>
-        <div class='mb-3'>
-        <label for='pttt' class='form-label'>Payments</label>
-        <select id='pttt' style='float:right;'>
-=======
         <h1 class='fw-bold' style='text-align: center;margin-bottom:30px;'>Payment Form</h1>
         <div class='mb-3'>
         <label for='pttt' class='form-label'>Payments</label>
         <select class='form-select' id='pttt' style='width:50%; float:right;'>
->>>>>>> tuan
             <option selected value='0'>Select Option</option>
             <option value='1'>VisaCard</option>
             <option value='2'>Paypal</option>
@@ -102,11 +95,7 @@ if ($login = 1) {
     </div>
 
 
-<<<<<<< HEAD
-    <button type='submit' class='btn btn-sm text-white shadow-none' style='float:right; background: #ff523b; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
-=======
     <button type='submit' class='btn btn-sm text-white shadow-none custom-bg' style='float:right; padding: 10px;font-weight: bold;cursor: pointer;margin: 20px;border-radius: 20px;'>Thanh Toán</button>
->>>>>>> tuan
 
     </form>";
 }

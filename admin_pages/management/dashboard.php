@@ -105,29 +105,6 @@ echo
   var dataset_bill = new Array();
   var dataset_import = new Array();
   <?php
-<<<<<<< HEAD
-    $dtb = new database();
-    for ($m = 1; $m <= 12; $m++){
-      $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
-      $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
-      if($result = $dtb->get_data($query_bill)){
-        while($row = $result->fetch_assoc()){ ?>
-          dataset_bill.push('<?php echo $row["Total"]; ?>')
-  <?php
-        }
-      }
-      if($result = $dtb->get_data($query_import)){
-        while($row = $result->fetch_assoc()){ ?>
-          dataset_import.push('<?php echo $row["Total"]; ?>')
-  <?php
-        }
-      }
-    }
-    $dtb->close_dtb();
-  ?>
-  
-  var xValues = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
-=======
   $dtb = new database();
   for ($m = 1; $m <= 12; $m++) {
     $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
@@ -149,7 +126,6 @@ echo
   ?>
 
   var xValues = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
->>>>>>> tuan
   const options = {
     type: 'line',
     data: {
@@ -176,9 +152,4 @@ echo
 
   new Chart("myChart", options);
   Chart.defaults.global.defaultFontColor = "white";
-
-<<<<<<< HEAD
-=======
-
->>>>>>> tuan
 </script>

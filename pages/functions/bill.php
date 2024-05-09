@@ -1,11 +1,7 @@
 <?php
 session_start();
-<<<<<<< HEAD
-require_once __DIR__ . "/../../database.php";
-=======
 require_once __DIR__ . '/../../database.php';
 date_default_timezone_set('Asia/Ho_Chi_Minh');
->>>>>>> tuan
 $dtb = new database();
 if (isset($_POST['add_bill'])) {
     $data = $dtb->filteration($_POST);
@@ -22,11 +18,7 @@ if (isset($_POST['add_bill'])) {
 
                 $billDetails[] = array(
                     'ProductID' => $row3['ProductID'],
-<<<<<<< HEAD
-                    'SizeID'=>$row3['SizeID'],
-=======
                     'SizeID' => $row3['SizeID'],
->>>>>>> tuan
                     'Quantity' => $row3['Quantity'],
                     'UnitPrice' => $row3['UnitPrice']
                 );
@@ -34,25 +26,11 @@ if (isset($_POST['add_bill'])) {
             $createDate = date('Y-m-d H:i:s');
             //insert bill
             $is1 = "INSERT INTO `bill`(`AccountID`,`CreateTime`, `Total`,`delivery`,`note`,`payment`, `status`) VALUES (?,?,?,?,?,?,?)";
-<<<<<<< HEAD
-            $vl1 = [$_SESSION['UserID'], $createDate, $total,$data['delivery'],$data['note'],$data['pttt'], "Đã Đặt"];
-=======
             $vl1 = [$_SESSION['UserID'], $createDate, $total, $data['delivery'], $data['note'], $data['pttt'], "Đã Đặt"];
->>>>>>> tuan
             if ($dtb->insert($is1, $vl1, 'isdssss')) {
                 $bill_id = mysqli_insert_id($dtb->get_conn()); // sẽ chứa giá trị ID của phòng vừa được thêm vào
                 foreach ($billDetails as $billDetail) {
                     $is2 = "INSERT INTO `billdetail`(`BillID`, `ProductID`,`SizeID`, `Quantity`, `Unitprice`) VALUES (?,?,?,?,?)";
-<<<<<<< HEAD
-                    $vl2 = [$bill_id, $billDetail['ProductID'],$billDetail['SizeID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
-                    $resIS = $dtb->insert($is2, $vl2, 'iiiid');
-
-                    $res4=$dtb->select("SELECT * FROM `sizedetail` WHERE `SizeID`=? AND `ProductID`=?",[$billDetail['SizeID'],$billDetail['ProductID']],'ii');
-                    if(mysqli_num_rows($res4)>0){
-                        $row4=$res4->fetch_assoc();
-                        $quantity=$row4['Quantity']-$billDetail['Quantity'];
-                        $resUP=$dtb->update("UPDATE `sizedetail` SET `Quantity`=? WHERE `SizeID`=? AND `ProductID`=?",[$quantity,$billDetail['SizeID'],$billDetail['ProductID']],'iii');
-=======
                     $vl2 = [$bill_id, $billDetail['ProductID'], $billDetail['SizeID'], $billDetail['Quantity'], $billDetail['UnitPrice']];
                     $resIS = $dtb->insert($is2, $vl2, 'iiiid');
 
@@ -61,7 +39,6 @@ if (isset($_POST['add_bill'])) {
                         $row4 = $res4->fetch_assoc();
                         $quantity = $row4['Quantity'] - $billDetail['Quantity'];
                         $resUP = $dtb->update("UPDATE `sizedetail` SET `Quantity`=? WHERE `SizeID`=? AND `ProductID`=?", [$quantity, $billDetail['SizeID'], $billDetail['ProductID']], 'iii');
->>>>>>> tuan
                     }
                 }
             }
@@ -82,9 +59,6 @@ if (isset($_POST['add_bill'])) {
 }
 
 
-<<<<<<< HEAD
-?>
-=======
 if (isset($_POST['remove_bill'])) {
     $data = $dtb->filteration($_POST);
     $updateDate = date('Y-m-d H:i:s');
@@ -144,4 +118,3 @@ if (isset($_POST['check_status'])) {
         }
     }
 }
->>>>>>> tuan

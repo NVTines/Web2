@@ -31,14 +31,10 @@ if (isset($_SESSION['UserID'])) {
         if (mysqli_num_rows($res1) > 0) {
             $row1 = $res1->fetch_assoc();
             $res2 = $dtb->select("SELECT * FROM `bill` WHERE `AccountID`=?", [$row1['UserID']], 'i');
-<<<<<<< HEAD
-            if(mysqli_num_rows($res2)>0){
-=======
             if (mysqli_num_rows($res2) > 0) {
         ?>
                 <div id="showBill">
             <?php
->>>>>>> tuan
                 while ($row2 = mysqli_fetch_assoc($res2)) {
                     $dataCart = "";
                     $res3 = $dtb->select("SELECT * FROM `billdetail` WHERE `BillID`=?", [$row2['BillID']], 'i');
@@ -47,10 +43,6 @@ if (isset($_SESSION['UserID'])) {
                         if (mysqli_num_rows($res4) > 0) {
                             $row4 = $res4->fetch_assoc();
                             $imgBase64 = base64_encode($row4['IMG']);
-<<<<<<< HEAD
-                            // Tạo đường dẫn dữ liệu (data URL) cho thẻ <img>
-=======
->>>>>>> tuan
                             $imgSrc = 'data:image/jpeg;base64,' . $imgBase64;
                             $dataCart .= "<div class='card-body border border-black m-2 d-flex justify-content-between'>
                                 <div class='d-flex justify-content-between' style='flex-direction:column;'>
@@ -61,11 +53,6 @@ if (isset($_SESSION['UserID'])) {
                             </div>";
                         }
                     }
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> tuan
                     echo <<<donhang
                             <div class="ms-auto p-4 overflow-hidden">
                                 <div class="card">
