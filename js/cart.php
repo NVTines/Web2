@@ -104,9 +104,15 @@
         xhr.open("POST", "pages/functions/addToCart.php", true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
+<<<<<<< HEAD
         let response = JSON.parse(this.responseText);
         document.getElementById('cart-data').innerHTML = response.cartData;
         document.getElementById('thanhtoan').innerHTML = response.thanhtoan;
+=======
+            let response = JSON.parse(this.responseText);
+            document.getElementById('cart-data').innerHTML = response.cartData;
+            document.getElementById('thanhtoan').innerHTML = response.thanhtoan;
+>>>>>>> tuan
         }
         xhr.send('get_product_cart' + '&cart_id=' + cart_id);
     }
@@ -127,6 +133,7 @@
                 alertCustom('danger', 'Server lỗi!');
             }
         }
+<<<<<<< HEAD
         xhr.send('remove_product' + '&product_id=' + product_id + '&cart_id=' + cartID + '&size_id='+sizeID);
     }
 
@@ -137,6 +144,17 @@
             alertCustom('danger', 'Không đủ số lượng hàng');
         }
         else {
+=======
+        xhr.send('remove_product' + '&product_id=' + product_id + '&cart_id=' + cartID + '&size_id=' + sizeID);
+    }
+
+    function setQuantityPlus(cartID, product_id, max_quantity, sizeID) {
+        let quantity = document.getElementById('quantity' + product_id + sizeID).value;
+        quantity = parseInt(quantity);
+        if (max_quantity < quantity + 1) {
+            alertCustom('danger', 'Không đủ số lượng hàng');
+        } else {
+>>>>>>> tuan
             quantity = quantity + 1;
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "pages/functions/addToCart.php", true);
@@ -149,12 +167,20 @@
                     alertCustom('danger', 'Server lỗi!');
                 }
             }
+<<<<<<< HEAD
             xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity +'&size_id='+sizeID);
+=======
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity + '&size_id=' + sizeID);
+>>>>>>> tuan
         }
     }
 
     function setQuantityMinus(cartID, product_id, sizeID) {
+<<<<<<< HEAD
         let quantity = document.getElementById('quantity' + product_id +sizeID).value;
+=======
+        let quantity = document.getElementById('quantity' + product_id + sizeID).value;
+>>>>>>> tuan
         quantity = parseInt(quantity);
 
         if (quantity > 0) {
@@ -170,7 +196,11 @@
                     alertCustom('danger', 'Server lỗi!');
                 }
             }
+<<<<<<< HEAD
             xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity +'&size_id='+sizeID);
+=======
+            xhr.send('update_quantity' + '&product_id=' + product_id + '&quantity=' + quantity + '&size_id=' + sizeID);
+>>>>>>> tuan
         }
     }
 </script>

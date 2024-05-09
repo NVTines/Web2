@@ -27,6 +27,7 @@
   <script>
     window.onload = function() {
       countAll();
+      static_product();
     }
   </script>
   <div class="block-mid" style="position:fixed;opacity:0;z-index:-1;width:100%;height:100%;background-color:black"></div>
