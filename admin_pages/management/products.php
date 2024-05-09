@@ -28,11 +28,7 @@ if (isset($_GET["id"])) {
   require "management/productDetail.php";
 } else {
   echo
-  '<div id="boxtb" style="background-color:white;height:-100px;width:350px;position:fixed;z-index:10;right:0">
-    </div>
-    <div id="shows">
-      
-      <div class="col-div-8" style="margin:20px 0px;">
+  ' <div class="col-div-8" style="margin:20px 0px;">
         <div class="box-8">
           <div class="manage-name-btn" onclick="invinbox()">&#9776;QUẢN LÝ SẢN PHẨM</div>
           <button title="Nhập sản phẩm" class="add-product-button" onclick="toImportProducts()">
@@ -96,13 +92,15 @@ if (isset($_GET["id"])) {
                     <button class="info_btn">
                         <i class="fa-solid fa-circle-info"></i>
                     </button>
-                </a>
-                <a onclick="thongbaobox(' . $row['ID'] . ');">
-                    <button class="quit_btn">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </a>
-            </td>' .
+                </a>';
+      if($row['Status'] == 'acti'){
+        echo '<a onclick="thongbaobox(' . $row['ID'] . ');">
+            <button class="quit_btn">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </a>';
+      }   
+            echo'</td>' .
         '</tr>';
     }
   }

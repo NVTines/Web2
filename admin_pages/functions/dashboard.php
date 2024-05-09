@@ -10,7 +10,7 @@ if (isset($_POST['countAll'])) {
     $percent = 0;
 
     // Lấy số lượng khách hàng
-    $res1 = $dtb->mysqli_query("SELECT COUNT(*) AS `customer_count` FROM `customer`");
+    $res1 = $dtb->mysqli_query("SELECT COUNT(*) AS `customer_count` FROM `account` where RoleID<>'3'");
     if ($res1) {
         if ($row1 = $res1->fetch_assoc()) {
             $countKH = $row1['customer_count'];
@@ -26,7 +26,7 @@ if (isset($_POST['countAll'])) {
     }
 
     // Lấy hóa đơn
-    $res3 = $dtb->select("SELECT COUNT(*) AS `bill_count` FROM `bill` WHERE `status`=?", ['Đã Nhận Hàng'], 's');
+    $res3 = $dtb->mysqli_query("SELECT COUNT(*) AS `bill_count` FROM `bill` WHERE `status`<>'Đã Hủy' AND `status`<>'Đã Đặt'");
     if ($res3) {
         if ($row3 = $res3->fetch_assoc()) {
             $countDHDD = $row3['bill_count'];
@@ -34,7 +34,7 @@ if (isset($_POST['countAll'])) {
     }
 
     //lấy sản phẩm bán được
-    $res4 = $dtb->mysqli_query("SELECT SUM(`Quantity`) AS `quantity` FROM `billdetail`");
+    $res4 = $dtb->mysqli_query("SELECT COUNT(*) AS `quantity` FROM `bill` where `status`='Đã Đặt'");
     if ($res4) {
         if ($row3 = $res4->fetch_assoc())
             $countSPBD = $row3['quantity'];
@@ -48,10 +48,10 @@ if (isset($_POST['countAll'])) {
     $hd = 0;
     $hdtc = 0;
     while ($row5 = $res5->fetch_assoc()) {
-        if ($row5['status'] == 'Đã Nhận Hàng') {
+        if ($row5['status'] != 'Đã Hủy' && $row5['status'] != 'Đã Đặt') {
             $hd++;
             $hdtc++;
-        } else {
+        } else if($row5['status'] != 'Đã Hủy') {
             $hd++;
         }
     }

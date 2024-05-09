@@ -1,6 +1,6 @@
 <?php
 echo
-'<div id="shows">
+'<div id="shows" style="overflow:auto">
   <div id="main">
     <div class="head">
       <div class="col-div-6">
@@ -32,7 +32,7 @@ echo
     </div>
     <div class="col-div-3">
     <div class="box">
-        <h4>Đơn hàng thành công</h4>
+        <h4>Đơn hàng đã xác nhận</h4>
         <div class="flex">
         <p id="orders"></p>
         <i class="fa fa-shopping-bag box-icon"></i>
@@ -41,7 +41,7 @@ echo
     </div>
     <div class="col-div-3">
     <div class="box">
-        <h4>Số lượng bán ra</h4>
+        <h4>Đơn hàng chưa xác nhận</h4>
         <div class="flex">
         <p id="soldproducts"></p>
         <i class="fa fa-tasks box-icon"></i>
@@ -50,16 +50,35 @@ echo
     </div>
     <div class="clearfix"></div>
     <br />
-    <div class="col-div-8">
-      <div class="box-8" style="padding:15px;">
-        <canvas id="myChart"></canvas>
+    <div class="col-div-6">
+      <div class="box-6" style="padding:15px;">
+        <div class="" style="width:100%; height:500px; overflow-y:scroll;">
+          <table class="" style="text-align:center;">
+              <thead class="sticky-top" style="background-color:#1b203d;">
+                  <tr class="bg-dark text-light">
+                      <th scope="col">Mã Sản Phẩm</th>
+                      <th scope="col">Tên Sản Phẩm</th>
+                      <th scope="col">Ngày Đặt Hàng</th>
+                      <th scope="col">Số lượng bán ra</th>
+                  </tr>
+              </thead>
+              <tbody id="static-product">
+
+              </tbody>
+          </table>
+        </div>
+        <div style="margin-top:30px;">
+          <input type="date" id="DateBD" name="DateBD" style="width:15%; padding: 8px 12px; margin-right:15px;">
+          <input type="date" id="DateKT" name="DateKT" style="width:15%; padding: 8px 12px; margin-right:15px;">
+          <button onclick="filterDate()" class="" style="width:15%; margin-right:15px;">Xác Nhận</button>
+          <button onclick="static_product()" class="" style="width:15%;">Refresh</button>
+        </div>
       </div>
     </div>
-    <div class="col-div-4">
-      <div class="box-4">
+    <div class="col-div-6">
+      <div class="box-6" style="padding:5px;">
+        <canvas id="myChart"></canvas>
         <div class="content-box">
-          <p style="text-align:center;">Total Sale</p>
-
           <div class="circle-wrap">
           <div class="circle">
             <div class="mask full">
@@ -74,41 +93,23 @@ echo
       </div>
     </div>
     <div class="clearfix"></div>
-  </div>
-  <div>
-                    <div class="" style="width:100%; height:500px; overflow-y:scroll;">
-                        <table class="" style="text-align:center;">
-                            <thead class="sticky-top" style="background-color:blue;">
-                                <tr class="bg-dark text-light">
-                                    <th scope="col">Mã Sản Phẩm</th>
-                                    <th scope="col">Tên Sản Phẩm</th>
-                                    <th scope="col">Ngày Đặt Hàng</th>
-                                    <th scope="col">Số lượng bán ra</th>
-                                </tr>
-                            </thead>
-                            <tbody id="static-product">
 
-                            </tbody>
-                        </table>
-                    </div>
-    <div style="margin-top:30px;">
-    <input type="date" id="DateBD" name="DateBD" style="width:15%; padding: 8px 12px; margin-right:15px;">
-    <input type="date" id="DateKT" name="DateKT" style="width:15%; padding: 8px 12px; margin-right:15px;">
-    <button onclick="filterDate()" class="" style="width:15%; margin-right:15px;">Xác Nhận</button>
-    <button onclick="static_product()" class="" style="width:15%;">Refresh</button>
-    </div>
   </div>
+  
+  
 
 </div>';
 ?>
 <script>
   var dataset_bill = new Array();
   var dataset_import = new Array();
+  var today = new Date();
   <?php
   $dtb = new database();
+  $year = date("Y");
   for ($m = 1; $m <= 12; $m++) {
-    $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
-    $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '2024'";
+    $query_bill = "SELECT sum(total) as Total from bill where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '$year' AND `status`<>'Đã Hủy' AND `status`<>'Đã Đặt'";
+    $query_import = "SELECT sum(Total) as Total from import where MONTH(CreateTime) = '$m' AND YEAR(CreateTime) = '$year'";
     if ($result = $dtb->get_data($query_bill)) {
       while ($row = $result->fetch_assoc()) { ?>
         dataset_bill.push('<?php echo $row["Total"]; ?>')
@@ -145,7 +146,7 @@ echo
     options: {
       title: {
         display: true,
-        text: 'THỐNG KẾ NHẬP/XUẤT CÁC THÁNG TRONG NĂM 2024'
+        text: 'THỐNG KẾ NHẬP/XUẤT CÁC THÁNG TRONG NĂM '+today.getFullYear()
       }
     }
   }

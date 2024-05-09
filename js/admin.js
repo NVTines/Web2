@@ -4,7 +4,6 @@ function invinbox() {
 
         document.getElementById('nav').style.animation = "navside_2 2s forwards";
         document.getElementById('shows').style.animation = "full 2s forwards";
-        document.getElementsByClassName('boxtb')[0].style.left = "43%";
         count++;
         return 0;
     }
@@ -12,7 +11,6 @@ function invinbox() {
 
         document.getElementById('nav').style.animation = "navside 2s forwards";
         document.getElementById('shows').style.animation = "full_2 2s forwards";
-        document.getElementsByClassName('boxtb')[0].style.left = "50%";
         count++;
         return 0;
     }

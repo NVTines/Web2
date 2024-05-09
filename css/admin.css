@@ -187,7 +187,8 @@ body {
 }
 
 .box-8,
-.box-4 {
+.box-4,
+.box-6 {
     width: 94%;
     background-color: #272c4a;
 }
